@@ -11,5 +11,8 @@ import './styles/app.scss';
 //You can specify wich plugins you need
 import { Tooltip, Toast, Popover  } from 'bootstrap';
 
+//import du theme Landkit
+import './js/theme';
+
 // start the Stimulus application
 import './bootstrap';

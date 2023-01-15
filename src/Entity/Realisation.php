@@ -35,7 +35,7 @@ class Realisation
     private ?\DateTimeInterface $dateRealisation = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $datePublication = null;
+    private ?\DateTimeInterface $createdAt = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
@@ -62,8 +62,7 @@ class Realisation
     #[ORM\OneToMany(mappedBy: 'peinture', targetEntity: Commentaire::class)]
     private Collection $commentaires;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $createdAt = null;
+   
 
     public function __construct()
     {
@@ -148,14 +147,14 @@ class Realisation
         return $this;
     }
 
-    public function getDatePublication(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->datePublication;
+        return $this->createdAt;
     }
 
-    public function setDatePublication(\DateTimeInterface $datePublication): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->datePublication = $datePublication;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
@@ -282,18 +281,6 @@ class Realisation
                 $commentaire->setPeinture(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
 
         return $this;
     }

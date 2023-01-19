@@ -11,7 +11,7 @@
   justify-content: center;
   width: $input-height;
   height: $input-height;
-  background-color: var(--#{$prefix}primary);
+  background-color:burlywood;
   box-shadow: $box-shadow-light;
   color: var(--#{$prefix}white);
 
@@ -20,7 +20,7 @@
   }
 
   &:hover, &:focus {
-    background-color: var(--#{$prefix}primary);
+    background-color: var(--#{$prefix}warning);
     box-shadow: $box-shadow;
   }
 }
@@ -59,8 +59,8 @@
 // Button white
 
 .flickity-button-white .flickity-prev-next-button {
-  background-color: var(--#{$prefix}white);
-  color: var(--#{$prefix}primary);
+  background-color: burlywood !important;
+  color: var(--#{$prefix}white);
 }
 
 
@@ -75,11 +75,15 @@
 .flickity-button-bottom .flickity-prev-next-button.previous {
   left: auto;
   right: 6.375rem;
+  background-color: burlywood !important;
+
 }
 
 .flickity-button-bottom .flickity-prev-next-button.next {
   left: auto;
   right: 2.5rem;
+  background-color: burlywood !important;
+
 }
 
 

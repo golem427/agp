@@ -3,12 +3,14 @@
 namespace App\DataFixtures;
 
 use App\Entity\Blogpost;
+use App\Entity\Categorie;
+use App\Entity\Realisation;
 use App\Entity\User;
 use Faker\Factory;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Validator\Constraints\NotNull;
+// use Symfony\Component\Validator\Constraints\NotNull;
 
 class AppFixtures extends Fixture
 {
@@ -21,7 +23,7 @@ class AppFixtures extends Fixture
 
 
     public function load(ObjectManager $manager): void
-    {
+{
       // use the factory to create a Faker\Generator instance
 $faker = Factory::create();
 
@@ -53,7 +55,7 @@ $faker = Factory::create();
 
 // On crée 10 blogposts
 
-for ($i=0; $i<11; $i++){
+for ($i=0; $i<10; $i++){
     $blogpost = new Blogpost();
 
            $blogpost->setTitre($faker->words(3, true))
@@ -66,5 +68,48 @@ for ($i=0; $i<11; $i++){
         }
 
             $manager->flush();
-    }
+
+
+        // On crée 5 catégories
+
+for ($j=0; $j<5; $j++)
+    {
+    $categorie = new Categorie();
+
+           $categorie->setNom($faker->words(1,true))
+                    ->setDescription($faker->words(10,true))
+                    ->setSlug($faker->slug());
+
+            $manager->persist($categorie);
+
+
+            // On crée 3 réalisations par catégorie
+
+            for ($k=0; $k<3; $k++)
+            {
+                $realisation = new Realisation();
+
+                    $realisation->setNom($faker->words(3, true))
+                                ->setLargeur($faker->randomFloat(2, 20, 60))
+                                ->setLongueur($faker->randomFloat(2, 20, 60))
+                                ->setEnVente($faker->randomElement([true, false]))
+                                ->setDateRealisation($faker->dateTimeBetween('-6 month', 'now'))
+                                ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
+                                ->setDescription($faker->text(350))
+                                ->setPortfolio($faker->randomElement([true, false]))
+                                ->setSlug($faker->slug())
+                                ->setFile('img2/hotels/andrew-neel-B4rEJ09-Puo-unsplash (1).jpg')
+                                ->addCategorie($categorie)
+                                ->setPrix($faker->randomFloat(2, 100, 9999))
+                                ->setUser($user);
+
+                        $manager->persist($realisation);
+            }
+        }
+            $manager->flush();
+        }
+
 }
+            
+
+

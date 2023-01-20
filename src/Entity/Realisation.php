@@ -28,17 +28,11 @@ class Realisation
     #[ORM\Column]
     private ?bool $enVente = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
-    private ?string $prix = null;
-
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateRealisation = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $description = null;
 
     #[ORM\Column]
     private ?bool $portfolio = null;
@@ -48,6 +42,9 @@ class Realisation
 
     #[ORM\Column(length: 255)]
     private ?string $file = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
+    private ?string $prix = null;
 
     #[ORM\Column(length: 255)]
     private ?string $relation = null;
@@ -61,6 +58,9 @@ class Realisation
 
     #[ORM\OneToMany(mappedBy: 'peinture', targetEntity: Commentaire::class)]
     private Collection $commentaires;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description = null;
 
    
 
@@ -159,17 +159,7 @@ class Realisation
         return $this;
     }
 
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
+    
 
     public function isPortfolio(): ?bool
     {
@@ -281,6 +271,18 @@ class Realisation
                 $commentaire->setPeinture(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

@@ -2,11 +2,13 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Blogpost;
 use App\Entity\User;
 use Faker\Factory;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 class AppFixtures extends Fixture
 {
@@ -19,7 +21,7 @@ class AppFixtures extends Fixture
 
 
     public function load(ObjectManager $manager): void
-{
+    {
       // use the factory to create a Faker\Generator instance
 $faker = Factory::create();
 
@@ -32,8 +34,6 @@ $faker = Factory::create();
 // 'Numquam ut mollitia at consequuntur inventore dolorem.'
 
 // On crée un user
-
-for ($i=0; $i<6; $i++){
     $user = new User();
 
            $user->setEmail('user@test.fr')
@@ -46,7 +46,25 @@ for ($i=0; $i<6; $i++){
             $password=$this->hasher->hashPassword($user, 'password');
             $user->setPassword($password);
 
-            $manager->persist($user);}
+            $manager->persist($user);
             $manager->flush();
-}
+
+
+
+// On crée 10 blogposts
+
+for ($i=0; $i<11; $i++){
+    $blogpost = new Blogpost();
+
+           $blogpost->setTitre($faker->words(3, true))
+                    ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
+                    ->setContenu($faker->text(350))
+                    ->setSlug($faker->slug(3))
+                    ->setUser($user);
+
+            $manager->persist($blogpost);
+        }
+
+            $manager->flush();
+    }
 }

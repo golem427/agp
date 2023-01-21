@@ -10,7 +10,7 @@ use Faker\Factory;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-// use Symfony\Component\Validator\Constraints\NotNull;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 class AppFixtures extends Fixture
 {
@@ -41,7 +41,7 @@ $faker = Factory::create();
            $user->setEmail('user@test.fr')
                 ->setPrenom($faker->firstName())
                 ->setNom($faker->lastName())
-                ->setTelephone(($faker->phoneNumber()))
+                ->setTelephone($faker->phoneNumber())
                 ->setApropos($faker->text())
                 ->setInstagram('instagram');
 
@@ -58,7 +58,7 @@ $faker = Factory::create();
 for ($i=0; $i<10; $i++){
     $blogpost = new Blogpost();
 
-           $blogpost->setTitre($faker->words(3, true))
+           $blogpost->setTitre($faker->word())
                     ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
                     ->setContenu($faker->text(350))
                     ->setSlug($faker->slug(3))
@@ -76,7 +76,7 @@ for ($j=0; $j<5; $j++)
     {
     $categorie = new Categorie();
 
-           $categorie->setNom($faker->words(1,true))
+           $categorie->setNom($faker->word())
                     ->setDescription($faker->words(10,true))
                     ->setSlug($faker->slug());
 
@@ -95,7 +95,7 @@ for ($j=0; $j<5; $j++)
                                 ->setEnVente($faker->randomElement([true, false]))
                                 ->setDateRealisation($faker->dateTimeBetween('-6 month', 'now'))
                                 ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
-                                ->setDescription($faker->text(350))
+                                ->setDescription($faker->text())
                                 ->setPortfolio($faker->randomElement([true, false]))
                                 ->setSlug($faker->slug())
                                 ->setFile('img2/hotels/andrew-neel-B4rEJ09-Puo-unsplash (1).jpg')

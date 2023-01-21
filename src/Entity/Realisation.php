@@ -46,9 +46,6 @@ class Realisation
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
     private ?string $prix = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $relation = null;
-
     #[ORM\ManyToOne(inversedBy: 'realisations')]
     #[ORM\JoinColumn(nullable: false)]
     private ?user $user = null;
@@ -193,18 +190,6 @@ class Realisation
     public function setFile(string $file): self
     {
         $this->file = $file;
-
-        return $this;
-    }
-
-    public function getRelation(): ?string
-    {
-        return $this->relation;
-    }
-
-    public function setRelation(string $relation): self
-    {
-        $this->relation = $relation;
 
         return $this;
     }

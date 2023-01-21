@@ -67,7 +67,7 @@ for ($i=0; $i<10; $i++){
             $manager->persist($blogpost);
         }
 
-            $manager->flush();
+            // $manager->flush();
 
 
         // On crée 5 catégories

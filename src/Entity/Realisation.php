@@ -53,7 +53,7 @@ class Realisation
     #[ORM\ManyToMany(targetEntity: categorie::class, inversedBy: 'realisations')]
     private Collection $categorie;
 
-    #[ORM\OneToMany(mappedBy: 'peinture', targetEntity: Commentaire::class)]
+    #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Commentaire::class)]
     private Collection $commentaires;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -242,7 +242,7 @@ class Realisation
     {
         if (!$this->commentaires->contains($commentaire)) {
             $this->commentaires->add($commentaire);
-            $commentaire->setPeinture($this);
+            $commentaire->setRealisation($this);
         }
 
         return $this;
@@ -252,8 +252,8 @@ class Realisation
     {
         if ($this->commentaires->removeElement($commentaire)) {
             // set the owning side to null (unless already changed)
-            if ($commentaire->getPeinture() === $this) {
-                $commentaire->setPeinture(null);
+            if ($commentaire->getRealisation() === $this) {
+                $commentaire->setRealisation(null);
             }
         }
 

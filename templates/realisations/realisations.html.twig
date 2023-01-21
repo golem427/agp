@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RealisationsController!{% endblock %}
+
+{% block body %}
+{% for realisation in realisations %}
+
+    <p>{{realisation.nom}}</p>
+
+{% endfor %}
+
+{% endblock %}

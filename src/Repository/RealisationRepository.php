@@ -42,17 +42,17 @@ class RealisationRepository extends ServiceEntityRepository
 //    /**
 //     * @return Realisation[] Returns an array of Realisation objects
 //     */
-//         public function lastten(): array
-//    {
-//        return $this->createQueryBuilder('p')
-//         //    ->andWhere('r.exampleField = :val')
-//         //    ->setParameter('val', $value)
-//            ->orderBy('p.id', 'DESC')
-//            ->setMaxResults(5)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+        public function realisation(): array
+   {
+       return $this->createQueryBuilder('p')
+        //    ->andWhere('r.exampleField = :val')
+        //    ->setParameter('val', $value)
+           ->orderBy('p.id', 'DESC')
+           ->setMaxResults(5)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 
 //    public function findOneBySomeField($value): ?Realisation
 //    {

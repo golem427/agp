@@ -27,7 +27,7 @@ class Commentaire
     private ?\DateTimeInterface $createdAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'commentaires')]
-    private ?Realisation $peinture = null;
+    private ?Realisation $realisation = null;
 
     #[ORM\ManyToOne(inversedBy: 'commentaires')]
     private ?blogpost $blogpost = null;
@@ -85,14 +85,14 @@ class Commentaire
         return $this;
     }
 
-    public function getPeinture(): ?Realisation
+    public function getRealisation(): ?Realisation
     {
-        return $this->peinture;
+        return $this->realisation;
     }
 
-    public function setPeinture(?Realisation $peinture): self
+    public function setRealisation(?Realisation $realisation): self
     {
-        $this->peinture = $peinture;
+        $this->realisation = $realisation;
 
         return $this;
     }

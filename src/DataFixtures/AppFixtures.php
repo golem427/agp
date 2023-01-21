@@ -39,11 +39,11 @@ $faker = Factory::create();
     $user = new User();
 
            $user->setEmail('user@test.fr')
-                ->setPrenom($faker->firstName())
                 ->setNom($faker->lastName())
+                ->setPrenom($faker->firstName())
                 ->setTelephone($faker->phoneNumber())
                 ->setApropos($faker->text())
-                ->setInstagram('instagram');
+                ->setFacebook('facebook');
 
             $password=$this->hasher->hashPassword($user, 'password');
             $user->setPassword($password);
@@ -102,6 +102,7 @@ for ($j=0; $j<5; $j++)
                                 ->addCategorie($categorie)
                                 ->setPrix($faker->randomFloat(2, 100, 9999))
                                 ->setUser($user);
+                                
 
                         $manager->persist($realisation);
             }

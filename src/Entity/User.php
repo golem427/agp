@@ -43,7 +43,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $aPropos = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $instagram = null;
+    private ?string $facebook = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Realisation::class)]
     private Collection $realisations;
@@ -175,14 +175,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getInstagram(): ?string
+    public function getFacebook(): ?string
     {
-        return $this->instagram;
+        return $this->facebook;
     }
 
-    public function setInstagram(?string $instagram): self
+    public function setFacebook(?string $facebook): self
     {
-        $this->instagram = $instagram;
+        $this->facebook = $facebook;
 
         return $this;
     }

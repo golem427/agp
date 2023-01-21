@@ -51,8 +51,6 @@ $faker = Factory::create();
             $manager->persist($user);
             $manager->flush();
 
-
-
 // On crée 10 blogposts
 
 for ($i=0; $i<10; $i++){

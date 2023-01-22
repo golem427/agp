@@ -3,10 +3,12 @@
 {% block title %}Hello RealisationsController!{% endblock %}
 
 {% block body %}
+
 {% for realisation in realisations %}
 
     <p>{{realisation.nom}}</p>
 
 {% endfor %}
 
+{{ include _paginator.html.twig }}
 {% endblock %}

@@ -48,9 +48,9 @@ class Realisation
 
     #[ORM\ManyToOne(inversedBy: 'realisations')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?user $user = null;
+    private ?User $user = null;
 
-    #[ORM\ManyToMany(targetEntity: categorie::class, inversedBy: 'realisations')]
+    #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'realisations')]
     private Collection $categorie;
 
     #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Commentaire::class)]

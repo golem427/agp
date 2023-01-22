@@ -30,7 +30,7 @@ class Blogpost
 
     #[ORM\ManyToOne(inversedBy: 'blogposts')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?user $user = null;
+    private ?User $user = null;
 
     #[ORM\OneToMany(mappedBy: 'blogpost', targetEntity: Commentaire::class)]
     private Collection $commentaires;

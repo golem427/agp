@@ -42,13 +42,13 @@ class RealisationRepository extends ServiceEntityRepository
 //    /**
 //     * @return Realisation[] Returns an array of Realisation objects
 //     */
-        public function realisation(): array
+        public function realisationsArray(): array
    {
-       return $this->createQueryBuilder('p')
+       return $this->createQueryBuilder('r')
         //    ->andWhere('r.exampleField = :val')
         //    ->setParameter('val', $value)
-           ->orderBy('p.id', 'DESC')
-           ->setMaxResults(5)
+           ->orderBy('r.id', 'DESC')
+           ->setMaxResults(10)
            ->getQuery()
            ->getResult()
        ;

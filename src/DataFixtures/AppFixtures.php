@@ -14,18 +14,18 @@ use Symfony\Component\Validator\Constraints\NotNull;
 
 class AppFixtures extends Fixture
 {
-    private $hasher;
+    private $userPasswordHasherInterface;
 
-    public function __construct(UserPasswordHasherInterface $hasher)
+    public function __construct (UserPasswordHasherInterface $hasher) 
     {
-            $this->hasher = $hasher;
+        $this->userPasswordHasherInterface = $hasher;
     }
 
 
     public function load(ObjectManager $manager): void
 {
       // use the factory to create a Faker\Generator instance
-$faker = Factory::create();
+$faker = Factory::create('fr_FR');
 
 // generate data by calling methods
 // echo $faker->name();
@@ -45,7 +45,7 @@ $faker = Factory::create();
                 ->setApropos($faker->text())
                 ->setFacebook('facebook');
 
-            $password=$this->hasher->hashPassword($user, 'password');
+            $password=$this->userPasswordHasherInterface->hashPassword($user, 'password');
             $user->setPassword($password);
 
             $manager->persist($user);

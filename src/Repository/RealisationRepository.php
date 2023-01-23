@@ -39,28 +39,27 @@ class RealisationRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Realisation[] Returns an array of Realisation objects
-//     */
-        public function realisationsArray(): array
-   {
-       return $this->createQueryBuilder('r')
-        //    ->andWhere('r.exampleField = :val')
-        //    ->setParameter('val', $value)
-           ->orderBy('r.id', 'DESC')
-           ->setMaxResults(10)
-           ->getQuery()
-           ->getResult()
-       ;
-   }
+    //    /**
+    //     * @return Realisation[] Returns an array of Realisation objects
+    //     */
+    public function lastthree()
+    {
+        return $this->createQueryBuilder('r')
+            //    ->andWhere('r.exampleField = :val')
+            //    ->setParameter('val', $value)
+            ->orderBy('r.id', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?Realisation
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?Realisation
+    //    {
+    //        return $this->createQueryBuilder('r')
+    //            ->andWhere('r.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

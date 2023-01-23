@@ -1,141 +1,156 @@
-{% block realisations %}
+{% block realisation %}
+  <!-- ARTICLES -->
+    <section class="pt-7 pt-md-10">
+      <div class="container">
+        <div class="row align-items-center mb-5">
+          <div class="col-12 col-md">
 
-	<!-- ARTICLES -->
-	<section class="pt-7 pt-md-10">
-		<div class="container">
-			<div class="row align-items-center mb-5">
-				<div
-					class="col-12 col-md">
+            <!-- Heading -->
+            <h3 class="mb-0">
+              Case Studies
+            </h3>
 
-					<!-- Heading -->
-					<h3 class="mb-0">
-						Dernières réalisations
-					</h3>
+            <!-- Text -->
+            <p class="mb-0 text-muted">
+              In-depth looks at our work.
+            </p>
 
-					<!-- Text -->
-					<p class="mb-0 text-muted">
-						Au coeur de notre travail.
-					</p>
+          </div>
+          <div class="col-12 col-md-auto">
 
-				</div>
-				<div
-					class="col-12 col-md-auto">
+            <!-- Button -->
+            <a href="#!" class="btn btn-sm btn-outline-gray-300 d-none d-md-inline">
+              View all
+            </a>
 
-					<!-- Button -->
-					<a href="#!" class="btn btn-sm btn-warning btn-outline-warning-300 d-none d-md-inline">
-						Voir tout
-					</a>
+          </div>
+        </div> <!-- / .row -->
+            {# {% for realisation in realisations %} #}
+            <div class="row">
+            <div class="col-12">
 
-				</div>
-			</div>
+            <!-- Card -->
+            <div class="card card-row shadow-light-lg mb-6">
+              <div class="row gx-0">
+                <div class="col-12 col-md-6">
 
-			<!-- / .row -->
-		<div class="row">
-		
-				<div
-					class="col-12">
+                  <!-- Slider -->
+                  <div class="card-img-slider" data-flickity='{"fade": true, "imagesLoaded": true, "pageDots": false, "prevNextButtons": false, "asNavFor": "#blogSlider", "draggable": false}'>
+                    <a class="card-img-start position-absolute d-block w-100 bg-cover" style="background-image: url(/img/photos/photo-1.jpg);" href="#!">
 
-					<!-- Card -->
-					<div class="card card-row shadow-light-lg mb-6">
-						<div class="row gx-0">
-							<div
-								class="col-12 col-md-6">
+                      <!-- Image (placeholder) -->
+                      <img src="/img/photos/photo-1.jpg" alt="..." class="img-fluid d-md-none invisible">
 
+                    </a>
+                    <a class="card-img-start position-absolute d-block w-100 bg-cover" style="background-image: url(/img/photos/photo-26.jpg);" href="#!">
 
-								<!-- Slider -->
-								<div class="card-img-slider" data-flickity='{"fade": true, "imagesLoaded": true, "pageDots": false, "prevNextButtons": false, "asNavFor": "#blogSlider", "draggable": false}'>
+                      <!-- Image (placeholder) -->
+                      <img src="/img/photos/photo-26.jpg" alt="..." class="img-fluid d-md-none invisible">
 
-									<a
-										class="card-img-start position-absolute d-block w-100 bg-cover" style="background-image: url(/img2/jose/IMG-20221008-WA0004.jpg);" href="#">
+                    </a>
+                  </div>
 
-										<!-- Image (placeholder) -->
-										<img src="/img2/commerces/AURIS.jpg" alt='.'class="img-fluid d-md-none invisible">
-									</a>
+                  <!-- Shape -->
+                  <div class="shape shape-end shape-fluid-y text-white d-none d-md-block">
+                    <svg viewBox="0 0 112 690" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M116 0H51v172C76 384 0 517 0 517v173h116V0z" fill="currentColor"/></svg>                  </div>
 
-									<a
-										class="card-img-start position-absolute d-block w-100 bg-cover" style="background-image: url(/img2/jose/IMG-20221008-WA0006.jpg);" href="#">
+                </div>
+                <div class="col-12 col-md-6 position-static">
 
-										<!-- Image (placeholder) -->
-										<img src="/img2/commerces/AURIS.jpg" alt='.' class="img-fluid d-md-none invisible">
+                  <!-- Slider -->
+                  <div class="position-static" data-flickity='{"wrapAround": true, "pageDots": false, "imagesLoaded": true, "adaptiveHeight": true}' id="blogSlider">
+                    <div class="w-100">
 
-									</a>
-								</div>
+                      <!-- Body -->
+                      <a class="card-body" href="#!">
 
-								<!-- Shape -->
-								<div class="shape shape-end shape-fluid-y text-white d-none d-md-block">
-									<svg viewbox="0 0 112 690" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M116 0H51v172C76 384 0 517 0 517v173h116V0z" fill="currentColor"/></svg>
-								</div>
+                        <!-- Heading -->
+                        <h3>
+                          Spending Time Outside the Office with Coworkers Is Great for Productivity.
+                        </h3>
 
-							</div>
-							<div
-								class="col-12 col-md-6 position-static">
+                        <!-- Text -->
+                        <p class="mb-0 text-muted">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec condimentum quam. Fusce pellentesque faucibus lorem at viverra. Integer at feugiat odio. In placerat euismod risus proin erat purus.
+                        </p>
 
-								<!-- Slider -->
-								<div class="position-static" data-flickity='{"wrapAround": true, "pageDots": false, "imagesLoaded": true, "adaptiveHeight": true}' id="blogSlider">
+                      </a>
 
+                      <!-- Meta -->
+                      <a class="card-meta mt-auto" href="#!">
 
-									<div
-										class="w-100">
+                        <!-- Divider -->
+                        <hr class="card-meta-divider">
 
-										<!-- Body -->
-										<a
-											class="card-body" href="#">
+                        <!-- Avatar -->
+                        <div class="avatar avatar-sm me-2">
+                          <img src="/img/avatars/avatar-2.jpg" alt="..." class="avatar-img rounded-circle">
+                        </div>
 
-											<!-- Heading -->
-											<h3>
-											Nom de réalisation.
-											</h3>
+                        <!-- Author -->
+                        <h6 class="text-uppercase text-muted me-2 mb-0">
+                          Adolfo Hess
+                        </h6>
 
-											<!-- Text -->
-											<p class="mb-0 text-muted">
-												Description de la réalisation
-												Description de la réalisation
-												Description de la réalisation
-												Description de la réalisation
-											</p>
+                        <!-- Date -->
+                        <p class="h6 text-uppercase text-muted mb-0 ms-auto">
+                          <time datetime="2019-05-02">May 02</time>
+                        </p>
 
-										</a>
+                      </a>
 
-										<!-- Meta -->
-										<a
-											class="card-meta mt-auto" href="#!">
+                    </div>
+                    <div class="w-100">
 
-											<!-- Divider -->
-											<hr
-											class="card-meta-divider">
+                      <!-- Body -->
+                      <a class="card-body" href="#!">
 
-											<!-- Avatar -->
-											<div class="avatar avatar-sm me-2">
-												<img src=('/img/avatars/avatar-5.jpg') alt="..." class="avatar-img rounded-circle">
-											</div>
+                        <!-- Heading -->
+                        <h3>
+                          Working in Cafes Doesn't Inspire You. It Kills Your Output and Costs Money.
+                        </h3>
 
-											<!-- Author -->
-											<h6 class="text-uppercase text-muted me-2 mb-0">
-												Juanita Banana
-											</h6>
+                        <!-- Text -->
+                        <p class="mb-0 text-muted">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec condimentum quam. Fusce pellentesque faucibus lorem at viverra. Integer at feugiat odio. In placerat euismod risus proin erat purus.
+                        </p>
 
-											<!-- Date -->
-											<p class="h6 text-uppercase text-muted mb-0 ms-auto">
-												<time datetime="2019-05-02">02 mai</time>
-											</p>
-										</a>
-									</div>
-								</div>
+                      </a>
 
-							</div>
-						</div>
-						<!-- / .row -->
-					</div>
+                      <!-- Meta -->
+                      <a class="card-meta mt-auto" href="#!">
 
-				</div>
+                        <!-- Divider -->
+                        <hr class="card-meta-divider">
 
-			</div>
-       
-			<!-- / .row -->
-     
-		</div>
-    
-		<!-- / .container -->
-	</section>
+                        <!-- Avatar -->
+                        <div class="avatar avatar-sm me-2">
+                          <img src="/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                        </div>
 
+                        <!-- Author -->
+                        <h6 class="text-uppercase text-muted me-2 mb-0">
+                          Ab Hadley
+                        </h6>
+
+                        <!-- Date -->
+                        <p class="h6 text-uppercase text-muted mb-0 ms-auto">
+                          <time datetime="2019-05-02">May 02</time>
+                        </p>
+
+                      </a>
+
+                    </div>
+                  </div>
+
+                </div>
+                
+              </div> <!-- / .row -->
+            </div>
+
+          </div>
+            {# {% endfor %} #}
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
 {% endblock %}

@@ -10,9 +10,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route('/home', name: 'home')]
-    public function homeController(): Response
+    public function home(RealisationRepository $RealisationRepository): Response
     {
-        return $this->render('home.html.twig')
+        return $this->render('home.html.twig', 
+        [ 'realisations' => $RealisationRepository->lastthree(),])
         ;
 }
 

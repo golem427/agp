@@ -11,10 +11,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class RealisationsController extends AbstractController
 {
     #[Route('/realisations', name: 'realisations')]
-    public function realisations(RealisationRepository $realisationRepository): Response
+    public function realisations(): Response
     {
-        return $this->render('realisations/realisations.html.twig', [
-            'realisations' => $realisationRepository->findAll(),
-        ]);
+        return $this->render('realisations.html.twig');
     }
 }

@@ -25,7 +25,7 @@
 
           </div>
         </div> <!-- / .row -->
-            {# {% for realisation in realisations %} #}
+            {% for realisation in realisations %}
             <div class="row">
             <div class="col-12">
 
@@ -36,16 +36,17 @@
 
                   <!-- Slider -->
                   <div class="card-img-slider" data-flickity='{"fade": true, "imagesLoaded": true, "pageDots": false, "prevNextButtons": false, "asNavFor": "#blogSlider", "draggable": false}'>
-                    <a class="card-img-start position-absolute d-block w-100 bg-cover" style="background-image: url(/img/photos/photo-1.jpg);" href="#!">
+                    <a class="card-img-start position-absolute d-block w-100 bg-cover" style="background-image: url("{{ realisation.file }}"), href="#!">
 
                       <!-- Image (placeholder) -->
-                      <img src="/img/photos/photo-1.jpg" alt="..." class="img-fluid d-md-none invisible">
+                      <img src="{{ realisation.file }}" alt="..." class="img-fluid">{# d-md-none #}
+                     
 
                     </a>
-                    <a class="card-img-start position-absolute d-block w-100 bg-cover" style="background-image: url(/img/photos/photo-26.jpg);" href="#!">
+                    <a class="card-img-start position-absolute d-block w-100 bg-cover" style="{{ realisation.file }}" href="#!">
 
                       <!-- Image (placeholder) -->
-                      <img src="/img/photos/photo-26.jpg" alt="..." class="img-fluid d-md-none invisible">
+                      <img src="{{ realisation.file }}" alt="..." class="img-fluid ">{# d-md-none #}
 
                     </a>
                   </div>
@@ -66,12 +67,12 @@
 
                         <!-- Heading -->
                         <h3>
-                          Spending Time Outside the Office with Coworkers Is Great for Productivity.
+                          {{ realisation.nom }}
                         </h3>
 
                         <!-- Text -->
                         <p class="mb-0 text-muted">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec condimentum quam. Fusce pellentesque faucibus lorem at viverra. Integer at feugiat odio. In placerat euismod risus proin erat purus.
+                         {{ realisation.description|u.truncate('100', '...', 3) }}
                         </p>
 
                       </a>
@@ -107,12 +108,12 @@
 
                         <!-- Heading -->
                         <h3>
-                          Working in Cafes Doesn't Inspire You. It Kills Your Output and Costs Money.
+                          {{ realisation.nom }}
                         </h3>
 
                         <!-- Text -->
                         <p class="mb-0 text-muted">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec condimentum quam. Fusce pellentesque faucibus lorem at viverra. Integer at feugiat odio. In placerat euismod risus proin erat purus.
+                         {{ realisation.description|u.truncate('100', '...', false) }}
                         </p>
 
                       </a>
@@ -128,14 +129,14 @@
                           <img src="/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
                         </div>
 
-                        <!-- Author -->
+                        {# <!-- Author -->
                         <h6 class="text-uppercase text-muted me-2 mb-0">
-                          Ab Hadley
-                        </h6>
+                          {{realisation.user}}
+                        </h6> #}
 
                         <!-- Date -->
                         <p class="h6 text-uppercase text-muted mb-0 ms-auto">
-                          <time datetime="2019-05-02">May 02</time>
+                         	<time datetime="2019-05-02">Realisation faite le {{realisation.createdAt|date('d/m/y')}}</time>
                         </p>
 
                       </a>
@@ -147,9 +148,8 @@
                 
               </div> <!-- / .row -->
             </div>
-
           </div>
-            {# {% endfor %} #}
+          {% endfor %}
         </div> <!-- / .row -->
       </div> <!-- / .container -->
     </section>

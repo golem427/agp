@@ -40,19 +40,19 @@ class BlogpostRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Blogpost[] Returns an array of Blogpost objects
+//     * @return Blogposts[] Returns an array of Blogpost objects
 //     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('b')
-//            ->andWhere('b.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('b.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   public function lastthree(): array
+   {
+       return $this->createQueryBuilder('b')
+        //    ->andWhere('b.exampleField = :val')
+        //    ->setParameter('val', $value)
+           ->orderBy('b.id', 'DESC')
+           ->setMaxResults(3)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 
 //    public function findOneBySomeField($value): ?Blogpost
 //    {

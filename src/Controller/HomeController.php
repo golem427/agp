@@ -19,5 +19,4 @@ class HomeController extends AbstractController
             'blogposts' => $blogpostRepository->lastthree(),]
         );
     }
-    
 }

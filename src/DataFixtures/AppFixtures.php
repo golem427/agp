@@ -60,7 +60,8 @@ for ($i=0; $i<10; $i++){
                     ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
                     ->setContenu($faker->text(350))
                     ->setSlug($faker->slug(3))
-                    ->setUser($user);
+                    ->setUser($user)
+                    ->setFile('img2/commerces/mexiik1.jpg');
 
             $manager->persist($blogpost);
         }

@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}REALISATIONS{% endblock %}
+
+{% block body %}
+
+	{% block realisations %}
+
+<div class="row">
+
+{# <!-- BREADCRUMB -->
+    <nav class="bg-gray-200">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb breadcrumb-scroll">
+              <li class="breadcrumb-item">
+                <a href="blog.html" class="text-gray-700">
+                  Blog
+                </a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Rechercher
+              </li>
+            </ol>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </nav> #}
+
+    <!-- SEARCH -->
+    <section class="py-6">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+
+            <!-- Form -->
+            <form class="rounded shadow">
+              <div class="input-group input-group-lg">
+
+                <!-- Text -->
+                <span class="input-group-text border-0 pe-1">
+                  <i class="fe fe-search"></i>
+                </span>
+
+                <!-- Input -->
+                <input type="text" class="form-control border-0 px-1" aria-label="Search our blog..." placeholder="Search our blog..." value="Tapez un mot clé">recherche
+                <!-- Text -->
+                <span class="input-group-text border-0 py-0 ps-1 pe-3">
+
+                  <!-- Text -->
+                  <span class="h6 text-uppercase text-muted d-none d-md-block mb-0 me-5">
+                    résultats...
+                  </span>
+
+                  <!-- Button -->
+                  <button type="submit" class="btn btn-sm btn-primary">
+                    soumettre
+                  </button>
+
+                </span>
+
+              </div>
+            </form>
+
+          </div>
+        </div> <!-- / .row -->
+      </div>
+    </section>
+
+
+
+    <!-- ARTICLES -->
+<section>
+  <div class="container">
+    <div class="row">
+        
+        {% for realisation in realisations %}
+        
+          <div class="col-12 col-md-6 col-lg-4 d-flex">
+            <!-- Card -->
+            <div class="card mb-6 shadow-light-lg lift lift-lg">
+              <!-- Image -->
+              <a class="card-img-top" href="#!">
+                <!-- Image -->
+                <img src={{realisation.file}} alt="..." class="card-img-top">
+                <!-- Shape -->
+                <div class="position-relative">
+                  <div class="shape shape-bottom shape-fluid-x text-white">
+                    {# {{> curves/curve-3}} #}
+                  </div>
+                </div>
+              </a>
+
+              <!-- Body -->
+              <a class="card-body" href="#!">
+                <!-- Heading -->
+                <h3>
+                  {{realisation.nom}}
+                </h3>
+                <!-- Text -->
+                <p class="mb-0 text-muted">
+                  {{realisation.description}}
+                </p>
+              </a>
+
+              <!-- Meta -->
+              <a class="card-meta mt-auto" href="#!">
+                <!-- Divider -->
+                <hr class="card-meta-divider">
+                <!-- Avatar -->
+                <div class="avatar avatar-sm me-2">
+                  <img src="/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                </div>
+                <!-- Author -->
+                <h6 class="text-uppercase text-muted me-2 mb-0">
+                  J. Aguado
+                </h6>
+                <!-- Date -->
+                <p class="h6 text-uppercase text-muted mb-0 ms-auto">
+                  <time datetime="2019-05-02">{{realisation.createdAt|date('d/m/y')}}</time>
+                </p>
+              </a>
+            </div>
+           
+          </div>  
+           {% endfor %}
+    </div>
+  </div>
+</section>
+
+	{% endblock %}
+{% endblock %}

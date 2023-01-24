@@ -8,7 +8,7 @@
 
 <div class="row">
 
-{# <!-- BREADCRUMB -->
+<!-- BREADCRUMB -->
     <nav class="bg-gray-200">
       <div class="container">
         <div class="row">
@@ -17,19 +17,18 @@
             <!-- Breadcrumb -->
             <ol class="breadcrumb breadcrumb-scroll">
               <li class="breadcrumb-item">
-                <a href="blog.html" class="text-gray-700">
-                  Blog
+                <a href= {{ path('home')}} class="text-gray-700">
+                  Home
                 </a>
               </li>
               <li class="breadcrumb-item active" aria-current="page">
-                Rechercher
+                Réalisations
               </li>
             </ol>
-
           </div>
         </div> <!-- / .row -->
       </div> <!-- / .container -->
-    </nav> #}
+    </nav>
 
     <!-- SEARCH -->
     <section class="py-6">
@@ -47,7 +46,7 @@
                 </span>
 
                 <!-- Input -->
-                <input type="text" class="form-control border-0 px-1" aria-label="Search our blog..." placeholder="Search our blog..." value="Tapez un mot clé">recherche
+                <input type="text" class="form-control border-0 px-1" aria-label="Search our blog..." placeholder="Search our blog..." value="">
                 <!-- Text -->
                 <span class="input-group-text border-0 py-0 ps-1 pe-3">
 
@@ -130,7 +129,9 @@
            {% endfor %}
     </div>
   </div>
-</section>
-
+  <div class="d-flex justify-content-center">
+  {% do realisations.setPageRange(3)%}
+  {{ knp_pagination_render(realisations, 'include/_paginator.html.twig') }}
+  </div>
 	{% endblock %}
 {% endblock %}

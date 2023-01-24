@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class RealisationsController extends AbstractController
 {
-    #[Route('realisations/', name: 'realisations')]
+    #[Route('/realisations', name: 'realisations')]
     public function realisations(
         RealisationRepository $realisationRepository,
         PaginatorInterface $paginator,

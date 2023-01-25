@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}REALISATIONS{% endblock %}
+{% block title %}ACTUALITES{% endblock %}
 
 {% block body %}
 
-	{% block realisations %}
+	{% block actualites %}
 
 <div class="row">
 
@@ -22,7 +22,7 @@
                 </a>
               </li>
               <li class="breadcrumb-item active" aria-current="page">
-                Réalisations
+                Actualités
               </li>
             </ol>
           </div>
@@ -77,7 +77,7 @@
   <div class="container">
     <div class="row">
         
-        {% for realisation in realisations %}
+        {% for blogpost in actualites %}
         
           <div class="col-12 col-md-6 col-lg-4 d-flex">
             <!-- Card -->
@@ -85,7 +85,7 @@
               <!-- Image -->
               <a class="card-img-top" href="#!">
                 <!-- Image -->
-                <img src={{realisation.file}} alt="..." class="card-img-top">
+                <img src={{blogpost.file}} alt="..." class="card-img-top">
                 <!-- Shape -->
                 <div class="position-relative">
                   <div class="shape shape-bottom shape-fluid-x text-white">
@@ -98,11 +98,11 @@
               <a class="card-body" href="#!">
                 <!-- Heading -->
                 <h3>
-                  {{realisation.nom}}
+                  {{blogpost.titre}}
                 </h3>
                 <!-- Text -->
                 <p class="mb-0 text-muted">
-                  {{realisation.description}}
+                  {{blogpost.contenu}}
                 </p>
               </a>
 
@@ -120,7 +120,7 @@
                 </h6>
                 <!-- Date -->
                 <p class="h6 text-uppercase text-muted mb-0 ms-auto">
-                  <time datetime="2019-05-02">{{realisation.createdAt|date('d/m/y')}}</time>
+                  <time datetime="2019-05-02">{{blogpost.createdAt|date('d/m/y')}}</time>
                 </p>
               </a>
             </div>
@@ -130,8 +130,8 @@
     </div>
   </div>
   <div class="d-flex justify-content-center">
-  {% do realisations.setPageRange(3)%}
-  {{ knp_pagination_render(realisations, 'include/_paginator.html.twig') }}
+  {% do actualites.setPageRange(3)%}
+  {{ knp_pagination_render(actualites, 'include/_paginator.html.twig') }}
   </div>
 	{% endblock %}
 {% endblock %}

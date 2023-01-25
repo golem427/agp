@@ -16,7 +16,7 @@ class HomeController extends AbstractController
         return $this->render(
             'home.html.twig',
             ['realisations' => $RealisationRepository->lastthree(),
-            'blogposts' => $blogpostRepository->lastthree(),]
+            'blogposts' => $blogpostRepository->lastthree()]
         );
     }
 }

@@ -71,7 +71,7 @@
             {% endif %}
 
             {% if next is defined %}
-                <li class="page-item">
+                <li class="page-item" style:color:"red"!important >
                     <a class="page-link" rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}">{{ 'label_next'|trans({}, 'KnpPaginatorBundle') }}&nbsp;&raquo;</a>
                 </li>
             {% else %}

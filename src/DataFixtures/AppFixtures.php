@@ -43,7 +43,8 @@ $faker = Factory::create('fr_FR');
                 ->setPrenom($faker->firstName())
                 ->setTelephone($faker->phoneNumber())
                 ->setApropos($faker->text())
-                ->setFacebook('facebook');
+                ->setFacebook('facebook')
+                ->setRoles(['ROLE_PEINTRE']);
 
             $password=$this->userPasswordHasherInterface->hashPassword($user, 'password');
             $user->setPassword($password);

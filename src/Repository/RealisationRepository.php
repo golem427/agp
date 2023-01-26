@@ -48,7 +48,7 @@ class RealisationRepository extends ServiceEntityRepository
             //    ->andWhere('r.exampleField = :val')
             //    ->setParameter('val', $value)
             ->orderBy('r.id', 'DESC')
-            ->setMaxResults(3)
+            ->setMaxResults(1)
             ->getQuery()
             ->getResult();
     }

@@ -1,39 +1,46 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-{% set img = categorie.realisations|last  %}
-<section data-jarallax data-speed="0.8" class="pt-12 pt-md-14 pb-12 pb-md-15 overlay overlay-black>
-			<div class=" container">
-	<div class="row justify-content-center">
-		<div class="col-12 col-md-10 col-lg-7 text-center">
-			<h1 class="display-2 fw-bold text-white">
-				{{ categorie.nom }}
-			</h1>
-			<p class="lead text-white-75 mb-4">
-				{{ categorie.description }}
-			</p>
-		</div>
-	</div>
-</div></section>
-{#  SHAPE  #}
-<div class="poistion-relative">
-<div class="shape shape-bottom shape-fluid-x svg-shim text-light">
-	<svg viewbox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<path d="M0 48h2880"></div>
-
-		{#  CONTENT  #}
-		<section class="py-8 py-md-11 mt-n10 mt-md-n14">
-			<div class="container">
-				<div class="row" id="portfolio" data-isotope='{"layoutMode": "masonry"}'>
-					{% for realisation in realisations %}
-						<div class="col-12 col-md-4">
-							<a class="card shadow-light-lg mb-7" href="#" data-bigpicture="'{" imgsrc": " {{ realisation.file }} "}>
-								<div class=" card-zoom">
-								<img class="card-img" src="{{ realisation.file }}" alt="...">
-							</div>
-						</a>
-					</div>
-				{% endfor %}
+	{% set img = categorie.realisations|last  %}
+<section data-jarallax data-speed="0.8" class="pt-12 pt-md-14 pb-12 pb-md-15 overlay overlay-black">
+		<div class=" container">
+			<div class="row justify-content-center">
+				<div class="col-12 col-md-10 col-lg-7 text-center">
+					<h1 class="display-2 fw-bold text-white">
+						{{ categorie.nom }}
+					</h1>
+					<p class="lead text-white-75 mb-4">
+						{{ categorie.description }}
+					</p>
+				</div>
 			</div>
 		</div>
-	</section>
+</section>
+	{#  SHAPE  #}
+	<div class="poistion-relative">
+		<div class="shape shape-bottom shape-fluid-x svg-shim text-light">
+			<svg viewbox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M0 48h2880">
+		</div>
+
+				{#  CONTENT  #}
+				<section class="py-8 py-md-11 mt-n10 mt-md-n14">
+					<div class="container">
+						<div class="row" id="portfolio" data-isotope='{"layoutMode": "masonry"}'>
+							{% for realisation in realisations %}
+								<div class="col-12 col-md-4">
+									<a class="card shadow-light-lg mb-7" href="#" data-bigpicture='{" imgsrc": " {{ realisation.file }} "}'>
+										<div class=" card-zoom">
+											<img class="card-img" src="{{ realisation.file }}" alt="...">
+										</div>
+									</a>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</section>
+	</div>
+			
+			
+			
+{% endblock %}

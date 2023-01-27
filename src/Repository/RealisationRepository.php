@@ -60,7 +60,7 @@ class RealisationRepository extends ServiceEntityRepository
    public function findAllPortfolio(Categorie $categorie): array
    {
        return $this->createQueryBuilder('p')
-           ->Where(':categorie MEMBER OF p.categorie')
+           ->where(':categorie MEMBER OF p.categorie')
            ->andWhere('p.portfolio = TRUE')
            ->setParameter('categorie', $categorie)
            ->getQuery()

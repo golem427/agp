@@ -23,8 +23,6 @@
     
           <!-- Navigation -->
           <ul class="navbar-nav ms-auto">
-
-          
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarLandings" data-bs-toggle="dropdown" 
               href= "{{ path('realisations') }}" aria-haspopup="true" aria-expanded="false">
@@ -267,7 +265,7 @@
               {% for categorie in categorieNavbar() %}
 
                 <li class="dropdown-item dropend">
-                  <a href="{{ path('app_categorie', {'slug': categorie.slug}) }}" class="nav-link">  
+                  <a href="{{ path('app_categorie', {'slug': categorie.slug}) }}">  
                   </a>
                 </li>
                 {% endfor %}

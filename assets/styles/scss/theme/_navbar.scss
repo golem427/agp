@@ -8,6 +8,7 @@
   transition: $transition-base;
   transition-property: background-color, color;
   z-index: $zindex-fixed;
+  background-color: #F8F9FB !important;
 }
 
 // Dark version

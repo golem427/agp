@@ -70,9 +70,9 @@ for ($i=0; $i<10; $i++){
             // $manager->flush();
 
 
-        // On crée 5 catégories
+        // On crée 9 catégories
 
-for ($j=0; $j<5; $j++)
+for ($j=0; $j<9; $j++)
     {
     $categorie = new Categorie();
 

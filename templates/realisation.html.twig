@@ -19,7 +19,7 @@
           <div class="col-12 col-md-auto">
 
             <!-- Button -->
-            <a href="#!" class="btn btn-sm btn-outline-gray-300 d-none d-md-inline">
+            <a href="#" class="btn btn-sm btn-outline-gray-300 d-none d-md-inline">
               Voir tout
             </a>
 
@@ -36,10 +36,11 @@
 
                   <!-- Slider -->
                   <div class="card-img-slider" data-flickity='{"fade": true, "imagesLoaded": true, "pageDots": false, "prevNextButtons": false, "asNavFor": "#blogSlider", "draggable": false}'>
-                    <a class="card-img-start position-absolute d-block w-100 bg-cover" style="background-image: url("{{ realisation.file }}"), href="#!">
+                    <a class="card-img-start position-absolute d-block w-100 bg-cover" 
+                    href="{{ path('realisations_details', {'slug': realisation.slug}) }}">
 
                       <!-- Image (placeholder) -->
-                      <img src="{{ realisation.file }}" alt="..." class="img-fluid">{# d-md-none #}
+                      <img src="{{ (realisation.file) }}" alt="..." class="img-fluid">{# d-md-none #}
                      
 
                     </a>

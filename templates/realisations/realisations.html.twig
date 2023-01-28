@@ -84,7 +84,7 @@
             <!-- Card -->
             <div class="card mb-6 shadow-light-lg lift lift-lg">
               <!-- Image -->
-              <a class="card-img-top" href="#!">
+              <a class="card-img-top" href="{{ path('realisations_details', {'slug: realisation.slug'}) }}">
                 <!-- Image -->
                 <img src={{realisation.file}} alt="..." class="card-img-top">
                 <!-- Shape -->
@@ -108,7 +108,7 @@
               </a>
 
               <!-- Meta -->
-              <a class="card-meta mt-auto" href="#!">
+              <a class="card-meta mt-auto" href=""{{ path('realisations_details', {'slug: realisation.slug'}) }}"!">
                 <!-- Divider -->
                 <hr class="card-meta-divider">
                 <!-- Avatar -->

@@ -2,7 +2,7 @@
 
 {% block title %}ACTUALITES{% endblock %}
 
-{% block body %}
+{% block body %} 
 
 	{% block actualites %}
 
@@ -76,6 +76,7 @@
 <section>
   <div class="container">
     <div class="row">
+    <h1 class="d-flex justify-content-center">ACTUALITES</h1>
         
         {% for blogpost in blogposts %}
         
@@ -83,7 +84,9 @@
             <!-- Card -->
             <div class="card mb-6 shadow-light-lg lift lift-lg">
               <!-- Image -->
-              <a class="card-img-top" href="#!">
+              <a class="card-img-top" 
+              href="{{ path('details_actualites', {'slug': blogpost.slug}) }}">
+                <!-- Image -->
                 <!-- Image -->
                 <img src={{blogpost.file}} alt="..." class="card-img-top">
                 <!-- Shape -->
@@ -95,7 +98,7 @@
               </a>
 
               <!-- Body -->
-              <a class="card-body" href="#!">
+              <a class="card-body" href="{{ path('details_actualites', {'slug': blogpost.slug}) }}">
                 <!-- Heading -->
                 <h3>
                   {{blogpost.titre}}
@@ -107,7 +110,7 @@
               </a>
 
               <!-- Meta -->
-              <a class="card-meta mt-auto" href="#!">
+              <a class="card-meta mt-auto" href="{{ path('details_actualites', {'slug': blogpost.slug}) }}">
                 <!-- Divider -->
                 <hr class="card-meta-divider">
                 <!-- Avatar -->

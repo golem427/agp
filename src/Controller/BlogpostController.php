@@ -26,4 +26,14 @@ class BlogpostController extends AbstractController
         return $this->render('actualites/actualites.html.twig',[
         'blogposts' => $blogposts ]);
     }
+
+
+    #[Route('/actualites/{slug}', name: 'actualites_details')]
+    public function blogpost(blogspot $blogspot): Response
+    {
+        return $this->render('realisations/details.html.twig', [
+            'blogspot' => $blogspot
+        ]);
+    }
+
 }

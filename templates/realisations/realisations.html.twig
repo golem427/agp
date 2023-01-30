@@ -17,7 +17,7 @@
             <!-- Breadcrumb -->
             <ol class="breadcrumb breadcrumb-scroll">
               <li class="breadcrumb-item">
-                <a href= {{ path('home')}} class="text-gray-700">
+                <a href= "{{ path('home')}}" class="text-gray-700">
                   Accueil
                 </a>
               </li>
@@ -84,9 +84,9 @@
             <!-- Card -->
             <div class="card mb-6 shadow-light-lg lift lift-lg">
               <!-- Image -->
-              <a class="card-img-top" href="{{ path('realisations_details', {'slug: realisation.slug'}) }}">
+              <a class="card-img-top" href="{{ path('realisations_details', {'slug': realisation.slug}) }}">
                 <!-- Image -->
-                <img src={{realisation.file}} alt="..." class="card-img-top">
+                <img src="{{ realisation.file }}" alt="..." class="card-img-top">
                 <!-- Shape -->
                 <div class="position-relative">
                   <div class="shape shape-bottom shape-fluid-x text-white">
@@ -108,7 +108,7 @@
               </a>
 
               <!-- Meta -->
-              <a class="card-meta mt-auto" href=""{{ path('realisations_details', {'slug: realisation.slug'}) }}"!">
+              <a class="card-meta mt-auto" href="{{ path('realisations_details', {'slug': realisation.slug}) }}">
                 <!-- Divider -->
                 <hr class="card-meta-divider">
                 <!-- Avatar -->

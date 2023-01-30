@@ -28,4 +28,6 @@ class AppExtension extends AbstractExtension
         return $this->categorieRepository->findAll();
     }
 }
+
+
 ?>

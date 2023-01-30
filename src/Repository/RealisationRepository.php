@@ -57,14 +57,16 @@ class RealisationRepository extends ServiceEntityRepository
     //   /**
 //     * @return Realisation[] Returns an array of Categorie objects
 //     */
-   public function findAllPortfolio(Categorie $categorie): array
+   public function findAllPortfolio(Categorie $categorie): array /*on rassemble la collection*/
    {
        return $this->createQueryBuilder('p')
-           ->where(':categorie MEMBER OF p.categorie')
-           ->andWhere('p.portfolio = TRUE')
+           ->where(':categorie MEMBER OF p.categorie') 
+           /*est-ce que la variable :catégorie-de-ma-realisation-du-AllPortfolio
+           fait bien partie des réalisations de CETTE catégorie ? */
+           ->andWhere('p.portfolio = TRUE') /* oui elle en fait partie /non, elle n'en fait pas */
            ->setParameter('categorie', $categorie)
            ->getQuery()
-           ->getResult()
+           ->getResult() /* le "finAllPortfolio" capture la réalisation suivant sa catégorie */
        ;
    }
 }

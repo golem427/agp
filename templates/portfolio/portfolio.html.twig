@@ -1,340 +1,338 @@
 {% extends 'base.html.twig' %}
 
 
-
 {% block body %}
 
-<h1 class="row justify-content-center mt-5">PORTFOLIO</h1>
-
-    <!-- CONTENT -->
-    <section class="py-8 py-md-11 mt-3 mt-md-3">
-      <div class="container">
-        <div class="row" id="portfolio" data-isotope='{"layoutMode": "masonry"}'>
-
-        {% for categorie in categories %}
-            {% set img = categorie.realisations|last %}
-
-          <div class="col-12 col-md-4 resources">
-
-            <!-- Card -->
-            <a class="card shadow-light-lg mb-7" 
-            href="{{ path('portfolio_categorie', {'slug': categorie.slug} )}}">
-              <!-- Image -->
-              <div class="card-zoom">
-                <img class="card-img" src="{{ img.file}}" alt="...">
-              </div>
-              <!-- Overlay -->
-              <div class="card-img-overlay card-img-overlay-hover">
-                <div class="card-body bg-white">
-                  <!-- Shape -->
-                  <div class="shape shape-bottom-100 shape-fluid-x text-white">
-                    <svg viewBox="0 0 2880 48" fill="none" xmlns="#"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>                  </div>
-                  <!-- Preheading -->
-                  <h6 class="text-uppercase mb-1 text-muted">{{ categorie.nom }}</h6>
-                  <!-- Heading -->
-                  <h4 class="mb-0">{{ categorie.description }}</h4>
-                </div>
-              </div>
-
-            </a>
-
-          </div>
-          <div class="col-12 col-md-4 product">
-
-            <!-- Card -->
-            <a class="card shadow-light-lg mb-7" href="#!">
-
-              <!-- Image -->
-              <div class="card-zoom">
-                <img class="card-img" src="/img/portfolio/portfolio-10.jpg" alt="...">
-              </div>
-
-              <!-- Overlay -->
-              <div class="card-img-overlay card-img-overlay-hover">
-                <div class="card-body bg-white">
-
-                  <!-- Shape -->
-                  <div class="shape shape-bottom-100 shape-fluid-x text-white">
-                    <svg viewBox="0 0 2880 48" fill="none" xmlns="#"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>                  </div>
-
-                  <!-- Preheading -->
-                  <h6 class="text-uppercase mb-1 text-muted">Branding</h6>
-
-                  <!-- Heading -->
-                  <h4 class="mb-0">Honest Packaging</h4>
-
-                </div>
-              </div>
-
-            </a>
-
-          </div>
-          <div class="col-12 col-md-4 resources">
-
-            <!-- Card -->
-            <a class="card shadow-light-lg mb-7" href="#!">
-
-              <!-- Image -->
-              <div class="card-zoom">
-                <img class="card-img" src="/img/portfolio/portfolio-11.jpg" alt="...">
-              </div>
-
-              <!-- Overlay -->
-              <div class="card-img-overlay card-img-overlay-hover">
-                <div class="card-body bg-white">
-
-                  <!-- Shape -->
-                  <div class="shape shape-bottom-100 shape-fluid-x text-white">
-                    <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>                  </div>
-
-                  <!-- Preheading -->
-                  <h6 class="text-uppercase mb-1 text-muted">Branding</h6>
-
-                  <!-- Heading -->
-                  <h4 class="mb-0">Larq Bright Campaign</h4>
-
-                </div>
-              </div>
-
-            </a>
-
-          </div>
-          <div class="col-12 col-md-4 ux">
-
-            <!-- Card -->
-            <a class="card shadow-light-lg mb-7" href="#!">
-
-              <!-- Image -->
-              <div class="card-zoom">
-                <img class="card-img" src="/img/portfolio/portfolio-13.jpg" alt="...">
-              </div>
-
-              <!-- Overlay -->
-              <div class="card-img-overlay card-img-overlay-hover">
-                <div class="card-body bg-white">
-
-                  <!-- Shape -->
-                  <div class="shape shape-bottom-100 shape-fluid-x text-white">
-                    <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>                  </div>
-
-                  <!-- Preheading -->
-                  <h6 class="text-uppercase mb-1 text-muted">Branding</h6>
-
-                  <!-- Heading -->
-                  <h4 class="mb-0">Larq Earthtones Collection</h4>
-
-                </div>
-              </div>
-
-            </a>
-
-          </div>
-          <div class="col-12 col-md-4 ux">
-
-            <!-- Card -->
-            <a class="card shadow-light-lg mb-7" href="#!">
-
-              <!-- Image -->
-              <div class="card-zoom">
-                <img class="card-img" src="/img/portfolio/portfolio-12.jpg" alt="...">
-              </div>
-
-              <!-- Overlay -->
-              <div class="card-img-overlay card-img-overlay-hover">
-                <div class="card-body bg-white">
-
-                  <!-- Shape -->
-                  <div class="shape shape-bottom-100 shape-fluid-x text-white">
-                    <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>                  </div>
-
-                  <!-- Preheading -->
-                  <h6 class="text-uppercase mb-1 text-muted">Product Design</h6>
-
-                  <!-- Heading -->
-                  <h4 class="mb-0">Goby Packaging </h4>
-
-                </div>
-              </div>
-
-            </a>
-
-          </div>
-          <div class="col-12 col-md-4 product">
-
-            <!-- Card -->
-            <a class="card shadow-light-lg mb-7" href="#!">
-
-              <!-- Image -->
-              <div class="card-zoom">
-                <img class="card-img" src="/img/portfolio/portfolio-4.jpg" alt="...">
-              </div>
-
-              <!-- Overlay -->
-              <div class="card-img-overlay card-img-overlay-hover">
-                <div class="card-body bg-white">
-
-                  <!-- Shape -->
-                  <div class="shape shape-bottom-100 shape-fluid-x text-white">
-                    <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>                  </div>
-
-                  <!-- Preheading -->
-                  <h6 class="text-uppercase mb-1 text-muted">Ideation</h6>
-
-                  <!-- Heading -->
-                  <h4 class="mb-0">Doodle Pads</h4>
-
-                </div>
-              </div>
-
-            </a>
-
-          </div>
-          <div class="col-12 col-md-4 product">
-
-            <!-- Card -->
-            <a class="card shadow-light-lg mb-7" href="#!">
-
-              <!-- Image -->
-              <div class="card-zoom">
-                <img class="card-img" src="/img/portfolio/portfolio-14.jpg" alt="...">
-              </div>
-
-              <!-- Overlay -->
-              <div class="card-img-overlay card-img-overlay-hover">
-                <div class="card-body bg-white">
-
-                  <!-- Shape -->
-                  <div class="shape shape-bottom-100 shape-fluid-x text-white">
-                    <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>                  </div>
-
-                  <!-- Preheading -->
-                  <h6 class="text-uppercase mb-1 text-muted">Product Design</h6>
-
-                  <!-- Heading -->
-                  <h4 class="mb-0">Larq Bottle Redesign</h4>
-
-                </div>
-              </div>
-
-            </a>
-
-          </div>
-          <div class="col-12 col-md-4 ux">
-
-            <!-- Card -->
-            <a class="card shadow-light-lg mb-7" href="#!">
-
-              <!-- Image -->
-              <div class="card-zoom">
-                <img class="card-img" src="/img/portfolio/portfolio-6.jpg" alt="...">
-              </div>
-
-              <!-- Overlay -->
-              <div class="card-img-overlay card-img-overlay-hover">
-                <div class="card-body bg-white">
-
-                  <!-- Shape -->
-                  <div class="shape shape-bottom-100 shape-fluid-x text-white">
-                    <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>                  </div>
-
-                  <!-- Preheading -->
-                  <h6 class="text-uppercase mb-1 text-muted">Product Exploration</h6>
-
-                  <!-- Heading -->
-                  <h4 class="mb-0">Goby Brush Prototype</h4>
-
-                </div>
-              </div>
-
-            </a>
-
-          </div>
-          <div class="col-12 col-md-4 ux">
-
-            <!-- Card -->
-            <a class="card shadow-light-lg mb-7" href="#!">
-
-              <!-- Image -->
-              <div class="card-zoom">
-                <img class="card-img" src="/img/portfolio/portfolio-15.jpg" alt="...">
-              </div>
-
-              <!-- Overlay -->
-              <div class="card-img-overlay card-img-overlay-hover">
-                <div class="card-body bg-white">
-
-                  <!-- Shape -->
-                  <div class="shape shape-bottom-100 shape-fluid-x text-white">
-                    <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>                  </div>
-
-                  <!-- Preheading -->
-                  <h6 class="text-uppercase mb-1 text-muted">Branding</h6>
-
-                  <!-- Heading -->
-                  <h4 class="mb-0">Trek Ride Campaign</h4>
-
-                </div>
-              </div>
-
-            </a>
-
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-    </section>
-
-    <!-- SHAPE -->
-    <div class="position-relative">
-      <div class="shape shape-bottom shape-fluid-x text-gray-200">
-        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>      </div>
-    </div>
-
-
-
-
-
-    <!-- CTA -->
-    <section class="pt-6 pt-md-8 bg-gray-200">
-      <div class="container pb-6 pb-md-8 border-bottom border-gray-300">
-        <div class="row align-items-center">
-          <div class="col-12 col-md">
-
-            <!-- Heading -->
-            <h3 class="mb-1 fw-bold">
-              Recevez de nos nouvelles
-            </h3>
-
-            <!-- Text -->
-            <p class="fs-lg text-muted mb-6 mb-md-0">
-              Dans votre boîte à votre fréquence.
-            </p>
-
-          </div>
-          <div class="col-12 col-md-5">
-
-            <!-- Form -->
-            <form>
-              <div class="row">
-                <div class="col">
-
-                  <!-- Input -->
-                  <input type="email" class="form-control" placeholder="Enter your email">
-
-                </div>
-                <div class="col-auto ms-n5">
-
-                  <!-- Button -->
-                  <button class="btn btn-primary" type="submit">
-                    Souscrire
-                  </button>
-
-                </div>
-              </div> <!-- / .row -->
-            </form>
-
-          </div>
-        </div> <!-- / .row -->
-      </div> <!-- / .container -->
-    </section>
+	<h1 class="row justify-content-center mt-5">PORTFOLIO</h1>
+	<h2 class="row justify-content-center mt-5">Mes réalisations par catégorie</h2>
+
+	<!-- CONTENT -->
+	<section class="py-8 py-md-11 mt-3 mt-md-3">
+		<div class="container">
+			<div class="row" id="portfolio" data-isotope='{"layoutMode": "masonry"}'>
+
+				{% for categorie in categories %}
+					{% set img = categorie.realisations|last %}
+
+{# /////////////////////////////////////// 1 ///////////////////////////////////////////////// #}
+
+					<div
+						class="col-12 col-md-4 resources">
+						<!-- Card -->
+						<a
+							class="card shadow-light-lg mb-7" href="{{ path('portfolio_categorie', {'slug': categorie.slug} )}}">
+							<!-- Image -->
+							<div class="card-zoom">
+								<img class="card-img" src="{{ img.file}}" alt="...">
+							</div>
+							<!-- Overlay -->
+							<div class="card-img-overlay card-img-overlay-hover">
+								<div
+									class="card-body bg-white">
+									<!-- Shape -->
+									<div class="shape shape-bottom-100 shape-fluid-x text-white">
+										<svg viewbox="0 0 2880 48" fill="none" xmlns="#"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
+									</div>
+									<!-- Preheading -->
+									<h6 class="text-uppercase mb-1 text-muted">{{ categorie.nom }}</h6>
+									<!-- Heading -->
+									<h4 class="mb-0">{{ categorie.description }}</h4>
+								</div>
+							</div>
+						</a>
+					</div>
+
+{# /////////////////////////////////////// 2 ///////////////////////////////////////////////// #}
+
+
+					<div
+						class="col-12 col-md-4 product">
+						<!-- Card -->
+						<a
+							class="card shadow-light-lg mb-7" href="#!">
+							<!-- Image -->
+							<div class="card-zoom">
+								<img class="card-img" src="/img/portfolio/portfolio-10.jpg" alt="...">
+							</div>
+							<!-- Overlay -->
+							<div class="card-img-overlay card-img-overlay-hover">
+								<div
+									class="card-body bg-white">
+									<!-- Shape -->
+									<div class="shape shape-bottom-100 shape-fluid-x text-white">
+										<svg viewbox="0 0 2880 48" fill="none" xmlns="#"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
+									</div>
+									<!-- Preheading -->
+									<h6 class="text-uppercase mb-1 text-muted">Branding</h6>
+									<!-- Heading -->
+									<h4 class="mb-0">Honest Packaging</h4>
+								</div>
+							</div>
+						</a>
+					</div>
+
+{# /////////////////////////////////////// 3 ///////////////////////////////////////////////// #}
+
+
+					<div
+						class="col-12 col-md-4 resources">
+						<!-- Card -->
+						<a
+							class="card shadow-light-lg mb-7" href="#!">
+							<!-- Image -->
+							<div class="card-zoom">
+								<img class="card-img" src="/img/portfolio/portfolio-11.jpg" alt="...">
+							</div>
+							<!-- Overlay -->
+							<div class="card-img-overlay card-img-overlay-hover">
+								<div
+									class="card-body bg-white">
+									<!-- Shape -->
+									<div class="shape shape-bottom-100 shape-fluid-x text-white">
+										<svg viewbox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
+									</div>
+									<!-- Preheading -->
+									<h6 class="text-uppercase mb-1 text-muted">Branding</h6>
+									<!-- Heading -->
+									<h4 class="mb-0">Larq Bright Campaign</h4>
+								</div>
+							</div>
+						</a>
+					</div>
+
+{# /////////////////////////////////////// 4 ///////////////////////////////////////////////// #}
+					<div
+						class="col-12 col-md-4 ux">
+						<!-- Card -->
+						<a
+							class="card shadow-light-lg mb-7" href="#!">
+							<!-- Image -->
+							<div class="card-zoom">
+								<img class="card-img" src="/img/portfolio/portfolio-13.jpg" alt="...">
+							</div>
+							<!-- Overlay -->
+							<div class="card-img-overlay card-img-overlay-hover">
+								<div
+									class="card-body bg-white">
+									<!-- Shape -->
+									<div class="shape shape-bottom-100 shape-fluid-x text-white">
+										<svg viewbox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
+									</div>
+									<!-- Preheading -->
+									<h6 class="text-uppercase mb-1 text-muted">Branding</h6>
+									<!-- Heading -->
+									<h4 class="mb-0">Larq Earthtones Collection</h4>
+								</div>
+							</div>
+						</a>
+					</div>
+
+{# /////////////////////////////////////// 5 ///////////////////////////////////////////////// #}
+
+
+					<div
+						class="col-12 col-md-4 ux">
+
+						<!-- Card -->
+						<a
+							class="card shadow-light-lg mb-7" href="#!">
+							<!-- Image -->
+							<div class="card-zoom">
+								<img class="card-img" src="/img/portfolio/portfolio-12.jpg" alt="...">
+							</div>
+							<!-- Overlay -->
+							<div class="card-img-overlay card-img-overlay-hover">
+								<div
+									class="card-body bg-white">
+									<!-- Shape -->
+									<div class="shape shape-bottom-100 shape-fluid-x text-white">
+										<svg viewbox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
+									</div>
+									<!-- Preheading -->
+									<h6 class="text-uppercase mb-1 text-muted">Product Design</h6>
+									<!-- Heading -->
+									<h4 class="mb-0">Goby Packaging
+									</h4>
+								</div>
+							</div>
+						</a>
+					</div>
+
+{# /////////////////////////////////////// 6 ///////////////////////////////////////////////// #}
+
+					<div
+						class="col-12 col-md-4 product">
+						<!-- Card -->
+						<a
+							class="card shadow-light-lg mb-7" href="#!">
+							<!-- Image -->
+							<div class="card-zoom">
+								<img class="card-img" src="/img/portfolio/portfolio-4.jpg" alt="...">
+							</div>
+							<!-- Overlay -->
+							<div class="card-img-overlay card-img-overlay-hover">
+								<div
+									class="card-body bg-white">
+									<!-- Shape -->
+									<div class="shape shape-bottom-100 shape-fluid-x text-white">
+										<svg viewbox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
+									</div>
+									<!-- Preheading -->
+									<h6 class="text-uppercase mb-1 text-muted">Ideation</h6>
+									<!-- Heading -->
+									<h4 class="mb-0">Doodle Pads</h4>
+								</div>
+							</div>
+						</a>
+					</div>
+
+{# /////////////////////////////////////// 7 ///////////////////////////////////////////////// #}
+
+
+					<div
+						class="col-12 col-md-4 product">
+						<!-- Card -->
+						<a
+							class="card shadow-light-lg mb-7" href="#!">
+							<!-- Image -->
+							<div class="card-zoom">
+								<img class="card-img" src="/img/portfolio/portfolio-14.jpg" alt="...">
+							</div>
+							<!-- Overlay -->
+							<div class="card-img-overlay card-img-overlay-hover">
+								<div
+									class="card-body bg-white">
+									<!-- Shape -->
+									<div class="shape shape-bottom-100 shape-fluid-x text-white">
+										<svg viewbox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
+									</div>
+									<!-- Preheading -->
+									<h6 class="text-uppercase mb-1 text-muted">Product Design</h6>
+									<!-- Heading -->
+									<h4 class="mb-0">Larq Bottle Redesign</h4>
+								</div>
+							</div>
+						</a>
+					</div>
+
+{# ///////////////////////////////////////  8///////////////////////////////////////////////// #}
+
+					<div
+						class="col-12 col-md-4 ux">
+						<!-- Card -->
+						<a
+							class="card shadow-light-lg mb-7" href="#!">
+							<!-- Image -->
+							<div class="card-zoom">
+								<img class="card-img" src="/img/portfolio/portfolio-6.jpg" alt="...">
+							</div>
+							<!-- Overlay -->
+							<div class="card-img-overlay card-img-overlay-hover">
+								<div
+									class="card-body bg-white">
+									<!-- Shape -->
+									<div class="shape shape-bottom-100 shape-fluid-x text-white">
+										<svg viewbox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
+									</div>
+									<!-- Preheading -->
+									<h6 class="text-uppercase mb-1 text-muted">Product Exploration</h6>
+									<!-- Heading -->
+									<h4 class="mb-0">Goby Brush Prototype</h4>
+								</div>
+							</div>
+						</a>
+					</div>
+
+{# /////////////////////////////////////// 9 ///////////////////////////////////////////////// #}
+
+					<div
+						class="col-12 col-md-4 ux">
+						<!-- Card -->
+						<a
+							class="card shadow-light-lg mb-7" href="#!">
+							<!-- Image -->
+							<div class="card-zoom">
+								<img class="card-img" src="/img/portfolio/portfolio-15.jpg" alt="...">
+							</div>
+							<!-- Overlay -->
+							<div class="card-img-overlay card-img-overlay-hover">
+								<div
+									class="card-body bg-white">
+									<!-- Shape -->
+									<div class="shape shape-bottom-100 shape-fluid-x text-white">
+										<svg viewbox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
+									</div>
+									<!-- Preheading -->
+									<h6 class="text-uppercase mb-1 text-muted">Branding</h6>
+									<!-- Heading -->
+									<h4 class="mb-0">Trek Ride Campaign</h4>
+								</div>
+							</div>
+						</a>
+					</div>
+				
+        {% endfor %}
+
+			</div>
+		</div>
+	</section>
+
+	<!-- SHAPE -->
+	<div class="position-relative">
+		<div class="shape shape-bottom shape-fluid-x text-gray-200">
+			<svg viewbox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
+		</div>
+	</div>
+
+
+	<!-- CTA -->
+	<section class="pt-6 pt-md-8 bg-gray-200">
+		<div class="container pb-6 pb-md-8 border-bottom border-gray-300">
+			<div class="row align-items-center">
+				<div
+					class="col-12 col-md">
+
+					<!-- Heading -->
+					<h3 class="mb-1 fw-bold">
+						Recevez de nos nouvelles
+					</h3>
+
+					<!-- Text -->
+					<p class="fs-lg text-muted mb-6 mb-md-0">
+						Dans votre boîte à votre fréquence.
+					</p>
+
+				</div>
+				<div
+					class="col-12 col-md-5">
+
+					<!-- Form -->
+					<form>
+						<div class="row">
+							<div
+								class="col">
+
+								<!-- Input -->
+								<input type="email" class="form-control" placeholder="Enter your email">
+
+							</div>
+							<div
+								class="col-auto ms-n5">
+
+								<!-- Button -->
+								<button class="btn btn-primary" type="submit">
+									Souscrire
+								</button>
+
+							</div>
+						</div>
+						<!-- / .row -->
+					</form>
+
+				</div>
+			</div>
+			<!-- / .row -->
+		</div>
+		<!-- / .container -->
+	</section>
 {% endblock %}

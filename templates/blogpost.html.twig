@@ -22,7 +22,7 @@
 					class="col-12 col-md-auto">
 
 					<!-- Button -->
-					<a href="#!" class="btn btn-sm btn-warning btn-outline-warning-300 d-none d-md-inline">
+					<a href="{{ path('actualites') }}" class="btn btn-sm btn-warning btn-outline-warning-300 d-none d-md-inline">
 						Voir tout
 					</a>
 
@@ -41,7 +41,7 @@
 
 							<!-- Image -->
 							<a
-								class="card-img-top" href="#!">
+								class="card-img-top" href="{{ path('details_actualites', {'slug': blogpost.slug}) }}">
 
 								<!-- Image -->
 								<img
@@ -77,7 +77,7 @@
 
 							<!-- Meta -->
 							<a
-								class="card-meta mt-auto" href="#!">
+								class="card-meta mt-auto" href="{{ path('details_actualites', {'slug': blogpost.slug}) }}">
 
 								<!-- Divider -->
 								<hr

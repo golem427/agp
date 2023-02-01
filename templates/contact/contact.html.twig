@@ -1,93 +1,79 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
+{% block title %}Hello ContactController!
+{% endblock %}
 
 {% block body %}
 
-  <!-- CONTENT -->
-    <section>
+	<!-- CONTENT -->
+	<section>
 
-      <!-- Content -->
-      <div class="container d-flex flex-column">
-        <div class="row align-items-center justify-content-between gx-0 min-vh-100">
-          <div class="col-12 col-md-5 align-self-stretch">
+		<!-- Content -->
+		<div class="container d-flex flex-column">
+			<div class="row align-items-center justify-content-between gx-0 min-vh-100">
+				<div
+					class="col-12 col-md-5 align-self-stretch">
 
-            <!-- Image (mobile) -->
-            <img src="img2/story/Ilustration_story_4x.png" class="d-md-none img-cover fluid" alt="...">
+					<!-- Image (mobile) -->
+					<img
+					src="img2/story/Ilustration_story_4x.png" class="d-md-none img-cover fluid" alt="...">
 
-            <!-- Image -->
-            <div class="d-none d-md-block vw-50 h-100 float-end bg-cover imgcontact" 
-            style="background-image: url(img2/story/Ilustration_story_4x.png);"></div>
+					<!-- Image -->
+					<div class="d-none d-md-block vw-50 h-100 float-end bg-cover imgcontact" style="background-image: url(img2/story/Ilustration_story_4x.png);"></div>
 
-          </div>
-          <div class="col-12 col-md-6 py-8 py-md-11">
+				</div>
+				<div
+					class="col-12 col-md-6 py-8 py-md-11">
 
-            <!-- Heading -->
-            <h2 class="fw-bold text-center mb-2">
-              Contactez-nous!
-            </h2>
+					<!-- Heading -->
+					<h2 class="fw-bold text-center mb-2">
+						Contactez-nous!
+					</h2>
 
-            <!-- Text -->
-            <p class="fs-lg text-center text-muted mb-0">
-              Notre devis en moins d'une journée.
-            </p>
+					<!-- Text -->
+					<p class="fs-lg text-center text-muted mb-0">
+						Notre devis en moins d'une journée.
+					</p>
 
-            <!-- Divider -->
-            <hr class="hr-sm my-6 my-md-8 mx-auto bg-gray-300">
+					<!-- Divider -->
+					<hr
+					class="hr-sm my-6 my-md-8 mx-auto bg-gray-300">
 
-            <!-- Form -->
-            <form>
-              <div class="form-group mb-5">
-                
-                <!-- Label -->
-                <label class="form-label" for="contactName">
-              Votre nom
-                </label>
+					<!-- Form -->
+					<form>
+						{{ form_start(form) }}
+                {# {% for message in app.flashes('success') %}
+                    <div class="alert alert-sucess mt-4">{{ message }}</div>{% endfor %} #}
 
-                <!-- Input -->
-                <input class="form-control" id="contactName" type="text" placeholder="Votre nom et prénom">
-            
-              </div>
-              <div class="form-group mb-5">
+						<div class="form-group mb-5">
+							<label class="form-label" for="contactName">
+								Votre nom
+							</label>{{ form.nom }}
+						</div>
 
-                <!-- Label -->
-                <label class="form-label" for="contactEmail">
-                   votre email
-                </label>
+						<div
+							class="form-group mb-5">
+							<!-- Label -->
+							<label class="form-label" for="contactEmail">
+								votre email
+							</label>{{ form.email }}
+						</div>
 
-                <!-- Input -->
-                <input class="form-control" id="contactEmail" type="email" placeholder="exemple@exemple.fr">
-                
-              </div>
-              <div class="form-group mb-5 d-none">
+						<div
+							class="form-group mb-5 d-none">
+							<!-- Label -->
+							<label for="contactMessage">
+								Votre projet en quelques lignes:
+							</label>{{ form.message }}
+						</div>
 
-                <!-- Label -->
-                <label for="contactMessage">
-                 Votre projet en quelques lignes:
-                </label>
+						{{ form_end(form) }}
 
-                <!-- Input -->
-                <textarea class="form-control" id="contactMessage" rows="5" placeholder="Dites-nous votre projet en deux lignes">
-                projet
-                </textarea>
-
-              </div>
-              <div class="form-group mb-0">
-
-                <!-- Submit -->
-                <a href="#!" class="btn w-100 btn-success lift">
-                  Envoyer
-                </a>
-
-              </div>
-{#               
-			{{ form_end(form) }} #}
-            </form>
-
-          </div>
-        </div> <!-- / .row -->
-      </div>
-    </section>
+					</div>
+				</div>
+				<!-- / .row -->
+			</div>
+		</section>
 
 
-{% endblock %}
+	{% endblock %}

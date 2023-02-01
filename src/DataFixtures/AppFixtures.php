@@ -2,15 +2,16 @@
 
 namespace App\DataFixtures;
 
+use Faker\Factory;
+use App\Entity\User;
+use App\Entity\Contact;
 use App\Entity\Blogpost;
 use App\Entity\Categorie;
 use App\Entity\Realisation;
-use App\Entity\User;
-use Faker\Factory;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Validator\Constraints\NotNull;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
@@ -106,11 +107,26 @@ for ($j=0; $j<9; $j++)
 
                         $manager->persist($realisation);
             }
-        }
-            $manager->flush();
-        }
+    }
+          
+        
+
+// On crée 5 demandes de contacts
+
+for ($m=0; $m<5; $m++)
+{
+$contact = new Contact();
+
+       $contact->setNom($faker->word())
+                ->setEmail($faker->email())
+                ->setMessage($faker->words(10,true))
+                ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
+                ->setIssent(true);
+
+        $manager->persist($contact);       
 
 }
-            
+        $manager->flush(); 
 
-
+}
+}

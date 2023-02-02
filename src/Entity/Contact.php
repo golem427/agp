@@ -26,9 +26,6 @@ class Contact
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
-    #[ORM\Column]
-    private ?bool $issent = null;
-
     #[ORM\Column(length: 16, nullable: true)]
     private ?string $telephone = null;
 
@@ -61,6 +58,19 @@ class Contact
         return $this;
     }
 
+    
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(?string $telephone): self
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
     public function getMessage(): ?string
     {
         return $this->message;
@@ -81,30 +91,6 @@ class Contact
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function isIssent(): ?bool
-    {
-        return $this->issent;
-    }
-
-    public function setIssent(bool $issent): self
-    {
-        $this->issent = $issent;
-
-        return $this;
-    }
-
-    public function getTelephone(): ?string
-    {
-        return $this->telephone;
-    }
-
-    public function setTelephone(?string $telephone): self
-    {
-        $this->telephone = $telephone;
 
         return $this;
     }

@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Contact;
-use Faker\Provider\fr_FR\PhoneNumber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Email;
@@ -15,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class ContactFormType extends AbstractType
+class ContactType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -52,12 +51,12 @@ class ContactFormType extends AbstractType
                         'maxMessage' => "Votre email doit comporter {{ limit }} caractères maximum."
                     ]),
                 ],
-                'help' => "* min caractères : 4,
-                           * max caractères: 255,
-                           * au moins 1 caractère spécial,
-                           * au moins 1 majuscule,
-                           * au moins 1 minuscule,
-                           * au moins 1 chiffre"
+                // 'help' => "* min caractères : 4,
+                //            * max caractères: 255,
+                //            * au moins 1 caractère spécial,
+                //            * au moins 1 majuscule,
+                //            * au moins 1 minuscule,
+                //            * au moins 1 chiffre"
             ])
 
 
@@ -74,15 +73,12 @@ class ContactFormType extends AbstractType
                         new Length([
                             'min' => 10,
                             'max' => 22,
-                            'minMessage' => "Votre numéro doit comporter {{ limit }} caractères minimum.",
-                            'maxMessage' => "Votre numéro doit comporter {{ limit }} caractères maximum."
                         ]),
                     ]
-                ]
-            )
+                ])
 
             ->add('message', TextareaType::class, [
-                'attr' => ['rows' => 20]
+                'attr' => ['rows' => 5]
             ])
 
             ->add('submit', SubmitType::class, [

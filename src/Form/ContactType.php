@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Contact;
+use Doctrine\DBAL\Types\DateType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Email;
@@ -80,6 +81,7 @@ class ContactType extends AbstractType
             ->add('message', TextareaType::class, [
                 'attr' => ['rows' => 5]
             ])
+
 
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',

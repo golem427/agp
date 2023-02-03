@@ -29,6 +29,9 @@ class Contact
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
+    #[ORM\Column]
+    private ?bool $isSent = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -91,6 +94,18 @@ class Contact
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function isIsSent(): ?bool
+    {
+        return $this->isSent;
+    }
+
+    public function setIsSent(bool $isSent): self
+    {
+        $this->isSent = $isSent;
 
         return $this;
     }

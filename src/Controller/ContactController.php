@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,8 +15,13 @@ class ContactController extends AbstractController
 {
     #[Route('/contact', name: 'contact')]
     public function contact(Request $request, EntityManagerInterface $manager): Response
-    {
+    {   
+       
+
         $contact = new Contact();
+        $contact->setIsSent('false')
+                ->setCreatedAt(new DateTime('now'));
+
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
@@ -35,5 +41,16 @@ class ContactController extends AbstractController
     return $this->render('contact/contact.html.twig',[
         'form' => $form->createView(),
         ]);     
+    }
+
+    
+    public function IsSent(Contact $contact, EntityManagerInterface $manager):void{
+
+        $contact->setIsSent('true');
+
+        $this->$manager->persist($contact);
+        $this->$manager->flush();
+
+                
     }
 }

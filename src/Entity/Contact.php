@@ -31,6 +31,7 @@ class Contact
 
     #[ORM\Column]
     private ?bool $isSent = null;
+    
 
     public function getId(): ?int
     {

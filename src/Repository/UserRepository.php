@@ -50,24 +50,23 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         if (!$user instanceof User) {
             throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', \get_class($user)));
         }
-
         $user->setPassword($newHashedPassword);
-
         $this->save($user, true);
     }
 
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */
-   public function getPeintre(): array
-   {
-       return $this->createQueryBuilder('u')
-        //    ->andWhere('u.roles LIKE:roles')
-        //    ->setParameter('roles', '%"ROLE_PEINTRE"%')
-           ->getQuery()
-           ->getResult()
-       ;
-   }
+        public function getPeintre(): array
+        {
+            return $this->createQueryBuilder('u')
+                        ->where('u.roles LIKE:roles')
+                        ->setParameter('roles', '%"ROLE_PEINTRE"%')
+                        ->getQuery()
+                        ->getResult()
+            ;
+        }
+    }
 
 //    public function findOneBySomeField($value): ?User
 //    {
@@ -78,4 +77,3 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 //            ->getOneOrNullResult()
 //        ;
 //    }
-}

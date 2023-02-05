@@ -20,14 +20,19 @@ class Contact
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $message = null;
-
     #[ORM\Column(length: 16, nullable: true)]
     private ?string $telephone = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $subject = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $message = null;
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
+
+  
 
     public function getId(): ?int
     {
@@ -71,6 +76,20 @@ class Contact
         return $this;
     }
 
+
+    public function getSubject(): ?string
+    {
+        return $this->subject;
+    }
+
+    public function setSubject(string $subject): self
+    {
+        $this->subject = $subject;
+
+        return $this;
+    }
+
+
     public function getMessage(): ?string
     {
         return $this->message;
@@ -94,6 +113,5 @@ class Contact
 
         return $this;
     }
-
-   
+  
 }

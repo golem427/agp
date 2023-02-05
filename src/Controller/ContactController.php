@@ -4,8 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,9 +16,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ContactController extends AbstractController
 {
     #[Route('/contact', name: 'contact')]
-    public function contact(Request $request, EntityManagerInterface $manager): Response
+    public function contact(
+        Request $request, 
+        EntityManagerInterface $manager,
+        UserRepository $userRepository,
+        MailerInterface $mailer,
+        ): Response
     {
         $contact = new Contact();
+
+        if($this->getUser()){
+            $contact->setNom($this->getUser()->getNom())
+                    ->setEmail($this->getUser()->getEmail());
+         }
+
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
@@ -25,10 +39,19 @@ class ContactController extends AbstractController
            
             $manager->persist($contact);
             $manager->flush();
-            $this->addFlash(
-                'success',
-                'Votre demande a bien été envoyée'
-            );
+           
+            $email = ( new TemplatedEmail())
+            ->from($contact->getEmail())
+            ->to('aguadopeinture@yahoo.com')
+            ->subject($contact->getSubject())
+            ->htmlTemplate('contact/envoi.html.twig');
+
+            $mailer->send($email);
+
+        $this->addFlash(
+            'success',
+            'Votre demande a bien été envoyée'
+        );
               
         return $this->redirectToRoute('contact');
     }
@@ -36,4 +59,6 @@ class ContactController extends AbstractController
         'form' => $form->createView(),
         ]);     
     }
-}
+
+    }
+

@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,20 +18,10 @@ class ContactController extends AbstractController
     public function contact(
         Request $request, 
         EntityManagerInterface $manager,
-        UserRepository $userRepository,
         MailerInterface $mailer,
         ): Response
     {
         $contact = new Contact();
-
-        if($this->$userRepository->getUser()
-                                ->getNom()
-                                ->getEmail())
-        {
-
-            $contact->$this->getNom()
-                    ->$this->getEmail();
-         }
 
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
@@ -48,7 +37,7 @@ class ContactController extends AbstractController
             ->from($contact->getEmail())
             ->to('aguadopeinture@yahoo.com')
             ->subject($contact->getSubject())
-            ->htmlTemplate('contact/envoi.html.twig');
+            ->htmlTemplate('contact/contact.html.twig');
 
             $mailer->send($email);
 

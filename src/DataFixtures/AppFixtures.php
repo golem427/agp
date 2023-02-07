@@ -45,7 +45,7 @@ $faker = Factory::create('fr_FR');
                 ->setTelephone($faker->phoneNumber())
                 ->setApropos($faker->text())
                 ->setFacebook('facebook')
-                ->setRoles(['ROLE_PEINTRE']);
+                ->setRoles(['ROLE_ADMIN']);
 
             $password=$this->userPasswordHasherInterface->hashPassword($user, 'password');
             $user->setPassword($password);
@@ -119,9 +119,9 @@ $contact = new Contact();
 
        $contact->setNom($faker->word())
                 ->setEmail($faker->email())
+                ->setSubject($faker->word())
                 ->setMessage($faker->words(10,true))
-                ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
-                ->setIssent(true);
+                ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'));
 
         $manager->persist($contact);       
 

@@ -47,7 +47,7 @@ $faker = Factory::create('fr_FR');
                 ->setFacebook('facebook')
                 ->setRoles(['ROLE_ADMIN']);
 
-            $password=$this->userPasswordHasherInterface->hashPassword($user, 'password');
+            $password=$this->userPasswordHasherInterface->hashPassword($user, 'admin');
             $user->setPassword($password);
 
             $manager->persist($user);

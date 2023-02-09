@@ -10,7 +10,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+
+
 #[ORM\Entity(repositoryClass: RealisationRepository::class)]
+#[Vich\Uploadable]
 class Realisation
 {
     #[ORM\Id]
@@ -27,7 +30,7 @@ class Realisation
     #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2, nullable: true)]
     private ?string $longueur = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: Types::BOOLEAN, nullable: true)]
     private ?bool $enVente = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
@@ -39,26 +42,20 @@ class Realisation
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: Types::BOOLEAN, nullable: true)]
     private ?bool $portfolio = null;
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255)] 
     private ?string $file = null;
 
-    /**
-     * @Vich\UploadableField(mapping="product_images", fileNameProperty="image")
-     * @var File
-     */
-    private $imageFile;
+    #[Vich\UploadableField(mapping: 'realisation_images', fileNameProperty:'name')]
+    private ?File $imageFile = null;
 
-    /**
-     * @ORM\Column(type="datetime")
-     * @var \DateTime
-     */
-    private $updatedAt;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $updatedAt = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
     private ?string $prix = null;
@@ -73,8 +70,6 @@ class Realisation
     #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Commentaire::class)]
     private Collection $commentaires;
 
-
-
    
 
     public function __construct()
@@ -82,7 +77,7 @@ class Realisation
         $this->categorie = new ArrayCollection();
         $this->commentaires = new ArrayCollection();
     }
-
+ 
     public function getId(): ?int
     {
         return $this->id;
@@ -165,6 +160,17 @@ class Realisation
         return $this;
     }
 
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
 
     public function getDescription(): ?string
     {
@@ -215,7 +221,6 @@ class Realisation
     {
         return $this->imageFile;
     }
-
 
     public function getFile(): ?string
     {
@@ -293,4 +298,5 @@ class Realisation
 
         return $this;
     }
+
 }

@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\RealisationRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Entity\File;
+use App\Repository\RealisationRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: RealisationRepository::class)]
 class Realisation
@@ -34,6 +36,9 @@ class Realisation
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description = null;
+
     #[ORM\Column]
     private ?bool $portfolio = null;
 
@@ -42,6 +47,18 @@ class Realisation
 
     #[ORM\Column(length: 255)]
     private ?string $file = null;
+
+    /**
+     * @Vich\UploadableField(mapping="product_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     */
+    private $updatedAt;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
     private ?string $prix = null;
@@ -56,8 +73,7 @@ class Realisation
     #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Commentaire::class)]
     private Collection $commentaires;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $description = null;
+
 
    
 
@@ -76,7 +92,6 @@ class Realisation
     {
         return $this->nom;
     }
-
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
@@ -88,7 +103,6 @@ class Realisation
     {
         return $this->largeur;
     }
-
     public function setLargeur(?string $largeur): self
     {
         $this->largeur = $largeur;
@@ -100,7 +114,6 @@ class Realisation
     {
         return $this->longueur;
     }
-
     public function setLongueur(?string $longueur): self
     {
         $this->longueur = $longueur;
@@ -112,7 +125,6 @@ class Realisation
     {
         return $this->enVente;
     }
-
     public function setEnVente(bool $enVente): self
     {
         $this->enVente = $enVente;
@@ -124,7 +136,6 @@ class Realisation
     {
         return $this->prix;
     }
-
     public function setPrix(?string $prix): self
     {
         $this->prix = $prix;
@@ -136,7 +147,6 @@ class Realisation
     {
         return $this->dateRealisation;
     }
-
     public function setDateRealisation(?\DateTimeInterface $dateRealisation): self
     {
         $this->dateRealisation = $dateRealisation;
@@ -148,7 +158,6 @@ class Realisation
     {
         return $this->createdAt;
     }
-
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -156,13 +165,23 @@ class Realisation
         return $this;
     }
 
-    
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
 
     public function isPortfolio(): ?bool
     {
         return $this->portfolio;
     }
-
     public function setPortfolio(bool $portfolio): self
     {
         $this->portfolio = $portfolio;
@@ -174,7 +193,6 @@ class Realisation
     {
         return $this->slug;
     }
-
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
@@ -182,11 +200,27 @@ class Realisation
         return $this;
     }
 
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+
     public function getFile(): ?string
     {
         return $this->file;
     }
-
     public function setFile(string $file): self
     {
         $this->file = $file;
@@ -194,11 +228,11 @@ class Realisation
         return $this;
     }
 
+
     public function getUser(): ?user
     {
         return $this->user;
     }
-
     public function setUser(?user $user): self
     {
         $this->user = $user;
@@ -256,18 +290,6 @@ class Realisation
                 $commentaire->setRealisation(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): self
-    {
-        $this->description = $description;
 
         return $this;
     }

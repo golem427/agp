@@ -25,8 +25,13 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/logout', name: 'app_logout')]
-    public function logout(): void
+    public function logout(AuthenticationUtils $authenticationUtils): Response
     {
-        throw new \LogicException('Oops, recommencez!');
+        // throw new \LogicException('Oops, recommencez!');
+
+        $error = $authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 }

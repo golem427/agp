@@ -2,8 +2,6 @@
 
 namespace App\Controller\Admin;
 
-
-
 use App\Entity\Realisation;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
@@ -28,7 +26,7 @@ class RealisationCrudController extends AbstractCrudController
         return [
             TextField::new('nom'),
             TextareaField::new('description')->hideOnIndex(),
-            DateField::new('dateRealisation'),
+            DateField::new('createdAt'),
             // NumberField::new('largeur')->hideOnIndex(),
             // NumberField::new('longueur')->hideOnIndex(),
             // NumberField::new('prix')->hideOnIndex(),
@@ -38,8 +36,6 @@ class RealisationCrudController extends AbstractCrudController
             ImageField::new('file')->setBasePath('uploads/realisations')->onlyOnIndex(),
             SlugField::new('slug')->setTargetFieldName('nom')->hideOnIndex(),
             AssociationField::new('categorie')
-
         ];
     }
-    
 }

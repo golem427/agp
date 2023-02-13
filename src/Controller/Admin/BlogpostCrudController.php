@@ -6,6 +6,7 @@ use App\Entity\Blogpost;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -21,11 +22,12 @@ class BlogpostCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
             return [
-            IdField::new('id')->hideOnForm(),
             TextField::new('titre'),
             TextField::new('slug'),
             TextEditorField::new('contenu'),
             DateField::new('createdAt'),
+            SlugField::new('slug')->setTargetFieldName('titre')->hideOnIndex(),
+
         ];
     }
     

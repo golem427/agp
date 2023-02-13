@@ -22,7 +22,7 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class, [
-                'label' => 'Prénom',
+                'label' => 'nom',
                 'constraints' => [
                     new NotBlank([
                         'message' => "Ce champ ne peut pas être vide."
@@ -35,7 +35,6 @@ class ContactType extends AbstractType
                     ]),
                 ],
             ])
-
 
             ->add('email', EmailType::class, [
                 'label' => 'E-mail',

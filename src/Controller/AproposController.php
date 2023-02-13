@@ -13,7 +13,7 @@ class AproposController extends AbstractController
     public function apropos(UserRepository $userRepository): Response
     {
         return $this->render('apropos/apropos.html.twig', [
-            'peintre' => $userRepository->getUser(),
+            'user' => $userRepository->getUser(),
         ]);
     }
 }

@@ -4,12 +4,11 @@ namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Vich\UploaderBundle\Entity\File;
 use App\Repository\RealisationRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-
+use Symfony\Component\HttpFoundation\File\File;
 
 
 #[ORM\Entity(repositoryClass: RealisationRepository::class)]
@@ -48,11 +47,11 @@ class Realisation
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
+    #[Vich\UploadableField(mapping: 'realisation_images', fileNameProperty:'file')]
+    private ?File $imageFile = null;
+
     #[ORM\Column(length: 255)] 
     private ?string $file = null;
-
-    #[Vich\UploadableField(mapping: 'realisation_images', fileNameProperty:'name')]
-    private ?File $imageFile = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $updatedAt = null;
@@ -170,7 +169,7 @@ class Realisation
 
         return $this;
     }
-
+    
 
     public function getDescription(): ?string
     {
@@ -206,22 +205,7 @@ class Realisation
         return $this;
     }
 
-    public function setImageFile(File $image = null)
-    {
-        $this->imageFile = $image;
-        // VERY IMPORTANT:
-        // It is required that at least one field changes if you are using Doctrine,
-        // otherwise the event listeners won't be called and the file is lost
-        if ($image) {
-            // if 'updatedAt' is not defined in your entity, use another property
-            $this->updatedAt = new \DateTime('now');
-        }
-    }
-    public function getImageFile()
-    {
-        return $this->imageFile;
-    }
-
+    
     public function getFile(): ?string
     {
         return $this->file;
@@ -233,6 +217,21 @@ class Realisation
         return $this;
     }
 
+    public function setImageFile(File $file = null):void
+    {
+        $this->imageFile = $file;
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($file) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->createdAt = new \DateTime('now');
+        }
+    }
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
 
     public function getUser(): ?user
     {
@@ -295,7 +294,6 @@ class Realisation
                 $commentaire->setRealisation(null);
             }
         }
-
         return $this;
     }
 

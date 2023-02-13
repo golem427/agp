@@ -99,15 +99,17 @@ for ($j=0; $j<9; $j++)
                                 ->setDescription($faker->text())
                                 ->setPortfolio($faker->randomElement([true, false]))
                                 ->setSlug($faker->slug())
-                                ->setFile('img2/hotels/andrew-neel-B4rEJ09-Puo-unsplash (1).jpg')
+                                ->setFile('andrew-neel-B4rEJ09-Puo-unsplash (1).jpg')
                                 ->addCategorie($categorie)
                                 ->setPrix($faker->randomFloat(2, 100, 9999))
                                 ->setUser($user);
                                 
-
                         $manager->persist($realisation);
             }
+            
+        $manager->flush(); 
     }
+    
           
         
 

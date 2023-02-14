@@ -41,11 +41,11 @@
 
 							<!-- Image -->
 							<a
-								class="card-img-top" href="{{ path('details_actualites', {'slug': blogpost.slug}) }}">
+								class="card-img-top" href="{{ path('actualites') }}" >
 
 								<!-- Image -->
 								<img
-								src="{{ blogpost.file }}" alt="..." class="card-img-top">
+								src="{{ vich_uploader_asset(blogpost, 'imageFile') }}" alt="karin" class="card-img-top">
 
 								<!-- Shape -->
 								<div class="position-relative">
@@ -58,12 +58,11 @@
 									 fill="currentColor"/></svg>
 									</div>
 								</div>
-
 							</a>
 
 							<!-- Body -->
 							<a
-								class="card-body" href="#!">
+								class="card-body" href="{{ path('actualites') }}"">
 
 								<!-- Heading -->
 								<h3>
@@ -77,7 +76,7 @@
 
 							<!-- Meta -->
 							<a
-								class="card-meta mt-auto" href="{{ path('details_actualites', {'slug': blogpost.slug}) }}">
+								class="card-meta mt-auto" href="{{ path('details_actu', {'slug': blogpost.slug}) }}">
 
 								<!-- Divider -->
 								<hr

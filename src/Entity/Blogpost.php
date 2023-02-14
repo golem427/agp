@@ -7,8 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 #[ORM\Entity(repositoryClass: BlogpostRepository::class)]
+#[Vich\Uploadable]
 class Blogpost
 {
     #[ORM\Id]
@@ -37,6 +40,11 @@ class Blogpost
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $file = null;
+
+    #[Vich\UploadableField(mapping: 'blogpost_images', fileNameProperty: 'file')]
+    private ?File $imageFile = null;
+
+
 
     public function __construct()
     {
@@ -148,5 +156,21 @@ class Blogpost
         $this->file = $file;
 
         return $this;
+    }
+
+    public function setImageFile(File $file = null): void
+    {
+        $this->imageFile = $file;
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($file) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->createdAt = new \DateTime('now');
+        }
+    }
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
     }
 }

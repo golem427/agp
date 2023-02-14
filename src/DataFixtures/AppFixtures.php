@@ -17,118 +17,109 @@ class AppFixtures extends Fixture
 {
     private $userPasswordHasherInterface;
 
-    public function __construct (UserPasswordHasherInterface $hasher) 
+    public function __construct(UserPasswordHasherInterface $hasher)
     {
         $this->userPasswordHasherInterface = $hasher;
     }
 
 
     public function load(ObjectManager $manager): void
-{
-      // use the factory to create a Faker\Generator instance
-$faker = Factory::create('fr_FR');
+    {
+        // use the factory to create a Faker\Generator instance
+        $faker = Factory::create('fr_FR');
 
-// generate data by calling methods
-// echo $faker->name();
-// 'Vince Sporer'
-// echo $faker->email();
-// 'walter.sophia@hotmail.com'
-// echo $faker->text();
-// 'Numquam ut mollitia at consequuntur inventore dolorem.'
+        // generate data by calling methods
+        // echo $faker->name();
+        // 'Vince Sporer'
+        // echo $faker->email();
+        // 'walter.sophia@hotmail.com'
+        // echo $faker->text();
+        // 'Numquam ut mollitia at consequuntur inventore dolorem.'
 
-// On crée un user
-    $user = new User();
+        // On crée un user
+        $user = new User();
 
-           $user->setEmail('user@test.fr')
-                ->setNom($faker->lastName())
-                ->setPrenom($faker->firstName())
-                ->setTelephone($faker->phoneNumber())
-                ->setApropos($faker->text())
-                ->setFacebook('facebook')
-                ->setRoles(['ROLE_ADMIN']);
+        $user->setEmail('user@test.fr')
+            ->setNom($faker->lastName())
+            ->setPrenom($faker->firstName())
+            ->setTelephone($faker->phoneNumber())
+            ->setApropos($faker->text())
+            ->setFacebook('facebook')
+            ->setRoles(['ROLE_ADMIN']);
 
-            $password=$this->userPasswordHasherInterface->hashPassword($user, 'admin');
-            $user->setPassword($password);
+        $password = $this->userPasswordHasherInterface->hashPassword($user, 'admin');
+        $user->setPassword($password);
 
-            $manager->persist($user);
-            $manager->flush();
+        $manager->persist($user);
+        $manager->flush();
 
-// On crée 10 blogposts
+        // On crée 10 blogposts
 
-for ($i=0; $i<10; $i++){
-    $blogpost = new Blogpost();
+        for ($i = 0; $i < 10; $i++) {
+            $blogpost = new Blogpost();
 
-           $blogpost->setTitre($faker->word())
-                    ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
-                    ->setContenu($faker->text(350))
-                    ->setSlug($faker->slug(3))
-                    ->setUser($user)
-                    ->setFile('img2/commerces/mexiik1.jpg');
+            $blogpost->setTitre($faker->word())
+                ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
+                ->setContenu($faker->text(350))
+                ->setSlug($faker->slug(3))
+                ->setUser($user)
+                ->setFile('karin.jpg');
 
             $manager->persist($blogpost);
         }
 
-            // $manager->flush();
+        // $manager->flush();
 
 
         // On crée 9 catégories
 
-for ($j=0; $j<9; $j++)
-    {
-    $categorie = new Categorie();
+        for ($j = 0; $j < 9; $j++) {
+            $categorie = new Categorie();
 
-           $categorie->setNom($faker->word())
-                    ->setDescription($faker->words(10,true))
-                    ->setSlug($faker->slug());
+            $categorie->setNom($faker->word())
+                ->setDescription($faker->words(10, true))
+                ->setSlug($faker->slug());
 
             $manager->persist($categorie);
 
 
             // On crée 3 réalisations par catégorie
 
-            for ($k=0; $k<3; $k++)
-            {
+            for ($k = 0; $k < 3; $k++) {
                 $realisation = new Realisation();
 
-                    $realisation->setNom($faker->words(3, true))
-                                ->setLargeur($faker->randomFloat(2, 20, 60))
-                                ->setLongueur($faker->randomFloat(2, 20, 60))
-                                ->setEnVente($faker->randomElement([true, false]))
-                                ->setDateRealisation($faker->dateTimeBetween('-6 month', 'now'))
-                                ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
-                                ->setDescription($faker->text())
-                                ->setPortfolio($faker->randomElement([true, false]))
-                                ->setSlug($faker->slug())
-                                ->setFile('andrew-neel-B4rEJ09-Puo-unsplash (1).jpg')
-                                ->addCategorie($categorie)
-                                ->setPrix($faker->randomFloat(2, 100, 9999))
-                                ->setUser($user);
-                                
-                        $manager->persist($realisation);
+                $realisation->setNom($faker->words(3, true))
+                    ->setLargeur($faker->randomFloat(2, 20, 60))
+                    ->setLongueur($faker->randomFloat(2, 20, 60))
+                    ->setEnVente($faker->randomElement([true, false]))
+                    ->setDateRealisation($faker->dateTimeBetween('-6 month', 'now'))
+                    ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
+                    ->setDescription($faker->text())
+                    ->setPortfolio($faker->randomElement([true, false]))
+                    ->setSlug($faker->slug())
+                    ->setFile('alex.jpg')
+                    ->addCategorie($categorie)
+                    ->setPrix($faker->randomFloat(2, 100, 9999))
+                    ->setUser($user);
+
+                $manager->persist($realisation);
             }
-            
-        $manager->flush(); 
-    }
-    
-          
-        
 
-// On crée 5 demandes de contacts
+        }
 
-for ($m=0; $m<5; $m++)
-{
-$contact = new Contact();
+        // On crée 5 demandes de contacts
 
-       $contact->setNom($faker->word())
+        for ($m = 0; $m < 5; $m++) {
+            $contact = new Contact();
+
+            $contact->setNom($faker->word())
                 ->setEmail($faker->email())
                 ->setSubject($faker->word())
-                ->setMessage($faker->words(10,true))
+                ->setMessage($faker->words(10, true))
                 ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'));
 
-        $manager->persist($contact);       
-
-}
-        $manager->flush(); 
-
-}
+            $manager->persist($contact);
+        }
+        $manager->flush();
+    }
 }

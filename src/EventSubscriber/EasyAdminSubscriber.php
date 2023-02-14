@@ -33,7 +33,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
     {
         $entity = $event->getEntityInstance();
 
-        if (!($entity instanceof Blogpost))
+        if (($entity instanceof Blogpost))
         {
             return
             [
@@ -44,7 +44,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
             ];
         }
 
-        if (!($entity instanceof Realisation))
+        if (($entity instanceof Realisation))
         {
             return
             [

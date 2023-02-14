@@ -46,7 +46,7 @@
                 </span>
 
                 <!-- Input -->
-                <input type="text" class="form-control border-0 px-1" aria-label="Search our blog..." placeholder="Search our blog..." value="">
+                <input type="text" class="form-control border-0 px-1" aria-label="Rechercher..." placeholder="Rechercher..." value="">
                 <!-- Text -->
                 <span class="input-group-text border-0 py-0 ps-1 pe-3">
 
@@ -71,12 +71,11 @@
     </section>
 
 
-
-
     <!-- ARTICLES -->
 <section>
   <div class="container">
-    <div class="row">
+    <div class="row">	
+        <h1 class="d-flex justify-content-center">REALISATIONS</h1>
         
         {% for realisation in realisations %}
         
@@ -86,7 +85,7 @@
               <!-- Image -->
               <a class="card-img-top" href="{{ path('realisations_details', {'slug': realisation.slug}) }}">
                 <!-- Image -->
-                <img src="{{ realisation.file }}" alt="..." class="card-img-top">
+                <img src="{{ vich_uploader_asset(realisation, 'imageFile') }}" alt="alex" class="card-img-top">
                 <!-- Shape -->
                 <div class="position-relative">
                   <div class="shape shape-bottom shape-fluid-x text-white">
@@ -108,7 +107,7 @@
               </a>
 
               <!-- Meta -->
-              <a class="card-meta mt-auto" href="{{ path('realisations_details', {'slug': realisation.slug}) }}">
+              <a class="card-meta mt-auto" href="{{ path('realisations') }}">
                 <!-- Divider -->
                 <hr class="card-meta-divider">
                 <!-- Avatar -->

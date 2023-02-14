@@ -38,17 +38,14 @@
                   <div class="card-img-slider" data-flickity='{"fade": true, "imagesLoaded": true, "pageDots": false, "prevNextButtons": false, "asNavFor": "#blogSlider", "draggable": false}'>
                     <a class="card-img-start position-absolute d-block w-100 bg-cover" 
                     href="{{ path('realisations_details', {'slug': realisation.slug}) }}">
-
                       <!-- Image (placeholder) -->
-                      <img src="{{ (realisation.file) }}" alt="..." class="img-fluid">{# d-md-none #}
-                     
+                      <img src="{{ vich_uploader_asset(realisation, 'imageFile') }}" alt="alex" class="img-fluid">{# d-md-none #}
+                     </a>
 
-                    </a>
-                    <a class="card-img-start position-absolute d-block w-100 bg-cover" style="{{ realisation.file }}" href="#!">
-
+                    <a class="card-img-start position-absolute d-block w-100 bg-cover" 
+                    href="{{ path('realisations_details', {'slug': realisation.slug}) }}">
                       <!-- Image (placeholder) -->
-                      <img src="{{ realisation.file }}" alt="..." class="img-fluid ">{# d-md-none #}
-
+                      <img src="{{ vich_uploader_asset(realisation, 'imageFile') }}" alt="..." class="img-fluid ">{# d-md-none #}
                     </a>
                   </div>
 
@@ -67,18 +64,15 @@
                     <div class="w-100">
 
                       <!-- Body -->
-                      <a class="card-body" href="#!">
-
+                      <a class="card-body" href="#">
                         <!-- Heading -->
                         <h3>
                           {{ realisation.nom }}
                         </h3>
-
                         <!-- Text -->
                         <p class="mb-0 text-muted">
                          {{ realisation.description|u.truncate('100', '...', 3) }}
                         </p>
-
                       </a>
 
                       <!-- Meta -->

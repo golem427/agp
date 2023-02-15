@@ -39,22 +39,23 @@ class RealisationRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
-    //    /**
-    //     * @return Realisation[] Returns an array of Realisation objects
-    //     */
-    public function lastthree()
+    
+    // /**
+    // * @return Realisation[] Returns an array of Realisation objects
+    // */
+    public function lastthree(): array
     {
         return $this->createQueryBuilder('r')
             //    ->andWhere('r.exampleField = :val')
             //    ->setParameter('val', $value)
             ->orderBy('r.id', 'DESC')
-            ->setMaxResults(1)
+            ->setMaxResults(3)
             ->getQuery()
-            ->getResult();
+            ->getResult()
+            ;
     }
 
-    //   /**
+//    /**
 //     * @return Realisation[] Returns an array of Categorie objects
 //     */
    public function findAllPortfolio(Categorie $categorie): array /*on rassemble la collection*/

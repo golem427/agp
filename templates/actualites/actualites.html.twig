@@ -98,7 +98,8 @@
 									<a class="card-img-top" 
 									href="{{ path('details_actu', {'slug': blogpost.slug}) }}">
 										<img
-										src="{{ vich_uploader_asset(blogpost, 'imageFile') }}"  alt="karin" class="card-img-top"> <!-- Shape -->
+										src="{{ vich_uploader_asset(blogpost, 'imageFile') }}" alt="karin" 
+										class="card-img-top"> <!-- Shape -->
 										<div class="position-relative">
 											<div
 												class="shape shape-bottom shape-fluid-x text-white">{# {{> curves/curve-3}} #}
@@ -108,7 +109,7 @@
 
 									<!-- Body -->
 									<a
-										class="card-body" href=""{{ path('details_actu', {'slug': blogpost.slug}) }}">
+										class="card-body" href="{{ path('details_actu', {'slug': blogpost.slug}) }}">
 										<!-- Heading -->
 										<h3>
 											{{blogpost.titre}}

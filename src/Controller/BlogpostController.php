@@ -14,7 +14,6 @@ class BlogpostController extends AbstractController
 {
     #[Route('/actualites', name: 'actualites')]
     public function actualites(
-        
         BlogpostRepository $blogpostRepository,
         PaginatorInterface $paginator,
         Request $request
@@ -30,7 +29,7 @@ class BlogpostController extends AbstractController
 
 
     #[Route('/actualites/{slug}', name: 'details_actu')]
-    public function detailblogpost(Blogpost $blogpost): Response
+    public function blogpost(Blogpost $blogpost): Response
     {
         return $this->render('actualites/detailsactualites.html.twig', [
             'blogpost' => $blogpost

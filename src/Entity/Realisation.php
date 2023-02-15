@@ -46,12 +46,12 @@ class Realisation
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
+    
+    #[ORM\Column(length: 255)] 
+    private ?string $file = null;
 
     #[Vich\UploadableField(mapping: 'realisation_images', fileNameProperty:'file')]
     private ?File $imageFile = null;
-
-    #[ORM\Column(length: 255)] 
-    private ?string $file = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $updatedAt = null;

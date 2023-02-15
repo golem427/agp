@@ -22,8 +22,8 @@
             <a href="{{ path('realisations') }}" class="btn btn-sm btn-warning btn-outline-warning-300 d-none d-md-inline">
               Voir tout
             </a>
-
           </div>
+          
         </div> <!-- / .row -->
             {% for realisation in realisations %}
             <div class="row">
@@ -37,7 +37,7 @@
                   <!-- Slider -->
                   <div class="card-img-slider" data-flickity='{"fade": true, "imagesLoaded": true, "pageDots": false, "prevNextButtons": false, "asNavFor": "#blogSlider", "draggable": false}'>
                     <a class="card-img-start position-absolute d-block w-100 bg-cover" 
-                    href="{{ path('realisations_details', {'slug': realisation.slug}) }}">
+                    href="{{ path('realisations_details', {'slug': realisation.slug }) }}">
                       <!-- Image (placeholder) -->
                       <img src="{{ vich_uploader_asset(realisation, 'imageFile') }}" alt="alex" class="img-fluid">{# d-md-none #}
                      </a>
@@ -45,7 +45,7 @@
                     <a class="card-img-start position-absolute d-block w-100 bg-cover" 
                     href="{{ path('realisations_details', {'slug': realisation.slug}) }}">
                       <!-- Image (placeholder) -->
-                      <img src="{{ vich_uploader_asset(realisation, 'imageFile') }}" alt="..." class="img-fluid ">{# d-md-none #}
+                      <img src="{{ vich_uploader_asset(realisation, 'imageFile') }}" alt="alex" class="img-fluid ">{# d-md-none #}
                     </a>
                   </div>
 
@@ -92,8 +92,8 @@
                         </h6>
 
                         <!-- Date -->
-                        <p class="h6 text-uppercase text-muted mb-0 ms-auto">Réalisé le {{ realisation.createdAt|date('d/m/y')}}
-                          <time datetime="2019-05-02"></time>
+                        <p class="h6 text-uppercase text-muted mb-0 ms-auto">
+                          <time datetime="2019-05-02">Réalisé le {{ realisation.createdAt|date('d/m/y')}}</time>
                         </p>
 
                       </a>
@@ -127,24 +127,15 @@
                           <img src="/img/avatars/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
                         </div>
 
-                        {# <!-- Author -->
-                        <h6 class="text-uppercase text-muted me-2 mb-0">
-                          {{realisation.user}}
-                        </h6> #}
-
                         <!-- Date -->
                         <p class="h6 text-uppercase text-muted mb-0 ms-auto">
                          	<time datetime="2019-05-02">Realisation faite le {{realisation.createdAt|date('d/m/y')}}</time>
                         </p>
-
                       </a>
-
                     </div>
                   </div>
-
                 </div>
-                
-              </div> <!-- / .row -->
+               </div> <!-- / .row -->
             </div>
           </div>
 

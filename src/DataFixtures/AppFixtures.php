@@ -10,7 +10,6 @@ use App\Entity\Categorie;
 use App\Entity\Realisation;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
@@ -55,7 +54,8 @@ class AppFixtures extends Fixture
 
         // On crée 10 blogposts
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; $i++) 
+        {
             $blogpost = new Blogpost();
 
             $blogpost->setTitre($faker->word())
@@ -68,12 +68,13 @@ class AppFixtures extends Fixture
             $manager->persist($blogpost);
         }
 
-        // $manager->flush();
+        $manager->flush();
 
 
         // On crée 9 catégories
 
-        for ($j = 0; $j < 9; $j++) {
+        for ($j=0; $j<9; $j++) 
+        {
             $categorie = new Categorie();
 
             $categorie->setNom($faker->word())
@@ -83,9 +84,10 @@ class AppFixtures extends Fixture
             $manager->persist($categorie);
 
 
-            // On crée 3 réalisations par catégorie
+            // A chaque catégorie créée, on associe 3 réalisations
 
-            for ($k = 0; $k < 3; $k++) {
+            for ($k=0; $k<3; $k++) 
+            {
                 $realisation = new Realisation();
 
                 $realisation->setNom($faker->words(3, true))
@@ -96,7 +98,7 @@ class AppFixtures extends Fixture
                     ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
                     ->setDescription($faker->text())
                     ->setPortfolio($faker->randomElement([true, false]))
-                    ->setSlug($faker->slug())
+                    ->setSlug($faker->slug(3))
                     ->setFile('alex.jpg')
                     ->addCategorie($categorie)
                     ->setPrix($faker->randomFloat(2, 100, 9999))
@@ -104,12 +106,13 @@ class AppFixtures extends Fixture
 
                 $manager->persist($realisation);
             }
-
+            $manager->flush();
         }
 
         // On crée 5 demandes de contacts
 
-        for ($m = 0; $m < 5; $m++) {
+        for ($m=0; $m<5; $m++) 
+        {
             $contact = new Contact();
 
             $contact->setNom($faker->word())

@@ -5,8 +5,8 @@
 
 	<!-- IMAGE -->
     <div>	
-      <a href="{{ path('actualites') }}">
-		    <section data-jarallax data-speed=".8" class="bg-cover jarallax" style="background-image: url(" {{ vich_uploader_asset(blogpost, 'imageFile') }} ");">
+      <a href="{{ path('realisations') }}">
+		    <section data-jarallax data-speed=".8" class="bg-cover jarallax" style="background-image: url("{{ vich_uploader_asset(realisation, 'imageFile') }}" );">
         </section>
       </a>
     </div>
@@ -20,16 +20,16 @@
 
 						<!-- Heading -->
 						<h1 class="display-4 text-center">
-							<a href="{{ path('actualites') }}">
-								{{ blogpost.titre }}
+							<a href="{{ path('realisations') }}">
+								{{ realisation.nom }}
 							</a>
 						</h1>
 
-						<h2 class="display-5 text-center">{{ blogpost.slug}}</h2>
+						<h2 class="display-5 text-center">{{ realisation.categorie}}</h2>
 
 						<!-- Text -->
 						<p class="lead mb-7 text-center text-muted">
-							{{ blogpost.contenu|u.truncate(200, '...',false) }}
+							{{ realisation.description|u.truncate(200, '...',false) }}
 						</p>
 
 						<!-- Meta -->
@@ -54,7 +54,7 @@
 								<!-- Date -->
 								<time class="fs-sm text-muted" datetime="2019-05-20">
 									Publié le :
-									{{ blogpost.createdAt|date('d/m/y') }}
+									{{ realisation.createdAt|date('d/m/y') }}
 								</time>
 
 							</div>
@@ -110,7 +110,7 @@
 							<!-- Image -->
 							<img
 							class="figure-img img-fluid rounded lift lift-lg"
-							src="{{ vich_uploader_asset(blogpost, 'imageFile') }}" alt="karin">
+							src="{{ vich_uploader_asset(realisation, 'imageFile') }}" alt="alex">
 
 							<!-- Caption -->
 							<figcaption class="figure-caption text-center">
@@ -121,7 +121,7 @@
 
 						<!-- Text -->
 						<p>
-							{{ blogpost.contenu }}
+							{{ realisation.description }}
 						</p>
 
 

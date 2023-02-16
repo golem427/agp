@@ -19,7 +19,8 @@ class RealisationsController extends AbstractController
         Request $request
     ): Response
     {
-        $data = $realisationRepository->findAll();
+        $data = $realisationRepository->findBy([], ['id'=>'DESC'] );
+
         $realisations = $paginator->paginate($data, $request->query->getInt('page', 1), 6);
         //Le "paginate demande un "integer" pour les n° d 'page', qui démarre à 1 et limite à 6 les résultats par page.
 
@@ -27,8 +28,7 @@ class RealisationsController extends AbstractController
             'realisations' => $realisations
         ]);
     }
-
-
+    
     #[Route('/realisations/{slug}', name: 'realisations_details')]
     public function realisation(Realisation $realisation): Response
     {

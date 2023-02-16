@@ -20,10 +20,12 @@
 						class="col-12 col-md-4 resources">
 						<!-- Card -->
 						<a
-							class="card shadow-light-lg mb-7" href="{{ path('portfolio_categorie', {'slug': categorie.slug} )}}">
+							class="card shadow-light-lg mb-7" 
+							href="{{ path('portfolio_categorie', {'slug': categorie.slug} )}}">
 							<!-- Image -->
 							<div class="card-zoom">
-								<img class="card-img" src="{{ img.file}}" alt="...">
+								<img class="card-img" 
+								src="{{ vich_uploader_asset(realisation, 'imageFile') }}" alt="...">
 							</div>
 							<!-- Overlay -->
 							<div class="card-img-overlay card-img-overlay-hover">
@@ -41,8 +43,9 @@
 							</div>
 						</a>
 					</div>
-	
-        {% endfor %}
+		
+        				
+
 {# /////////////////////////////////////// 2 ///////////////////////////////////////////////// #}
 
 
@@ -71,7 +74,7 @@
 							</div>
 						</a>
 					</div>
-
+	
 {# /////////////////////////////////////// 3 ///////////////////////////////////////////////// #}
 
 
@@ -271,9 +274,12 @@
 							</div>
 						</a>
 					</div>
+					{% endfor %}
 				</div>
 		</div>
 	</section>
+
+
 
 	<!-- SHAPE -->
 	<div class="position-relative">
@@ -281,6 +287,9 @@
 			<svg viewbox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
 		</div>
 	</div>
+
+
+
 
 
 	<!-- CTA -->
@@ -297,7 +306,7 @@
 
 					<!-- Text -->
 					<p class="fs-lg text-muted mb-6 mb-md-0">
-						Dans votre boîte à votre fréquence.
+						Dans votre boîte.
 					</p>
 
 				</div>

@@ -68,7 +68,7 @@ class AppFixtures extends Fixture
             $manager->persist($blogpost);
         }
 
-        $manager->flush();
+     
 
 
         // On crée 9 catégories
@@ -82,6 +82,7 @@ class AppFixtures extends Fixture
                 ->setSlug($faker->slug());
 
             $manager->persist($categorie);
+            $manager->flush();
 
 
             // A chaque catégorie créée, on associe 3 réalisations
@@ -106,8 +107,9 @@ class AppFixtures extends Fixture
 
                 $manager->persist($realisation);
             }
-            $manager->flush();
+             $manager->flush();
         }
+
 
         // On crée 5 demandes de contacts
 

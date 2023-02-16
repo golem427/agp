@@ -1,8 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ACTUALITES
-{% endblock %}
-
 {% block body %}
 
 	{% block actualites %}
@@ -82,6 +79,7 @@
 
 
 			<!-- ARTICLES -->
+
 			<section>
 				<div class="container">
 					<div class="row">
@@ -95,11 +93,10 @@
 								<div
 									class="card mb-6 shadow-light-lg lift lift-lg">
 									<!-- Image -->
-									<a class="card-img-top" 
-									href="{{ path('details_actu', {'slug': blogpost.slug}) }}">
+									<a class="card-img-top" href="{{ path('details_actu', {'slug': blogpost.slug}) }}">
 										<img
-										src="{{ vich_uploader_asset(blogpost, 'imageFile') }}" alt="karin" 
-										class="card-img-top"> <!-- Shape -->
+										src="{{ vich_uploader_asset(blogpost, 'imageFile') }}" alt="karin" class="card-img-top">
+										<!-- Shape -->
 										<div class="position-relative">
 											<div
 												class="shape shape-bottom shape-fluid-x text-white">{# {{> curves/curve-3}} #}
@@ -140,14 +137,15 @@
 										</p>
 									</a>
 								</div>
-
 							</div>
 						{% endfor %}
 					</div>
-				</div>
-                <div class="d-flex justify-content-center">
-                  {% do blogposts.setPageRange(3)%}
-                  {{ knp_pagination_render(blogposts, 'include/_paginator.html.twig') }}
-                </div>
-	{% endblock %}
-{% endblock %}
+					<div>
+						<div class="d-flex justify-content-center">
+							{% do blogposts.setPageRange(3)%}
+							{{ knp_pagination_render(blogposts, 'include/_paginator.html.twig') }}
+						</div>
+			</section>
+
+				{% endblock %}
+			{% endblock %}

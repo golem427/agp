@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Realisation;
-use Vich\UploaderBundle\Form\Type\VichImageType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -35,7 +35,11 @@ class RealisationCrudController extends AbstractCrudController
             TextField::new('imageFile')->setFormType(VichImageType::class)->onlyWhenCreating(),
             ImageField::new('file')->setBasePath('uploads/realisations')->onlyOnIndex(),
             SlugField::new('slug')->setTargetFieldName('nom')->hideOnIndex(),
-            AssociationField::new('categorie')
+            AssociationField::new('categorie'),
         ];
+    }
+    public function configureCrud(Crud $crud):Crud
+    {       
+        return $crud->setDefaultSort(['createdAt'=>'DESC']);
     }
 }

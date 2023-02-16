@@ -17,7 +17,8 @@ class RealisationsController extends AbstractController
         RealisationRepository $realisationRepository,
         PaginatorInterface $paginator,
         Request $request
-    ): Response {
+    ): Response
+    {
         $data = $realisationRepository->findAll();
         $realisations = $paginator->paginate($data, $request->query->getInt('page', 1), 6);
         //Le "paginate demande un "integer" pour les n° d 'page', qui démarre à 1 et limite à 6 les résultats par page.
@@ -29,7 +30,7 @@ class RealisationsController extends AbstractController
 
 
     #[Route('/realisations/{slug}', name: 'realisations_details')]
-    public function details(Realisation $realisation): Response
+    public function realisation(Realisation $realisation): Response
     {
         return $this->render('realisations/realisationsdetails.html.twig', [
             'realisation' => $realisation

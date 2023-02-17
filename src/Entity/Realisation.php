@@ -2,12 +2,16 @@
 
 namespace App\Entity;
 
+use DateTime;
+use DateTimeImmutable;
+use App\Entity\Attachment;
+use App\Entity\Commentaire;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\RealisationRepository;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
@@ -34,10 +38,7 @@ class Realisation
     private ?bool $enVente = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $dateRealisation = null;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $createdAt = null;
+    private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
@@ -70,12 +71,16 @@ class Realisation
     #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Commentaire::class)]
     private Collection $commentaires;
 
+    #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Attachment::class)]
+    private Collection $attachments;
+
    
 
     public function __construct()
     {
         $this->categorie = new ArrayCollection();
         $this->commentaires = new ArrayCollection();
+        $this->attachments = new ArrayCollection();
     }
  
     public function getId(): ?int
@@ -138,22 +143,12 @@ class Realisation
         return $this;
     }
 
-    public function getDateRealisation(): ?\DateTimeInterface
-    {
-        return $this->dateRealisation;
-    }
-    public function setDateRealisation(?\DateTimeInterface $dateRealisation): self
-    {
-        $this->dateRealisation = $dateRealisation;
 
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
     }
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -270,20 +265,62 @@ class Realisation
         return $this;
     }
 
-    public function setImageFile(File $file = null): void
+    public function setImageFile(File $imageFile = null): void
     {
-        $this->imageFile = $file;
+        $this->imageFile = $imageFile;
         // VERY IMPORTANT:
         // It is required that at least one field changes if you are using Doctrine,
         // otherwise the event listeners won't be called and the file is lost
-        if ($file) {
+        if ($imageFile) {
             // if 'updatedAt' is not defined in your entity, use another property
-            $this->createdAt = new \DateTime('now');
+            $this->updatedAt = new \DateTime('now');
         }
     }
     public function getImageFile(): ?File
     {
         return $this->imageFile;
+    }
+
+    /**
+     * @return Collection<int, Attachment>
+     */
+    public function getAttachments(): Collection
+    {
+        return $this->attachments;
+    }
+
+    public function addAttachment(Attachment $attachment): self
+    {
+        if (!$this->attachments->contains($attachment))
+        {
+            $this->attachments->add($attachment);
+            $attachment->setRealisation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAttachment(Attachment $attachment): self
+    {
+        if ($this->attachments->removeElement($attachment)) {
+            // set the owning side to null (unless already changed)
+            if ($attachment->getRealisation() === $this) {
+                $attachment->setRealisation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTime{
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTime $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 
 }

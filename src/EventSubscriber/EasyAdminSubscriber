@@ -4,11 +4,12 @@ namespace App\EventSubscriber;
 
 use DateTime;
 use App\Entity\Blogpost;
+use App\Entity\Realisation;
+use DateTimeImmutable;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
-use App\Entity\Realisation;
 
 class EasyAdminSubscriber implements EventSubscriberInterface
 {
@@ -33,25 +34,25 @@ class EasyAdminSubscriber implements EventSubscriberInterface
     {
         $entity = $event->getEntityInstance();
 
-        if (($entity instanceof Blogpost))
-        {
-            [
-                $now = new DateTime('now'),
-                $entity->setCreatedAt($now),
-                $user = $this->security->getUser(),
-                $entity->setUser($user)
-            ];
-        }
-
-        if (($entity instanceof Realisation))
-        {
+        if (($entity instanceof Blogpost)) {
             return
-            [
-                $now = new DateTime('now'),
-                $entity->setCreatedAt($now),
-                $user = $this->security->getUser(),
-                $entity->setUser($user)
-            ];
+                [
+                    $now = new DateTime('now'),
+                    $entity->setCreatedAt($now),
+                    $user = $this->security->getUser(),
+                    $entity->setUser($user)
+                ];
+
+
+            if (($entity instanceof Realisation)) {
+                return
+                    [
+                        $now = new DateTime('now'),
+                        $entity->setCreatedAt($now),
+                        $user = $this->security->getUser(),
+                        $entity->setUser($user)
+                    ];
+            }
         }
         return;
     }

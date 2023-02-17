@@ -19,7 +19,7 @@ class PortfolioController extends AbstractController
         ]);
     }
 
-    #[Route('/portfolio/{slug}', name: 'portfolio_categorie')]
+    #[Route('/portfolio/{slug}', name: 'portfolio_slug')]
     public function categorie(Categorie $categorie, RealisationRepository $realisationRepository)
     :Response
     {

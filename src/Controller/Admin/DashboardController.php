@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Blogpost;
+use App\Entity\Attachment;
 use App\Entity\Realisation;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

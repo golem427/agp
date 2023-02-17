@@ -28,7 +28,8 @@
 			{# //////////////////// REALISATIONS ////////////////////////////      #}
 			<ul class="navbar-nav ms-auto">
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="navbarLandings" href="{{ path('realisations') }}">
+					<a class="nav-link dropdown-toggle" id="navbarLandings"
+					href="{{ path('realisations') }}">
 						Réalisations
 					</a>
 
@@ -41,7 +42,8 @@
 				{# ////////////////////////// ACTUALITES ///////////////////// #}
 
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="navbarAccount" href="{{ path('actualites') }}" aria-haspopup="true" aria-expanded="false">
+					<a class="nav-link dropdown-toggle" id="navbarAccount" 
+					href="{{ path('actualites') }}" aria-haspopup="true" aria-expanded="false">
 						Actualités
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="navbarAccount">
@@ -54,7 +56,8 @@
 					{# ////////////////////////// PORTFOLIO ///////////////////// #}
 				
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="navbarAccount" href="{{ path('portfolio') }}" aria-haspopup="true" aria-expanded="false">
+					<a class="nav-link dropdown-toggle" id="navbarAccount" 
+					href="{{ path('portfolio') }}" aria-haspopup="true" aria-expanded="false">
 						Portfolio
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="navbarAccount">
@@ -62,16 +65,18 @@
 						{% for categorie in categorieNavbar() %}
 
 							<li class="dropdown-item dropend">
-								<a href="{{ path('portfolio_categorie', {'slug': categorie.slug}) }}"></a>
+								<a href="{{ path('portfolio_slug', {'slug': categorie.slug}) }}">
+								{{ categorie.slug }}
+								</a>
 							</li>
-
 						{% endfor %}
 					</ul>
 				</li>
 
 
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="navbarDocumentation" href="{{ path('apropos') }}" aria-haspopup="true" aria-expanded="false">
+					<a class="nav-link dropdown-toggle" id="navbarDocumentation" 
+					href="{{ path('apropos') }}" aria-haspopup="true" aria-expanded="false">
 						A propos
 					</a>
 				</li>

@@ -21,11 +21,12 @@
 						<!-- Card -->
 						<a
 							class="card shadow-light-lg mb-7" 
-							href="{{ path('portfolio_categorie', {'slug': categorie.slug} )}}">
+							{# href="{{ path('portfolio_categorie', {'slug': categorie.slug} )}}"> #}
+							href="{{ path('portfolio') }}">
 							<!-- Image -->
 							<div class="card-zoom">
 								<img class="card-img" 
-								src="{{ vich_uploader_asset(realisation, 'imageFile') }}" alt="...">
+								src="{{ vich_uploader_asset(realisation, 'imageFile') }}" alt="test">
 							</div>
 							<!-- Overlay -->
 							<div class="card-img-overlay card-img-overlay-hover">
@@ -33,7 +34,8 @@
 									class="card-body bg-white">
 									<!-- Shape -->
 									<div class="shape shape-bottom-100 shape-fluid-x text-white">
-										<svg viewbox="0 0 2880 48" fill="none" xmlns="#"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/></svg>
+										<svg viewbox="0 0 2880 48" fill="none" xmlns="#"><path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"/>
+										</svg>
 									</div>
 									<!-- Preheading -->
 									<h6 class="text-uppercase mb-1 text-muted">{{ categorie.nom }}</h6>

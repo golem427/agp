@@ -30,10 +30,23 @@ class RealisationsController extends AbstractController
     }
     
     #[Route('/realisations/{slug}', name: 'realisations_details')]
+
     public function realisation(Realisation $realisation): Response
     {
         return $this->render('realisations/realisationsdetails.html.twig', [
             'realisation' => $realisation
         ]);
     }
+
+
+
+
+
+
+
+
+
+
+
+    
 }

@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use DateTime;
 use DateTimeImmutable;
 use App\Entity\Attachment;
 use App\Entity\Commentaire;
@@ -37,7 +36,7 @@ class Realisation
     #[ORM\Column(type: Types::BOOLEAN, nullable: true)]
     private ?bool $enVente = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -71,7 +70,7 @@ class Realisation
     #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Commentaire::class)]
     private Collection $commentaires;
 
-    #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Attachment::class)]
+    #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Attachment::class, cascade:['persist'])]
     private Collection $attachments;
 
    
@@ -312,7 +311,8 @@ class Realisation
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTime{
+    public function getUpdatedAt(): ?\DateTime
+    {
         return $this->updatedAt;
     }
 

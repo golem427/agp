@@ -28,18 +28,6 @@ class Realisation
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2, nullable: true)]
-    private ?string $largeur = null;
-
-    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2, nullable: true)]
-    private ?string $longueur = null;
-
-    #[ORM\Column(type: Types::BOOLEAN, nullable: true)]
-    private ?bool $enVente = null;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeImmutable $createdAt = null;
-
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
@@ -48,18 +36,12 @@ class Realisation
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
-    
-    #[ORM\Column(length: 255)] 
-    private ?string $file = null;
 
-    #[Vich\UploadableField(mapping: 'realisation_images', fileNameProperty:'file')]
-    private ?File $imageFile = null;
+    #[ORM\Column]
+    private ?\DateTime $createdAt = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $updatedAt = null;
-
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
-    private ?string $prix = null;
 
     #[ORM\ManyToOne(inversedBy: 'realisations')]
     #[ORM\JoinColumn(nullable: false)]
@@ -71,7 +53,10 @@ class Realisation
     #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Commentaire::class)]
     private Collection $commentaires;
 
-    #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Attachment::class)]
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
+    #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Attachment::class, cascade: ["all","persist", "remove"])]
     private Collection $attachments;
 
    
@@ -82,6 +67,8 @@ class Realisation
         $this->commentaires = new ArrayCollection();
         $this->attachments = new ArrayCollection();
     }
+
+ 
  
     public function getId(): ?int
     {
@@ -95,62 +82,6 @@ class Realisation
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getLargeur(): ?string
-    {
-        return $this->largeur;
-    }
-    public function setLargeur(?string $largeur): self
-    {
-        $this->largeur = $largeur;
-
-        return $this;
-    }
-
-    public function getLongueur(): ?string
-    {
-        return $this->longueur;
-    }
-    public function setLongueur(?string $longueur): self
-    {
-        $this->longueur = $longueur;
-
-        return $this;
-    }
-
-    public function isEnVente(): ?bool
-    {
-        return $this->enVente;
-    }
-    public function setEnVente(bool $enVente): self
-    {
-        $this->enVente = $enVente;
-
-        return $this;
-    }
-
-    public function getPrix(): ?string
-    {
-        return $this->prix;
-    }
-    public function setPrix(?string $prix): self
-    {
-        $this->prix = $prix;
-
-        return $this;
-    }
-
-
-    public function getCreatedAt(): ?DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
-    {
-        $this->createdAt = $createdAt;
 
         return $this;
     }
@@ -253,34 +184,6 @@ class Realisation
         return $this;
     }
 
-    public function getFile(): ?string
-    {
-        return $this->file;
-    }
-
-    public function setFile(?string $file): self
-    {
-        $this->file = $file;
-
-        return $this;
-    }
-
-    public function setImageFile(File $imageFile = null): void
-    {
-        $this->imageFile = $imageFile;
-        // VERY IMPORTANT:
-        // It is required that at least one field changes if you are using Doctrine,
-        // otherwise the event listeners won't be called and the file is lost
-        if ($imageFile) {
-            // if 'updatedAt' is not defined in your entity, use another property
-            $this->updatedAt = new \DateTime('now');
-        }
-    }
-    public function getImageFile(): ?File
-    {
-        return $this->imageFile;
-    }
-
     /**
      * @return Collection<int, Attachment>
      */
@@ -319,6 +222,30 @@ class Realisation
     public function setUpdatedAt(?\DateTime $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTime $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

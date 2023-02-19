@@ -6,6 +6,7 @@ use App\Entity\Realisation;
 use App\Form\AttachmentType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -25,30 +26,29 @@ class RealisationCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        $imageFile = ImageField::new('imageFile')->setFormType(VichImageType::class);
-        $image = ImageField::new('image')->setBasePath('thumbnails');
+        $imageFile = ImageField::new('attachment')->setFormType(VichImageType::class);
+        $image = ImageField::new('image')->setBasePath('uploads/thumbnails');
 
-        return 
-        [
-            TextField::new('nom'),
-            SlugField::new('slug')->setTargetFieldName('nom')->hideOnIndex(),
-            TextareaField::new('description')->hideOnIndex(),
-            DateField::new('createdAt'),
-            BooleanField::new('portfolio'),
-            ImageField::new('file')
-                    ->setBasePath('uploads/realisations')->onlyOnIndex(),
-            CollectionField::new('attachments')
-                    ->setEntryType(AttachmentType::class)
-                    ->onlyOnForms(),
-            CollectionField::new('attachments')
-                        ->setTemplatePath('images.html.twig')
-                        ->onlyOnDetail(),
-            AssociationField::new('categorie'),
-        ];
+        return
+            [
+                TextField::new('nom'),
+                SlugField::new('slug')->setTargetFieldName('nom')->hideOnIndex(),
+                TextareaField::new('description')->hideOnIndex(),
+                ImageField::new('image', 'image: l : 800px par h : 1200px')
+                ->setBasePath('uploads/')
+                ->setUploadDir('public/uploads')
+                ->setUploadedFileNamePattern('[randomhash].[extension]')
+                ->setRequired(false),
+                TextField::new('attachments')->setFormType(VichImageType::class),
+                CollectionField::new('attachments')->setEntryType(AttachmentType::class)->onlyOnForms(),
+                CollectionField::new('attachments')->setTemplatePath('images.html.twig')->onlyOnDetail(),
+                DateField::new('createdAt'),
+                BooleanField::new('portfolio'),
+                AssociationField::new('categorie'),
+            ];
 
         if ($pageName == Crud::PAGE_INDEX || $pageName == Crud::PAGE_DETAIL) {
             $fields[] = $image;
-
         } else {
             $fields[] = $imageFile;
         }
@@ -56,8 +56,8 @@ class RealisationCrudController extends AbstractCrudController
     }
 
 
-    public function configureCrud(Crud $crud):Crud
-    {       
-        return $crud->setDefaultSort(['createdAt'=>'DESC']);
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions->add('index', 'detail');
     }
 }

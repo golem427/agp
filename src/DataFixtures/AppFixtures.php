@@ -10,6 +10,7 @@ use App\Entity\Categorie;
 use App\Entity\Realisation;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\DBAL\Types\DateTimeImmutableType;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
@@ -92,17 +93,12 @@ class AppFixtures extends Fixture
                 $realisation = new Realisation();
 
                 $realisation->setNom($faker->words(3, true))
-                    ->setLargeur($faker->randomFloat(2, 20, 60))
-                    ->setLongueur($faker->randomFloat(2, 20, 60))
-                    ->setEnVente($faker->randomElement([true, false]))
-                    ->setDateRealisation($faker->dateTimeBetween('-6 month', 'now'))
-                    ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
                     ->setDescription($faker->text())
                     ->setPortfolio($faker->randomElement([true, false]))
                     ->setSlug($faker->slug(3))
-                    ->setFile('alex.jpg')
+                    ->setImage('alex.jpg')
+                    ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
                     ->addCategorie($categorie)
-                    ->setPrix($faker->randomFloat(2, 100, 9999))
                     ->setUser($user);
 
                 $manager->persist($realisation);

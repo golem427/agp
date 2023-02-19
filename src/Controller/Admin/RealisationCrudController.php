@@ -25,8 +25,8 @@ class RealisationCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        $imageFile = ImageField::new('thumbnailFile')->setFormType(VichImageType::class);
-        $image = ImageField::new('thumbnail')->setBasePath('thumbnails');
+        $imageFile = ImageField::new('imageFile')->setFormType(VichImageType::class);
+        $image = ImageField::new('image')->setBasePath('thumbnails');
 
         return 
         [

@@ -4,8 +4,8 @@ namespace App\Form;
 
 use App\Entity\Attachment;
 use Symfony\Component\Form\AbstractType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
@@ -14,13 +14,8 @@ class AttachmentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('imageFile',VichImageType::class, 
-        [
-                    'required' => false,
-                    'download_uri' => true,
-                    'image_uri' => true
-        ])
-    ;
+        ->add(child:'imageFile',type: VichFileType::class)    
+        ;
 
     }
 

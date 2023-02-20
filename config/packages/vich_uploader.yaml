@@ -12,9 +12,9 @@ vich_uploader:
            upload_destination: '%kernel.project_dir%/public%blogpost_images%'
            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
-       attachments:
-           uri_prefix: '%attachments%'
-           upload_destination: '%kernel.project_dir%/public%attachments%'
+       attachment_images:
+           uri_prefix: '%attachment_images%'
+           upload_destination: '%kernel.project_dir%/public%attachment_images%'
         #    inject_on_load: false
         #    delete_on_update: true
         #    delete_on_remove: true

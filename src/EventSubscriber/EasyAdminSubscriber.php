@@ -34,7 +34,8 @@ class EasyAdminSubscriber implements EventSubscriberInterface
     {
         $entity = $event->getEntityInstance();
 
-        if (($entity instanceof Blogpost)) {
+        if (($entity instanceof Blogpost)) 
+            {
             return
                 [
                     $now = new DateTime('now'),
@@ -42,9 +43,10 @@ class EasyAdminSubscriber implements EventSubscriberInterface
                     $user = $this->security->getUser(),
                     $entity->setUser($user)
                 ];
+            }
 
-
-            if (($entity instanceof Realisation)) {
+            if (($entity instanceof Realisation))
+            {
                 return
                     [
                         $now = new DateTime('now'),
@@ -53,7 +55,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
                         $entity->setUser($user)
                     ];
             }
-        }
+        
         return;
     }
 }

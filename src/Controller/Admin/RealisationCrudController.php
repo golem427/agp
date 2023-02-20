@@ -47,11 +47,11 @@ class RealisationCrudController extends AbstractCrudController
             ];
     }
 
-    // public function configureActions(Actions $actions): Actions
-    // {
-    //     return $actions
-    //         ->add(Crud::PAGE_INDEX, Action::DETAIL);
-    // }
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->add(Crud::PAGE_INDEX, Action::DETAIL);
+    }
     
     public function configureCrud(Crud $crud): Crud
     {

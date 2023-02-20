@@ -33,27 +33,29 @@ class RealisationCrudController extends AbstractCrudController
                 TextField::new('nom'),
                 SlugField::new('slug')->setTargetFieldName('nom')->hideOnIndex(),
                 TextareaField::new('description')->hideOnIndex(),
-                ImageField::new('image')
-                ->setBasePath('uploads/')
-                ->setUploadDir('public/uploads/attachments')
-                ->setUploadedFileNamePattern('[randomhash].[extension]')
-                ->setRequired(false),
-                CollectionField::new('attachments')->setEntryType(AttachmentType::class)->onlyOnForms(),
+                ImageField::new('image','image: l : 4000px par h : 4000px')
+                                ->setBasePath('uploads/')
+                                ->setUploadDir('public/uploads/attachments')
+                                ->setUploadedFileNamePattern('[randomhash].[extension]')
+                                ->setRequired(false),
+                CollectionField::new('attachments')->setEntryType(AttachmentType::class)->onlyOnForms()
+                                ->setFormTypeOption('by_reference', false),
                 CollectionField::new('attachments')->setTemplatePath('images.html.twig')->onlyOnDetail(),
                 DateField::new('createdAt'),
                 BooleanField::new('portfolio'),
-                AssociationField::new('categorie')
+                AssociationField::new('categorie'),
             ];
     }
 
-    public function configureActions(Actions $actions): Actions
-    {
-        return $actions
-            ->add(Crud::PAGE_INDEX, Action::DETAIL);
-    }
+    // public function configureActions(Actions $actions): Actions
+    // {
+    //     return $actions
+    //         ->add(Crud::PAGE_INDEX, Action::DETAIL);
+    // }
     
     public function configureCrud(Crud $crud): Crud
     {
-        return $crud;
+        return $crud->setDefaultSort(['createdAt'=>'DESC']);
+        
     }
 }

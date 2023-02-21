@@ -32,7 +32,7 @@ class RealisationCrudController extends AbstractCrudController
                 TextField::new('nom'),
                 SlugField::new('slug')->setTargetFieldName('nom')->onlyOnForms(),
                 TextareaField::new('description')->hideOnIndex(),
-                ImageField::new('thumbnail', 'image')
+                ImageField::new('thumbnail', 'thumbnail: l : 800px par h : 1200px')
                                 ->setBasePath('uploads/')
                                 ->setUploadDir('public/uploads/thumbnails')
                                 ->setUploadedFileNamePattern('[randomhash].[extension]')
@@ -52,9 +52,9 @@ class RealisationCrudController extends AbstractCrudController
             ->add(Crud::PAGE_INDEX, Action::DETAIL);
     }
     
-    public function configureCrud(Crud $crud): Crud
-    {
-        return $crud->setDefaultSort(['createdAt'=>'DESC']);
+    // public function configureCrud(Crud $crud): Crud
+    // {
+    //     return $crud->setDefaultSort(['createdAt'=>'DESC']);
         
-    }
+    // }
 }

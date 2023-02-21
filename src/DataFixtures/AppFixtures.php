@@ -96,7 +96,7 @@ class AppFixtures extends Fixture
                     ->setDescription($faker->text())
                     ->setPortfolio($faker->randomElement([true, false]))
                     ->setSlug($faker->slug(3))
-                    ->setImage('alex.jpg')
+                    ->setThumbnail('alex.jpg')
                     ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
                     ->addCategorie($categorie)
                     ->setUser($user);

@@ -54,9 +54,12 @@ class Realisation
     private Collection $commentaires;
 
     #[ORM\Column(length: 255)]
-    private ?string $image = null;
+    private ?string $thumbnail = null;
 
-    #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Attachment::class, cascade: ["all","persist", "remove"])]
+    #[Vich\UploadableField(mapping: 'thumbnail_images', fileNameProperty:'thumbnail')]
+    private ?File $thumbnailFile = null;
+
+    #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Attachment::class, cascade: ["persist"])]
     private Collection $attachments;
 
    
@@ -238,17 +241,35 @@ class Realisation
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getThumbnail(): ?string
     {
-        return $this->image;
+        return $this->thumbnail;
     }
 
-    public function setImage(string $image): self
+    public function setThumbnail(string $thumbnail): self
     {
-        $this->image = $image;
+        $this->thumbnail = $thumbnail;
 
         return $this;
     }
+
+    
+    public function setThumbnailFile(File $thumbnailFile = null): void
+    {
+        $this->thumbnailFile = $thumbnailFile;
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($thumbnailFile) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+    public function getThumbnailFile(): ?File
+    {
+        return $this->thumbnailFile;
+    }
+
     
     public function __toString(){
         return $this->getNom();

@@ -29,12 +29,22 @@ class Attachment
     private ?DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
-    private ?\DateTime $UpdatedAt = null;
+    private ?\DateTime $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'attachments')]
     private ?Realisation $realisation = null;
 
     
+
+
+    public function __construct(){
+
+        $this->createdAt = NEW \DateTimeImmutable();
+        $this->updatedAt = NEW \DateTime('now');
+
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -63,7 +73,7 @@ class Attachment
         // otherwise the event listeners won't be called and the file is lost
         if ($imageFile) {
             // if 'updatedAt' is not defined in your entity, use another property
-            $this->UpdatedAt = new \DateTime('now');
+            $this->updatedAt = new \DateTime('now');
         }
     }
     public function getImageFile(): ?File
@@ -86,12 +96,12 @@ class Attachment
 
     public function getUpdatedAt(): ?DateTime
     {
-        return $this->UpdatedAt;
+        return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTime $UpdatedAt): self
+    public function setUpdatedAt(?\DateTime $updatedAt): self
     {
-        $this->UpdatedAt = $UpdatedAt;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

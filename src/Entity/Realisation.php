@@ -59,7 +59,7 @@ class Realisation
     #[Vich\UploadableField(mapping: 'thumbnail_images', fileNameProperty:'thumbnail')]
     private ?File $thumbnailFile = null;
 
-    #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Attachment::class, cascade: ["persist"])]
+    #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Attachment::class, cascade: ["all", "persist", "remove"])]
     private Collection $attachments;
 
    

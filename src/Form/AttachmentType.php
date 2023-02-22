@@ -14,7 +14,7 @@ class AttachmentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add(child:'imageFile',type: VichFileType::class)    
+        ->add(child:'imageFile',type: VichFileType::class)
         ;
 
     }

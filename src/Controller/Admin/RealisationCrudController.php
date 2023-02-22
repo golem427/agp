@@ -35,8 +35,7 @@ class RealisationCrudController extends AbstractCrudController
                 ImageField::new('thumbnail', 'image')
                                 ->setBasePath('uploads/')
                                 ->setUploadDir('public/uploads/thumbnails')
-                                ->setUploadedFileNamePattern('[randomhash].[extension]')
-                                ->setRequired(false),                                
+                                ->setRequired(false),
                 CollectionField::new('attachments')->setEntryType(AttachmentType::class)->onlyOnForms()
                                 ->setFormTypeOption('by_reference', false),
                 CollectionField::new('attachments')->setTemplatePath('images/images.html.twig')->onlyOnDetail(),

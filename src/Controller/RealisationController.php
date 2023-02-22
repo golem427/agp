@@ -69,10 +69,10 @@ class RealisationController extends AbstractController
     #[Route('/{id}', name: 'app_realisation_delete', methods: ['POST'])]
     public function delete(Request $request, Realisation $realisation, RealisationRepository $realisationRepository): Response
     {
+
         if ($this->isCsrfTokenValid('delete'.$realisation->getId(), $request->request->get('_token'))) {
             $realisationRepository->remove($realisation, true);
         }
-
-        return $this->redirectToRoute('app_realisation_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_realisation_index', [], Response::HTTP_SEE_OTHER);
     }
 }

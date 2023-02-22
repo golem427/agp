@@ -12,6 +12,7 @@ use App\Repository\RealisationRepository;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
+use phpDocumentor\Reflection\Types\Nullable;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
@@ -53,7 +54,7 @@ class Realisation
     #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Commentaire::class)]
     private Collection $commentaires;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $thumbnail = null;
 
     #[Vich\UploadableField(mapping: 'thumbnail_images', fileNameProperty:'thumbnail')]
@@ -69,6 +70,9 @@ class Realisation
         $this->categorie = new ArrayCollection();
         $this->commentaires = new ArrayCollection();
         $this->attachments = new ArrayCollection();
+        $this->updatedAt = new \DateTime();
+        $this->createdAt = new \DateTime();
+
     }
 
  
@@ -246,13 +250,17 @@ class Realisation
         return $this->thumbnail;
     }
 
-    public function setThumbnail(string $thumbnail): self
+    public function setThumbnail(string $thumbnail = null): self
     {
         $this->thumbnail = $thumbnail;
 
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->getNom();
+    }
     
     public function setThumbnailFile(File $thumbnailFile = null): void
     {
@@ -269,9 +277,4 @@ class Realisation
     {
         return $this->thumbnailFile;
     }
-
-    
-    public function __toString(){
-        return $this->getNom();
-     }
 }

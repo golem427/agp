@@ -19,7 +19,7 @@ class Attachment
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
     #[Vich\UploadableField(mapping: 'attachment_images', fileNameProperty:'image')]
@@ -41,7 +41,6 @@ class Attachment
 
         $this->createdAt = NEW \DateTimeImmutable();
         $this->updatedAt = NEW \DateTime('now');
-
     }
 
 
@@ -55,14 +54,12 @@ class Attachment
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(string $image = null): self
     {
         $this->image = $image;
 
         return $this;
     }
-
- 
 
 
     public function setImageFile(File $imageFile = null): void

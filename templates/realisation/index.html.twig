@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Realisation index{% endblock %}
+{% block title %}ACCUEIL REALISATIONS{% endblock %}
 
 {% block body %}
     <h1>Realisation index</h1>
@@ -13,10 +13,10 @@
                 <th>Description</th>
                 <th>Portfolio</th>
                 <th>Slug</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
+                <th>Créee le</th>
+                <th>Modifiée le</th>
                 <th>Image</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -29,19 +29,21 @@
                 <td>{{ realisation.slug }}</td>
                 <td>{{ realisation.createdAt ? realisation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ realisation.updatedAt ? realisation.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ realisation.thumbnail }}</td>
                 <td>{{ realisation.image }}</td>
                 <td>
-                    <a href="{{ path('app_realisation_show', {'id': realisation.id}) }}">show</a>
-                    <a href="{{ path('app_realisation_edit', {'id': realisation.id}) }}">edit</a>
+                    <a href="{{ path('app_realisation_show', {'id': realisation.id}) }}">Voir</a>
+                    <a href="{{ path('app_realisation_edit', {'id': realisation.id}) }}">Modifier</a>
+                    <a href="{{ path('app_realisation_delete', {'id': realisation.id}) }}">Supprimer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="9">no records found</td>
+                <td colspan="9">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_realisation_new') }}">Create new</a>
+    <a href="{{ path('app_realisation_new') }}">Créer une nouvelle réalisation</a>
 {% endblock %}

@@ -34,14 +34,14 @@ class RealisationCrudController extends AbstractCrudController
                 TextareaField::new('description')->hideOnIndex(),
                 ImageField::new('thumbnail', 'image')
                                 ->setBasePath('uploads/')
-                                ->setUploadDir('public/uploads/attachments')
+                                ->setUploadDir('public/uploads/thumbnails')
                                 ->setRequired(false),
                 CollectionField::new('attachments')->setEntryType(AttachmentType::class)->onlyOnForms()
                                 ->setFormTypeOption('by_reference', false),
                 CollectionField::new('attachments')->setTemplatePath('images/images.html.twig')->onlyOnDetail(),
                 DateField::new('createdAt')->hideOnForm(),
                 BooleanField::new('portfolio'),
-                AssociationField::new('categorie'),
+                AssociationField::new('categorie')
             ];
     }
 

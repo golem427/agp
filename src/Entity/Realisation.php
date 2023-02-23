@@ -58,7 +58,7 @@ class Realisation
     private ?string $thumbnail = null;
 
     #[Vich\UploadableField(mapping: 'thumbnail_images', fileNameProperty:'thumbnail')]
-    private ?File $thumbnailFile = null;
+    private ?File $imageFile = null;
 
     #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Attachment::class, cascade: ["all", "persist", "remove"])]
     private Collection $attachments;
@@ -262,19 +262,19 @@ class Realisation
         return $this->getNom();
     }
     
-    public function setThumbnailFile(File $thumbnailFile = null): void
+    public function setImageFile(File $imageFile = null): void
     {
-        $this->thumbnailFile = $thumbnailFile;
+        $this->imageFile = $imageFile;
         // VERY IMPORTANT:
         // It is required that at least one field changes if you are using Doctrine,
         // otherwise the event listeners won't be called and the file is lost
-        if ($thumbnailFile) {
+        if ($imageFile) {
             // if 'updatedAt' is not defined in your entity, use another property
             $this->updatedAt = new \DateTime('now');
         }
     }
-    public function getThumbnailFile(): ?File
+    public function getImageFile(): ?File
     {
-        return $this->thumbnailFile;
+        return $this->imageFile;
     }
 }

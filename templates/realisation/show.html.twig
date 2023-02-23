@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Realisation{% endblock %}
+{% block title %}REALISATION{% endblock %}
 
 {% block body %}
     <h1>Realisation</h1>
@@ -28,11 +28,11 @@
                 <td>{{ realisation.slug }}</td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
+                <th>Créée le</th>
                 <td>{{ realisation.createdAt ? realisation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>UpdatedAt</th>
+                <th>Modifiée le</th>
                 <td>{{ realisation.updatedAt ? realisation.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
@@ -46,9 +46,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_realisation_index') }}">back to list</a>
+    <a href="{{ path('app_realisation_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('app_realisation_edit', {'id': realisation.id}) }}">edit</a>
+    <a href="{{ path('app_realisation_edit', {'id': realisation.id}) }}">Modifier</a>
 
     {{ include('realisation/_delete_form.html.twig') }}
 {% endblock %}

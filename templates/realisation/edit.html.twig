@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Realisation{% endblock %}
+{% block title %}Mofifier une realisation{% endblock %}
 
 {% block body %}
-    <h1>Edit Realisation</h1>
+    <h1>Modifier la réalisation</h1>
 
     {{ include('realisation/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_realisation_index') }}">back to list</a>
+    <a href="{{ path('app_realisation_index') }}">Retour à la liste</a>
 
     {{ include('realisation/_delete_form.html.twig') }}
 {% endblock %}

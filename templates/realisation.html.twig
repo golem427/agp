@@ -25,7 +25,8 @@
           </div>
           
         </div> <!-- / .row -->
-            {% for realisation in realisations %}
+           {% for realisation in realisations %}
+           
             <div class="row">
             <div class="col-12">
 
@@ -39,13 +40,13 @@
                     <a class="card-img-start position-absolute d-block w-100 bg-cover" 
                     href="{{ path('realisations_details', {'slug': realisation.slug }) }}">
                       <!-- Image (placeholder) -->
-                      <img src="{{ vich_uploader_asset(realisation, 'image') }}" alt="alex" class="img-fluid">{# d-md-none #}
+                      <img src="{{ realisation.attachments }}" alt="alex" class="img-fluid">{# d-md-none #}
                      </a>
 
                     <a class="card-img-start position-absolute d-block w-100 bg-cover" 
                     href="{{ path('realisations_details', {'slug': realisation.slug}) }}">
                       <!-- Image (placeholder) -->
-                      <img src="{{ vich_uploader_asset(realisation, 'image') }}" alt="alex" class="img-fluid ">{# d-md-none #}
+                      <img src="{{ realisation.attachments }}" alt="alex" class="img-fluid ">{# d-md-none #}
                     </a>
                   </div>
 

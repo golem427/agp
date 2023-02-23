@@ -34,7 +34,7 @@ class RealisationCrudController extends AbstractCrudController
                 TextareaField::new('description')->hideOnIndex(),
                 ImageField::new('thumbnail', 'image')
                                 ->setBasePath('uploads/')
-                                ->setUploadDir('public/uploads/thumbnails')
+                                ->setUploadDir('public/uploads/attachments')
                                 ->setRequired(false),
                 CollectionField::new('attachments')->setEntryType(AttachmentType::class)->onlyOnForms()
                                 ->setFormTypeOption('by_reference', false),

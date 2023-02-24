@@ -36,4 +36,12 @@ class RealisationsController extends AbstractController
             'realisation' => $realisation
         ]);
     }
+
+    #[Route('/', name: 'realisation_home')]
+    public function realisationHome(Realisation $realisation): Response
+    {
+        return $this->render('/realisation.html.twig', [
+            'realisation' => $realisation
+        ]);
+    }
 }

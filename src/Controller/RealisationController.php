@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 #[Route('/realisation')]
 class RealisationController extends AbstractController
 {
@@ -47,6 +48,7 @@ class RealisationController extends AbstractController
             'realisation' => $realisation,
         ]);
     }
+  
 
     #[Route('/{id}/edit', name: 'app_realisation_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Realisation $realisation, RealisationRepository $realisationRepository): Response

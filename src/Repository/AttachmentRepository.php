@@ -39,6 +39,18 @@ class AttachmentRepository extends ServiceEntityRepository
         }
     }
 
+    public function lastthree(): array
+   {
+       return $this->createQueryBuilder('b')
+        //    ->andWhere('b.exampleField = :val')
+        //    ->setParameter('val', $value)
+           ->orderBy('b.id', 'DESC')
+           ->setMaxResults(2)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
+
 //    /**
 //     * @return Attachment[] Returns an array of Attachment objects
 //     */

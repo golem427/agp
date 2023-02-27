@@ -12,7 +12,7 @@
 			<div class="row" id="portfolio" data-isotope='{"layoutMode": "masonry"}'>
 
 				{% for categorie in categories %}
-					{% set realisation = categorie.realisations|last %}
+					{% set realisations = categorie.realisations | last %}
 
 {# /////////////////////////////////////// 1 ///////////////////////////////////////////////// #}
 
@@ -21,12 +21,11 @@
 						<!-- Card -->
 						<a
 							class="card shadow-light-lg mb-7" 
-							{# href="{{ path('portfolio_categorie', {'slug': categorie.slug} )}}"> #}
-							href="{{ path('portfolio') }}">
+							href="{{ path('portfolio_slug', {'slug': categorie.slug} )}}">
 							<!-- Image -->
 							<div class="card-zoom">
 								<img class="card-img" 
-								src="{{ vich_uploader_asset(realisation, 'imageFile') }}" alt="test">
+								src="{{ vich_uploader_asset(realisations, 'imageFile') }}" alt="test">
 							</div>
 							<!-- Overlay -->
 							<div class="card-img-overlay card-img-overlay-hover">

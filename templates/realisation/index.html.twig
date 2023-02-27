@@ -30,7 +30,7 @@
                 <td>{{ realisation.createdAt ? realisation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ realisation.updatedAt ? realisation.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ realisation.thumbnail }}</td>
-                <td>{{ realisation.image }}</td>
+                <td>{{ realisation.imageFile }}</td>
                 <td>
                     <a href="{{ path('app_realisation_show', {'id': realisation.id}) }}">Voir</a>
                     <a href="{{ path('app_realisation_edit', {'id': realisation.id}) }}">Modifier</a>

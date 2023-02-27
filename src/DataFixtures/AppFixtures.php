@@ -102,8 +102,9 @@ class AppFixtures extends Fixture
                     ->setUser($user);
 
                 $manager->persist($realisation);
+                $manager->flush();
             }
-             $manager->flush();
+            
         }
 
 

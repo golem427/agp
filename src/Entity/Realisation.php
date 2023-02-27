@@ -51,7 +51,7 @@ class Realisation
     #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'realisations')]
     private Collection $categorie;
 
-    #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Commentaire::class)]
+    #[ORM\ManyToMany(mappedBy: 'realisation', targetEntity: Commentaire::class)]
     private Collection $commentaires;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -144,6 +144,12 @@ class Realisation
     public function getCategorie(): Collection
     {
         return $this->categorie;
+    }
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
+
+        return $this;
     }
 
     public function addCategorie(categorie $categorie): self

@@ -28,6 +28,7 @@ class Categorie
     #[ORM\ManyToMany(targetEntity: Realisation::class, mappedBy: 'categorie')]
     private Collection $realisations;
 
+
     public function __construct()
     {
         $this->realisations = new ArrayCollection();

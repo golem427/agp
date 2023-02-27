@@ -6,6 +6,8 @@
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /public/uploads/realisations/*
+# /public/uploads/attachments/*
+# /public/uploads/thumbnails/*
 !/public/uploads/realisations/alex.jpg
 /var/
 /vendor/

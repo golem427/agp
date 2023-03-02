@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\User;
 use App\Entity\Blogpost;
 use App\Entity\Realisation;
 use Symfony\Component\HttpFoundation\Response;
@@ -45,5 +46,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Actualités', 'fas fa-newspaper', Blogpost::class);
         yield MenuItem::linkToCrud('Réalisations', 'fas fa-newspaper', Realisation::class);
+        yield MenuItem::linkToCrud('Utilisateur', 'fas fa-newspaper', User::class);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use App\Entity\Blogpost;
+use App\Entity\Commentaire;
 use App\Entity\Realisation;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -45,7 +46,8 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Actualités', 'fas fa-newspaper', Blogpost::class);
-        yield MenuItem::linkToCrud('Réalisations', 'fas fa-newspaper', Realisation::class);
-        yield MenuItem::linkToCrud('Utilisateur', 'fas fa-newspaper', User::class);
+        yield MenuItem::linkToCrud('Réalisations', 'fas fa-brush', Realisation::class);
+        yield MenuItem::linkToCrud('Commentaires', 'fas fa-comment', Commentaire::class);
+        yield MenuItem::linkToCrud('Utilisateur', 'fas fa-user', User::class);
     }
 }

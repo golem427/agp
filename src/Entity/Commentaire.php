@@ -32,6 +32,9 @@ class Commentaire
     #[ORM\ManyToOne(inversedBy: 'commentaires')]
     private ?blogpost $blogpost = null;
 
+    #[ORM\Column]
+    private ?bool $isPublished = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -107,5 +110,22 @@ class Commentaire
         $this->blogpost = $blogpost;
 
         return $this;
+    }
+
+    public function isIsPublished(): ?bool
+    {
+        return $this->isPublished;
+    }
+
+    public function setIsPublished(bool $isPublished): self
+    {
+        $this->isPublished = $isPublished;
+
+        return $this;
+    }
+    
+    public function __toString()
+    {
+        return $this->getAuteur();
     }
 }

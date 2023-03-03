@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Blogpost;
 use App\Entity\Categorie;
 use App\Entity\Realisation;
 use Doctrine\Persistence\ManagerRegistry;
@@ -68,6 +69,25 @@ class RealisationRepository extends ServiceEntityRepository
            ->setParameter('categorie', $categorie)
            ->getQuery()
            ->getResult() /* le "finAllPortfolio" capture la réalisation suivant sa catégorie */
+       ;
+   }
+   public function findCommentaire($value): array
+   {
+        if ($value instanceof Blogpost){
+            $object = 'blogpost';
+        }
+        if ($value instanceof Realisation){
+            $object = 'realisation';
+        }
+
+       return $this->createQueryBuilder('c')
+           ->andWhere('c.'. $object .' = :val')
+           ->andWhere('c.isPublished = true')
+           ->setParameter('val', $value->getId())
+           ->orderBy('c.id', 'DESC')
+        //    ->setMaxResults(10)
+           ->getQuery()
+           ->getResult()
        ;
    }
 }

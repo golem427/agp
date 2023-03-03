@@ -2,7 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Commentaire;
 use App\Entity\Realisation;
+use App\Form\CommentaireType;
+use App\Service\CommentaireService;
+use App\Repository\CommentaireRepository;
 use App\Repository\RealisationRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,18 +34,42 @@ class RealisationsController extends AbstractController
     }
     
     #[Route('/realisations/{slug}', name: 'realisations_details')]
-    public function realisation(Realisation $realisation): Response
-    {
-        return $this->render('realisations/realisationsdetails.html.twig', [
-            'realisation' => $realisation
-        ]);
+    public function realisation(
+        Realisation $realisation,
+        Commentaire $commentaire,
+        CommentaireService $commentaireService,
+        CommentaireRepository $commentaireRepository,
+        RealisationRepository $realisationRepository,
+        Request $request
+        ): Response
+    {  
+        $commentaire = new Commentaire();
+        $commentaires = $commentaireRepository->findCommentaire($realisation);
+
+        $form = $this->createForm(CommentaireType::class, $commentaire);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $commentaire = $form->getData();
+            $commentaireService->persistCommentaire($commentaire, null, $realisation);
+             
+                return $this->redirectToRoute('realisations_details', ['slug' =>$realisation->getSlug()]);
+        }
+                return $this->render('realisations/realisationsdetails.html.twig',
+                [
+                    'realisation' => $realisation,
+                    'form' => $form->createView(),
+                    'commentaires' => $commentaires,
+                ]);
+        
     }
 
-    #[Route('/', name: 'realisation_home')]
-    public function realisationHome(Realisation $realisation): Response
-    {
-        return $this->render('/realisation.html.twig', [
-            'realisation' => $realisation
-        ]);
-    }
+        #[Route('/', name: 'realisation_home')]
+        public function realisationHome(Realisation $realisation): Response
+        {
+            return $this->render('/realisation.html.twig', [
+                'realisation' => $realisation
+            ]);
+        }
 }

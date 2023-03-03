@@ -53,14 +53,14 @@ class BlogpostController extends AbstractController
             $commentaire = $form->getData();
             $commentaireService->persistCommentaire($commentaire, $blogpost, null);
 
-            return $this->redirectToRoute('details_actu', ['slug' =>$blogpost->getSlug()]);
-
+            return $this->redirectToRoute('details_actu', ['slug' => $blogpost->getSlug()]);
+        }
             return $this->render('actualites/detailsactualites.html.twig',
             [
-                'blogpost' => $blogpost,
+                'realisation' => $blogpost,
                 'form' => $form->createView(),
                 'commentaires' => $commentaires,
             ]);
-        }
+        
     }
 }

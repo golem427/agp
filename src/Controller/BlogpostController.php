@@ -57,7 +57,7 @@ class BlogpostController extends AbstractController
         }
             return $this->render('actualites/detailsactualites.html.twig',
             [
-                'realisation' => $blogpost,
+                'blogpost' => $blogpost,
                 'form' => $form->createView(),
                 'commentaires' => $commentaires,
             ]);

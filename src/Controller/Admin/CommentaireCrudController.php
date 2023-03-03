@@ -21,7 +21,7 @@ class CommentaireCrudController extends AbstractCrudController
         return Commentaire::class;
     }
 
-    
+
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -34,7 +34,7 @@ class CommentaireCrudController extends AbstractCrudController
             BooleanField::new('isPublished'),
         ];
     }
-    
+
     public function configureActions(Actions $actions): Actions
     {
         return $actions

@@ -71,23 +71,24 @@ class RealisationRepository extends ServiceEntityRepository
            ->getResult() /* le "finAllPortfolio" capture la réalisation suivant sa catégorie */
        ;
    }
-   public function findCommentaire($value): array
-   {
-        if ($value instanceof Blogpost){
-            $object = 'blogpost';
-        }
-        if ($value instanceof Realisation){
-            $object = 'realisation';
-        }
+//    VOIR LA FONCTION IDENTIQUE MISE DANS BLOGPOSTREPOSITORY/INUTILE DONC DE LA METTRE ICI
+//     public function findCommentaire($value): array
+//    {
+//         if ($value instanceof Blogpost){
+//             $object = 'blogpost';
+//         }
+//         if ($value instanceof Realisation){
+//             $object = 'realisation';
+//         }
 
-       return $this->createQueryBuilder('c')
-           ->andWhere('c.'. $object .' = :val')
-           ->andWhere('c.isPublished = true')
-           ->setParameter('val', $value->getId())
-           ->orderBy('c.id', 'DESC')
-        //    ->setMaxResults(10)
-           ->getQuery()
-           ->getResult()
-       ;
-   }
+//        return $this->createQueryBuilder('c')
+//            ->andWhere('c.'. $object .' = :val')
+//            ->andWhere('c.isPublished = true')
+//            ->setParameter('val', $value->getId())
+//            ->orderBy('c.id', 'DESC')
+//         //    ->setMaxResults(10)
+//            ->getQuery()
+//            ->getResult()
+//        ;
+//    }
 }

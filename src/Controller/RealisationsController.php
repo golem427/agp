@@ -39,7 +39,6 @@ class RealisationsController extends AbstractController
         Commentaire $commentaire,
         CommentaireService $commentaireService,
         CommentaireRepository $commentaireRepository,
-        RealisationRepository $realisationRepository,
         Request $request
         ): Response
     {  
@@ -73,3 +72,4 @@ class RealisationsController extends AbstractController
             ]);
         }
 }
+?>

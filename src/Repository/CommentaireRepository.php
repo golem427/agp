@@ -46,15 +46,15 @@ class CommentaireRepository extends ServiceEntityRepository
 //     */
    public function findCommentaire($value): array
    {
-        if ($value instanceof Blogpost){
-            $object = 'blogpost';
-        }
-        if ($value instanceof Realisation){
-            $object = 'realisation';
-        }
+       if ($value instanceof Blogpost) {
+           $object = 'blogpost';
+       }
+       if ($value instanceof Realisation) {
+           $object = 'realisation';
+       }
 
        return $this->createQueryBuilder('c')
-           ->andWhere('c.'. $object .' = :val')
+           ->andWhere('c.' . $object . '= :val')
            ->andWhere('c.isPublished = true')
            ->setParameter('val', $value->getId())
            ->orderBy('c.id', 'DESC')

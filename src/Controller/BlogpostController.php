@@ -6,6 +6,7 @@ use App\Entity\Blogpost;
 use App\Entity\Commentaire;
 use App\Form\CommentaireType;
 use App\Repository\BlogpostRepository;
+use App\Repository\CommentaireRepository;
 use App\Service\CommentaireService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,10 +38,12 @@ class BlogpostController extends AbstractController
         Blogpost $blogpost,
         Commentaire $commentaire,
         CommentaireService $commentaireService,
+        CommentaireRepository $commentaireRepository,
         Request $request
         ): Response
     {   
         $commentaire = new Commentaire();
+        $commentaires = $commentaireRepository->findCommentaire($blogpost);
 
         $form = $this->createForm(CommentaireType::class, $commentaire);
         $form->handleRequest($request);
@@ -55,7 +58,8 @@ class BlogpostController extends AbstractController
             return $this->render('actualites/detailsactualites.html.twig',
             [
                 'blogpost' => $blogpost,
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'commentaires' => $commentaires,
             ]);
         }
     }

@@ -2,9 +2,11 @@
 
 namespace App\Repository;
 
+use App\Entity\Blogpost;
 use App\Entity\Commentaire;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\Realisation;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Commentaire>
@@ -42,17 +44,25 @@ class CommentaireRepository extends ServiceEntityRepository
 //    /**
 //     * @return Commentaire[] Returns an array of Commentaire objects
 //     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   public function findCommentaire($value): array
+   {
+        if ($value instanceof Blogpost){
+            $object = 'blogpost';
+        }
+        if ($value instanceof Realisation){
+            $object = 'realisation';
+        }
+
+       return $this->createQueryBuilder('c')
+           ->andWhere('c.'. $object .' = :val')
+           ->andWhere('c.isPublished = true')
+           ->setParameter('val', $value->getId())
+           ->orderBy('c.id', 'DESC')
+        //    ->setMaxResults(10)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 
 //    public function findOneBySomeField($value): ?Commentaire
 //    {

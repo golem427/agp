@@ -48,7 +48,7 @@ class BlogpostRepository extends ServiceEntityRepository
         //    ->andWhere('b.exampleField = :val')
         //    ->setParameter('val', $value)
            ->orderBy('b.id', 'DESC')
-           ->setMaxResults(3)
+        //    ->setMaxResults(3)
            ->getQuery()
            ->getResult()
        ;

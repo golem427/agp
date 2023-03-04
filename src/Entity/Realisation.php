@@ -4,15 +4,17 @@ namespace App\Entity;
 
 use DateTime;
 use DateTimeImmutable;
+use DateTimeInterface;
+use App\Entity\Categorie;
 use App\Entity\Attachment;
 use App\Entity\Commentaire;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\RealisationRepository;
 use Doctrine\Common\Collections\Collection;
+use phpDocumentor\Reflection\Types\Nullable;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
-use phpDocumentor\Reflection\Types\Nullable;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
@@ -42,7 +44,7 @@ class Realisation
     private ?\DateTime $createdAt = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $updatedAt = null;
+    private ?DateTimeInterface $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'realisations')]
     #[ORM\JoinColumn(nullable: false)]
@@ -51,7 +53,7 @@ class Realisation
     #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'realisations')]
     private Collection $categorie;
 
-    #[ORM\ManyToMany(mappedBy: 'realisation', targetEntity: Commentaire::class)]
+    #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Commentaire::class, cascade: ["all", "persist", "remove"])]
     private Collection $commentaires;
 
     #[ORM\Column(length: 255, nullable: true)]

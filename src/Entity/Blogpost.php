@@ -35,7 +35,7 @@ class Blogpost
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\OneToMany(mappedBy: 'blogpost', targetEntity: Commentaire::class)]
+    #[ORM\OneToMany(mappedBy: 'blogpost', targetEntity: Commentaire::class, cascade: ["all", "persist", "remove"])]
     private Collection $commentaires;
 
     #[ORM\Column(length: 255, nullable: true)]

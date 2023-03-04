@@ -4,15 +4,17 @@ namespace App\Controller;
 
 use App\Entity\Blogpost;
 use App\Entity\Commentaire;
+use Doctrine\ORM\Mapping\Id;
 use App\Form\CommentaireType;
+use App\Service\CommentaireService;
 use App\Repository\BlogpostRepository;
 use App\Repository\CommentaireRepository;
-use App\Service\CommentaireService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class BlogpostController extends AbstractController
 {
@@ -32,22 +34,22 @@ class BlogpostController extends AbstractController
         'blogposts' => $blogposts ]);
     }
 
-
     #[Route('/actualites/{slug}', name: 'details_actu')]
-    public function blogpost(
+    #[ParamConverter('Blogpost', options: ['mapping' => ['blogpostSlug' => 'slug']])]
+    public function addCommentBlogpost(
         Blogpost $blogpost,
+        Request $request,
         Commentaire $commentaire,
-        CommentaireService $commentaireService,
         CommentaireRepository $commentaireRepository,
-        Request $request
+        CommentaireService $commentaireService,
         ): Response
     {   
         $commentaire = new Commentaire();
-        $commentaires = $commentaireRepository->findCommentaire($blogpost);
+        $commentaires = $commentaireRepository->findCommentaires($blogpost);
 
         $form = $this->createForm(CommentaireType::class, $commentaire);
         $form->handleRequest($request);
-
+       
         if ($form->isSubmitted() && $form->isValid())
         {
             $commentaire = $form->getData();

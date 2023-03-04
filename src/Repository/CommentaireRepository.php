@@ -41,36 +41,26 @@ class CommentaireRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Commentaire[] Returns an array of Commentaire objects
-//     */
-   public function findCommentaire($value): array
+    // /**
+    // * @return Commentaires[] Returns an array of Commentaire objects
+    //  */
+   public function findCommentaires($coms): array
    {
-       if ($value instanceof Blogpost) {
+       if ($coms instanceof Blogpost) {
            $object = 'blogpost';
        }
-       if ($value instanceof Realisation) {
+       if ($coms instanceof Realisation) {
            $object = 'realisation';
        }
 
        return $this->createQueryBuilder('c')
-           ->andWhere('c.' . $object . '= :val')
+           ->where('c.'. $object . '= :val')
            ->andWhere('c.isPublished = true')
-           ->setParameter('val', $value->getId())
+           ->setParameter('val', $coms->getId())
            ->orderBy('c.id', 'DESC')
         //    ->setMaxResults(10)
            ->getQuery()
            ->getResult()
        ;
    }
-
-//    public function findOneBySomeField($value): ?Commentaire
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

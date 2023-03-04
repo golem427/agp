@@ -3,11 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Commentaire;
-use EasyCorp\Bundle\EasyAdminBundle\Form\Type\TextEditorType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class CommentaireType extends AbstractType
 {
@@ -16,7 +18,7 @@ class CommentaireType extends AbstractType
         $builder
             ->add('auteur', TextType::class)
             ->add('email', EmailType::class)
-            ->add('contenu', TextEditorType::class)
+            ->add('contenu', TextareaType::class)
             ->add('isPublished', SubmitType::class)
         ;
     }

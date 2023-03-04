@@ -2,9 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\CommentaireRepository;
+use DateTimeInterface;
+use App\Entity\Blogpost;
+use App\Entity\Realisation;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CommentaireRepository;
 
 #[ORM\Entity(repositoryClass: CommentaireRepository::class)]
 class Commentaire
@@ -24,13 +27,13 @@ class Commentaire
     private ?string $contenu = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $createdAt = null;
+    private ?DateTimeInterface $createdAt;
 
     #[ORM\ManyToOne(inversedBy: 'commentaires')]
     private ?Realisation $realisation = null;
 
     #[ORM\ManyToOne(inversedBy: 'commentaires')]
-    private ?blogpost $blogpost = null;
+    private ?Blogpost $blogpost = null;
 
     #[ORM\Column]
     private ?bool $isPublished = null;
@@ -100,12 +103,12 @@ class Commentaire
         return $this;
     }
 
-    public function getBlogpost(): ?blogpost
+    public function getBlogpost(): ?Blogpost
     {
         return $this->blogpost;
     }
 
-    public function setBlogpost(?blogpost $blogpost): self
+    public function setBlogpost(?Blogpost $blogpost): self
     {
         $this->blogpost = $blogpost;
 

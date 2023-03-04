@@ -13,16 +13,17 @@ class CommentaireService
 {
     private $manager;
     private $flash;
+    
     public function __construct(EntityManagerInterface $manager, FlashBagInterface $flash)
     {
-        $this->manager=$manager;
-        $this->flash=$flash;
+        $this->manager = $manager;
+        $this->flash = $flash;
     }
 
     public function persistCommentaire(
         Commentaire $commentaire,
         Blogpost $blogpost = null,
-        Realisation $realisation = Null
+        Realisation $realisation = null,
     ):void
     {
         $commentaire->setIsPublished(false)
@@ -32,7 +33,7 @@ class CommentaireService
 
         $this->manager->persist($commentaire);
         $this->manager->flush();
-        $this->flash->add('success', "Votre commentaire a bien été envoyé, il sera publié après modération.");
+        $this->flash->add('success', 'Votre commentaire a bien été envoyé, il sera publié après modération.');
             
     }
 }

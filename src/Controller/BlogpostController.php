@@ -39,7 +39,7 @@ class BlogpostController extends AbstractController
         CommentaireRepository $commentaireRepository,
         CommentaireService $commentaireService,
     ): Response {
-        $commentaire = new Commentaire();
+        $commentaire = new Commentaire($blogpost);
         $commentaires = $commentaireRepository->findCommentaires($blogpost);
 
         $form = $this->createForm(CommentaireType::class, $commentaire);

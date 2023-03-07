@@ -5,14 +5,14 @@ namespace App\Controller;
 use App\Entity\Commentaire;
 use App\Entity\Realisation;
 use App\Form\CommentaireType;
-use App\Service\CommentaireService;
-use App\Repository\CommentaireRepository;
 use App\Repository\RealisationRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+
 
 class RealisationsController extends AbstractController
 {
@@ -34,32 +34,23 @@ class RealisationsController extends AbstractController
 
     #[Route('/realisations/{slug}', name:'realisations_details')]
     public function addCommentRealisation(
-        Realisation $realisation,
-        Request $request,
-        Commentaire $commentaire,
-        CommentaireService $commentaireService,
-        CommentaireRepository $commentaireRepository,
-    ): Response {
-        $commentaire = new Commentaire();
-        $commentaires = $commentaireRepository->findCommentaires($realisation);
-
-        $form = $this->createForm(CommentaireType::class, $commentaire);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $commentaire = $form->getData();
-            $commentaireService->persistCommentaire($commentaire, null, $realisation);
-
-            return $this->redirectToRoute('realisations_details', ['slug' => $realisation->getSlug()]);
+        ?Realisation $realisation,
+       
+    ): Response 
+    {
+        if (!$realisation){
+           return $this->redirectToRoute('home');
         }
-        return $this->render(
-            'realisations/realisationsdetails.html.twig',
-            [
-                'realisation' => $realisation,
-                'form' => $form->createView(),
-                'commentaires' => $commentaires,
-            ]
-        );
+        
+       $commentaire = new Commentaire();
+       $commentaireForm = $this->createForm(CommentaireType::class);
+
+       return $this->render('realisations/realisationsdetails.html.twig', [
+        
+            'realisation' => $realisation,
+            'commentaireForm' => $commentaireForm
+
+       ]);
     }
 
         #[Route('/', name:'realisation_home')]

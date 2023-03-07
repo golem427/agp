@@ -38,6 +38,16 @@ class Commentaire
     #[ORM\Column]
     private ?bool $isPublished = null;
 
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
+
+    public function __construct(realisation $realisation){
+        $this->realisation = $realisation;
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -130,5 +140,17 @@ class Commentaire
     public function __toString()
     {
         return $this->getAuteur();
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
     }
 }

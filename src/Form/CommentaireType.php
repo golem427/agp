@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
@@ -18,8 +19,10 @@ class CommentaireType extends AbstractType
         $builder
             ->add('auteur', TextType::class)
             ->add('email', EmailType::class)
-            ->add('contenu', TextareaType::class)
-            ->add('isPublished', SubmitType::class)
+            ->add('blogpost', HiddenType::class)
+            ->add('realisation', HiddenType::class)
+            ->add('contenu', TextareaType::class, [ 'Votre message'])
+            ->add('isPublished', SubmitType::class, ['Envoyer'])
         ;
     }
 

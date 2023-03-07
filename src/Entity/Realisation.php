@@ -8,6 +8,7 @@ use DateTimeInterface;
 use App\Entity\Categorie;
 use App\Entity\Attachment;
 use App\Entity\Commentaire;
+use App\Form\CommentaireType;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\RealisationRepository;
@@ -77,7 +78,7 @@ class Realisation
 
     }
 
- 
+   
  
     public function getId(): ?int
     {

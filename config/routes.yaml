@@ -6,6 +6,6 @@ controllers:
 # config/routes/annotations.yaml
 
 # import routes from a controller directory
-annot:
-    resource: "@AnnotRoutingBundle/Controller"
-    type:     annotation
+# annot:
+#     resource: "@AnnotRoutingBundle/Controller"
+#     type:     annotation

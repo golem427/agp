@@ -13,8 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-
 
 class RealisationsController extends AbstractController
 {
@@ -35,16 +33,13 @@ class RealisationsController extends AbstractController
     }
 
     #[Route('/realisations/{slug}', name:'realisations_details')]
-    #[ParamConverter('realisation', options: ['mapping' => ['realisationSlug' => 'slug']])]
     public function addCommentRealisation(
         Realisation $realisation,
         Request $request,
         Commentaire $commentaire,
         CommentaireService $commentaireService,
         CommentaireRepository $commentaireRepository,
-       
-    ): Response 
-    {
+    ): Response {
         $commentaire = new Commentaire();
         $commentaires = $commentaireRepository->findCommentaires($realisation);
 

@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
-use DateTimeInterface;
+use DateTimeImmutable;
 use App\Entity\Blogpost;
 use App\Entity\Realisation;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CommentaireRepository;
+use symfony\component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: CommentaireRepository::class)]
 class Commentaire
@@ -24,10 +26,11 @@ class Commentaire
     private ?string $email = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $contenu = null;
+    #[Assert\NotBlank]
+    private ?string $contenu;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?DateTimeInterface $createdAt;
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
+    private ?DateTimeImmutable $createdAt;
 
     #[ORM\ManyToOne(inversedBy: 'commentaires')]
     private ?Realisation $realisation = null;
@@ -40,100 +43,103 @@ class Commentaire
 
 
 
-
-
-
-    public function getId(): ?int
+    public function __construct()
     {
-        return $this->id;
+    $this->createdAt = new DateTimeImmutable();
     }
 
-    public function getAuteur(): ?string
-    {
-        return $this->auteur;
-    }
 
-    public function setAuteur(string $auteur): self
-    {
-        $this->auteur = $auteur;
+       public function getId(): ?int
+       {
+           return $this->id;
+       }
 
-        return $this;
-    }
+       public function getAuteur(): ?string
+       {
+           return $this->auteur;
+       }
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
+       public function setAuteur(string $auteur): self
+       {
+           $this->auteur = $auteur;
 
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
+           return $this;
+       }
 
-        return $this;
-    }
+       public function getEmail(): ?string
+       {
+           return $this->email;
+       }
 
-    public function getContenu(): ?string
-    {
-        return $this->contenu;
-    }
+       public function setEmail(string $email): self
+       {
+           $this->email = $email;
 
-    public function setContenu(string $contenu): self
-    {
-        $this->contenu = $contenu;
+           return $this;
+       }
 
-        return $this;
-    }
+       public function getContenu(): ?string
+       {
+           return $this->contenu;
+       }
 
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
+       public function setContenu(string $contenu): self
+       {
+           $this->contenu = $contenu;
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
+           return $this;
+       }
 
-        return $this;
-    }
+       public function getCreatedAt(): ?\DateTimeInterface
+       {
+           return $this->createdAt;
+       }
 
-    public function getRealisation(): ?Realisation
-    {
-        return $this->realisation;
-    }
+       public function setCreatedAt(\DateTimeInterface $createdAt): self
+       {
+           $this->createdAt = $createdAt;
 
-    public function setRealisation(?Realisation $realisation): self
-    {
-        $this->realisation = $realisation;
+           return $this;
+       }
 
-        return $this;
-    }
+       public function getRealisation(): ?Realisation
+       {
+           return $this->realisation;
+       }
 
-    public function getBlogpost(): ?Blogpost
-    {
-        return $this->blogpost;
-    }
+       public function setRealisation(?Realisation $realisation): self
+       {
+           $this->realisation = $realisation;
 
-    public function setBlogpost(?Blogpost $blogpost): self
-    {
-        $this->blogpost = $blogpost;
+           return $this;
+       }
 
-        return $this;
-    }
+       public function getBlogpost(): ?Blogpost
+       {
+           return $this->blogpost;
+       }
 
-    public function isIsPublished(): ?bool
-    {
-        return $this->isPublished;
-    }
+       public function setBlogpost(?Blogpost $blogpost): self
+       {
+           $this->blogpost = $blogpost;
 
-    public function setIsPublished(bool $isPublished): self
-    {
-        $this->isPublished = $isPublished;
+           return $this;
+       }
 
-        return $this;
-    }
-    
-    public function __toString()
-    {
-        return $this->getAuteur();
-    }
+       public function isIsPublished(): ?bool
+       {
+           return $this->isPublished;
+       }
+
+       public function setIsPublished(bool $isPublished): self
+       {
+           $this->isPublished = $isPublished;
+
+           return $this;
+       }
+
+       public function __toString()
+       {
+           return $this->getAuteur();
+       }
 }

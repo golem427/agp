@@ -6,6 +6,7 @@ use DateTime;
 use App\entity\Blogpost;
 use App\entity\Commentaire;
 use App\entity\Realisation;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
@@ -29,7 +30,7 @@ class CommentaireService
         $commentaire->setIsPublished(false)
                     ->setBlogpost($blogpost)
                     ->setRealisation($realisation)
-                    ->setCreatedAt(new DateTime('now'));
+                    ->setCreatedAt(new DateTimeImmutable());
 
         $this->manager->persist($commentaire);
         $this->manager->flush();

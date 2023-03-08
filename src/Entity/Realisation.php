@@ -8,17 +8,13 @@ use DateTimeInterface;
 use App\Entity\Categorie;
 use App\Entity\Attachment;
 use App\Entity\Commentaire;
-use App\Form\CommentaireType;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\RealisationRepository;
 use Doctrine\Common\Collections\Collection;
-use phpDocumentor\Reflection\Types\Nullable;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-
-
 
 #[ORM\Entity(repositoryClass: RealisationRepository::class)]
 #[Vich\Uploadable]
@@ -41,8 +37,8 @@ class Realisation
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
-    #[ORM\Column]
-    private ?\DateTime $createdAt = null;
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
+    private ?\DateTimeImmutable $createdAt;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DateTimeInterface $updatedAt = null;
@@ -51,10 +47,10 @@ class Realisation
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'realisations')]
+    #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'realisations', orphanRemoval:false)]
     private Collection $categorie;
 
-    #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Commentaire::class, cascade: ["all", "persist", "remove"])]
+    #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Commentaire::class, orphanRemoval:true, cascade: ["all", "persist", "remove"])]
     private Collection $commentaires;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -66,7 +62,7 @@ class Realisation
     #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Attachment::class, cascade: ["all", "persist", "remove"])]
     private Collection $attachments;
 
-   
+
 
     public function __construct()
     {
@@ -74,12 +70,11 @@ class Realisation
         $this->commentaires = new ArrayCollection();
         $this->attachments = new ArrayCollection();
         $this->updatedAt = new \DateTime();
-        $this->createdAt = new \DateTime();
-
+        $this->createdAt = new \DateTimeImmutable();
     }
 
-   
- 
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -210,8 +205,7 @@ class Realisation
 
     public function addAttachment(Attachment $attachment): self
     {
-        if (!$this->attachments->contains($attachment))
-        {
+        if (!$this->attachments->contains($attachment)) {
             $this->attachments->add($attachment);
             $attachment->setRealisation($this);
         }
@@ -231,7 +225,8 @@ class Realisation
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTime{
+    public function getUpdatedAt(): ?\DateTime
+    {
         return $this->updatedAt;
     }
 
@@ -242,12 +237,12 @@ class Realisation
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTime $createdAt): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -270,7 +265,7 @@ class Realisation
     {
         return $this->getNom();
     }
-    
+
     public function setImageFile(File $imageFile = null): void
     {
         $this->imageFile = $imageFile;

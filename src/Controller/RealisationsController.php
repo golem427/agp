@@ -22,7 +22,7 @@ class RealisationsController extends AbstractController
         Request $request
     ): Response {
         $data = $realisationRepository->findBy([], ['id'=>'DESC']);
-
+    
         $realisations = $paginator->paginate($data, $request->query->getInt('page', 1), 6);
         //Le "paginate demande un "integer" pour les n° d 'page', qui démarre à 1 et limite à 6 les résultats par page.
 
@@ -34,20 +34,21 @@ class RealisationsController extends AbstractController
     #[Route('/realisations/{slug}', name:'realisations_details')]
     public function addCommentRealisation(
         Realisation $realisation,
-        Commentaire $commentaire
+        Request $request
     ): Response 
     {
-    if (!$realisation) {
-        return $this->redirectToRoute('home');
-    }
+        $form = $this->createForm(CommentaireType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+    
+        return $this->redirectToRoute('realisations');
+     }
 
-    $commentaire = new Commentaire();
-    $commentaireForm = $this->createForm(CommentaireType::class);
 
     return $this->render('realisations/realisationsdetails.html.twig', [
 
          'realisation' => $realisation,
-         'commentaireForm' => $commentaireForm
+         'form' => $form->createView()
 
     ]);
 } 

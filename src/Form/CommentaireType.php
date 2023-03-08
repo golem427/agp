@@ -9,8 +9,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CommentaireType extends AbstractType
 {
@@ -21,8 +22,8 @@ class CommentaireType extends AbstractType
             ->add('email', EmailType::class)
             ->add('blogpost', HiddenType::class)
             ->add('realisation', HiddenType::class)
-            ->add('contenu', TextareaType::class, [ 'Votre message'])
-            ->add('isPublished', SubmitType::class, ['Envoyer'])
+            ->add('contenu', TextareaType::class, [ 'label' => 'Votre message', 'constraints' => new NotBlank()])
+            ->add('isPublished', SubmitType::class, ['label' => 'Envoyer'])
         ;
     }
 

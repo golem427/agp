@@ -6,6 +6,7 @@ use App\Entity\Commentaire;
 use App\Entity\Realisation;
 use App\Form\CommentaireType;
 use App\Repository\RealisationRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,15 +35,28 @@ class RealisationsController extends AbstractController
     #[Route('/realisations/{slug}', name:'realisations_details')]
     public function addCommentRealisation(
         Realisation $realisation,
+        Commentaire $commentaire,
+        EntityManagerInterface $em,
         Request $request
     ): Response 
     {
-        $form = $this->createForm(CommentaireType::class);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()){
-    
-        return $this->redirectToRoute('realisations');
-     }
+        $commentaire = new commentaire();
+if ($this) {
+    $commentaire->getAuteur();
+}
+    $form = $this->createForm(CommentaireType::class);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) 
+    {
+
+        $em->persist($commentaire);
+        $em->flush();
+        $this->addFlash('success', 'Votre commentaire a bien été envoyé');
+
+        return $this->redirectToRoute('realisations_details', ['slug'=> $realisation->getSlug()]);
+    }
+
 
 
     return $this->render('realisations/realisationsdetails.html.twig', [

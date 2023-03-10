@@ -46,7 +46,7 @@
 										{% for key,attachment in realisation.attachments %}
 											<div data-slide-to="{{ key }}" {% if key == 0 %} class="card-img-slider-active" {% endif%} data-flickity='{"fade": true, "imagesLoaded": true, "pageDots": false, "prevNextButtons": false, "asNavFor": "#blogSlider", "draggable": false}'>
 												<a
-													class="card-img-start position-absolute d-block w-100 bg-cover" href="{{ path('realisations_details', {'slug': realisation.slug }) }}">
+													class="card-img-start position-absolute d-block w-100 bg-cover" href="{{ path('real_details', {'slug': realisation.slug }) }}">
 													<!-- Image (placeholder) -->
 													<img
 													src="/uploads/attachments/{{ attachment.image }}" alt="alex" class="img-fluid">
@@ -57,9 +57,9 @@
 											<a href="/uploads/{{ realisation.imageFile }}" class="image-popup">
 												<img src="/uploads/{{ realisation.imageFile }}" class="img-fluid" alt="{{ realisation.nom }}">
 											</a>
-
 										{% endfor %}
 									{% endif %}
+									
 									<!-- Shape -->
 									<div class="shape shape-end shape-fluid-y text-white d-none d-md-block">
 										<svg viewbox="0 0 112 690" fill="none" xmlns="#

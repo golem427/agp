@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RealisationsController extends AbstractController
 {
@@ -40,6 +39,7 @@ class RealisationsController extends AbstractController
     ):Response
     {               
         $commentaire = new Commentaire();
+        
 
         $form = $this->createForm(CommentaireType::class, $commentaire);
         $form->handleRequest($request);
@@ -55,7 +55,7 @@ class RealisationsController extends AbstractController
              message: 'Votre commentaire a bien été envoyé, il sera visible après modération.');
 
              return $this->redirectToRoute('real_details', [
-                'Slug' => $realisation->getSlug()
+                'slug' => $realisation->getSlug()
                 ]);
         }
 

@@ -53,7 +53,8 @@ class EasyAdminSubscriber implements EventSubscriberInterface
                         $now = new DateTimeImmutable('now'),
                         $entity->setCreatedAt($now),
                         $user = $this->security->getUser(),
-                        $entity->setUser($user)
+                        $entity->setUser($user),
+
                     ];
             }
             if (($entity instanceof Commentaire))

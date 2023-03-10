@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\BlogpostRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use App\Repository\BlogpostRepository;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: BlogpostRepository::class)]
 #[Vich\Uploadable]
@@ -29,7 +30,7 @@ class Blogpost
     private ?string $slug = null;
 
     #[ORM\Column]
-    private ?\DateTime $createdAt = null;
+    private ?DateTimeImmutable $createdAt;
 
     #[ORM\ManyToOne(inversedBy: 'blogposts')]
     #[ORM\JoinColumn(nullable: false)]
@@ -92,12 +93,12 @@ class Blogpost
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTime $createdAt): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 

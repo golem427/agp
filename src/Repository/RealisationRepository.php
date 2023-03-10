@@ -50,7 +50,7 @@ class RealisationRepository extends ServiceEntityRepository
             //    ->andWhere('r.exampleField = :val')
             //    ->setParameter('val', $value)
             ->orderBy('r.id', 'DESC')
-            ->setMaxResults(1)
+            // ->setMaxResults(1)
             ->getQuery()
             ->getResult()
             ;
@@ -68,7 +68,7 @@ class RealisationRepository extends ServiceEntityRepository
            ->andWhere('p.portfolio = TRUE') /* oui elle en fait partie /non, elle n'en fait pas */
            ->setParameter('categorie', $categorie)
            ->getQuery()
-           ->getResult() /* le "finAllPortfolio" capture la réalisation suivant sa catégorie */
+           ->getResult() /* le "finAllPortfolio" capture les réalisations suivant sa catégorie */
        ;
    }
 //    VOIR LA FONCTION IDENTIQUE MISE DANS BLOGPOSTREPOSITORY/INUTILE DONC DE LA METTRE ICI

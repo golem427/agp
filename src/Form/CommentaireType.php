@@ -23,7 +23,7 @@ class CommentaireType extends AbstractType
             ->add('blogpost', HiddenType::class)
             ->add('realisation', HiddenType::class)
             ->add('contenu', TextareaType::class, [ 'label' => 'Votre message', 'constraints' => new NotBlank()])
-            ->add('isPublished', SubmitType::class, ['label' => 'Envoyer'])
+            ->add('isPublished', SubmitType::class, ['label' => 'Poster'])
         ;
     }
 

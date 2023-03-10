@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use DateTime;
 use DateTimeImmutable;
-use DateTimeInterface;
 use App\Entity\Categorie;
 use App\Entity\Attachment;
 use App\Entity\Commentaire;
@@ -41,7 +40,7 @@ class Realisation
     private ?\DateTimeImmutable $createdAt;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?DateTimeInterface $updatedAt = null;
+    private ?DateTime $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'realisations')]
     #[ORM\JoinColumn(nullable: false)]

@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RealisationsController extends AbstractController
 {
@@ -23,7 +23,7 @@ class RealisationsController extends AbstractController
         Request $request
     ): Response {
         $data = $realisationRepository->findBy([], ['id'=>'DESC']);
-    
+
         $realisations = $paginator->paginate($data, $request->query->getInt('page', 1), 6);
         //Le "paginate demande un "integer" pour les n° d 'page', qui démarre à 1 et limite à 6 les résultats par page.
 
@@ -32,40 +32,40 @@ class RealisationsController extends AbstractController
         ]);
     }
 
-    #[Route('/realisations/{slug}', name:'realisations_details')]
-    public function addCommentRealisation(
+    #[Route('/realisations/{slug}', name:'real_details', methods: ['GET', 'POST'])]
+    public function detailRealisation(
         Realisation $realisation,
-        Commentaire $commentaire,
-        EntityManagerInterface $em,
-        Request $request
-    ): Response 
-    {
-        $commentaire = new commentaire();
-if ($this) {
-    $commentaire->getAuteur();
-}
-    $form = $this->createForm(CommentaireType::class);
-    $form->handleRequest($request);
+        Request $request,
+        EntityManagerInterface $em
+    ):Response
+    {               
+        $commentaire = new Commentaire();
 
-    if ($form->isSubmitted() && $form->isValid()) 
-    {
+        $form = $this->createForm(CommentaireType::class, $commentaire);
+        $form->handleRequest($request);
 
-        $em->persist($commentaire);
-        $em->flush();
-        $this->addFlash('success', 'Votre commentaire a bien été envoyé');
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            // dd($commentaire);
+            
+             $em->persist($commentaire);
+             $em->flush();
 
-        return $this->redirectToRoute('realisations_details', ['slug'=> $realisation->getSlug()]);
+             $this->addFlash(type: 'success', 
+             message: 'Votre commentaire a bien été envoyé, il sera visible après modération.');
+
+             return $this->redirectToRoute('real_details', [
+                'Slug' => $realisation->getSlug()
+                ]);
+        }
+
+        return $this->render('realisations/realisationsdetails.html.twig', [
+
+             'realisation' => $realisation,
+             'form' => $form->createView()
+
+        ]);
     }
-
-
-
-    return $this->render('realisations/realisationsdetails.html.twig', [
-
-         'realisation' => $realisation,
-         'form' => $form->createView()
-
-    ]);
-} 
 
         #[Route('/', name:'realisation_home')]
         public function realisationHome(Realisation $realisation): Response

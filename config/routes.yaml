@@ -3,9 +3,3 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
-# config/routes/annotations.yaml
-
-# import routes from a controller directory
-# annot:
-#     resource: "@AnnotRoutingBundle/Controller"
-#     type:     annotation

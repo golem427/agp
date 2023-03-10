@@ -25,13 +25,13 @@ class CommentaireCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            yield AssociationField::new('blogpost'),
-            yield AssociationField::new('realisation'),
-            yield TextField::new('auteur'),
-            yield EmailField::new('email'),
-            yield DateTimeField::new('createdAt'),
-            yield TextEditorField::new('contenu'),
-            yield BooleanField::new('isPublished'),
+             AssociationField::new('blogpost'),
+             AssociationField::new('realisation'),
+             TextField::new('auteur'),
+             EmailField::new('email'),
+             DateTimeField::new('createdAt'),
+             TextEditorField::new('contenu'),
+             BooleanField::new('isPublished'),
         ];
     }
 

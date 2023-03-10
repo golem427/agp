@@ -10,7 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CommentaireRepository;
 use symfony\component\Validator\Constraints as Assert;
 
-
 #[ORM\Entity(repositoryClass: CommentaireRepository::class)]
 class Commentaire
 {
@@ -39,13 +38,13 @@ class Commentaire
     private ?Blogpost $blogpost = null;
 
     #[ORM\Column]
-    private ?bool $isPublished = null;
+    private ?bool $isPublished = false;
 
 
 
     public function __construct()
     {
-    $this->createdAt = new DateTimeImmutable();
+        $this->createdAt = new DateTimeImmutable();
     }
 
 
@@ -90,12 +89,12 @@ class Commentaire
            return $this;
        }
 
-       public function getCreatedAt(): ?\DateTimeInterface
+       public function getCreatedAt(): ?\DateTimeImmutable
        {
            return $this->createdAt;
        }
 
-       public function setCreatedAt(\DateTimeInterface $createdAt): self
+       public function setCreatedAt(\DateTimeImmutable $createdAt): self
        {
            $this->createdAt = $createdAt;
 

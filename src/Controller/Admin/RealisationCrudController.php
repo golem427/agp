@@ -27,23 +27,24 @@ class RealisationCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-      
+
         return
             [
                 TextField::new('nom'),
                 SlugField::new('slug')->setTargetFieldName('nom')->onlyOnForms(),
                 TextareaField::new('description')->hideOnIndex(),
                 ImageField::new('thumbnail')
-                ->setBasePath('public/uploads')            
-                ->setUploadDir('public/uploads/thumbnails')
-                ->setUploadedFileNamePattern('[randomhash].[extension]')
-                ->setRequired(false),
+                    ->setBasePath('public/uploads')
+                    ->setUploadDir('public/uploads/thumbnails')
+                    ->setUploadedFileNamePattern('[randomhash].[extension]')
+                    ->setRequired(false),
                 CollectionField::new('attachments')->setEntryType(AttachmentType::class)->onlyOnForms()
-                                ->setFormTypeOption('by_reference', false),
+                    ->setFormTypeOption('by_reference', false),
                 CollectionField::new('attachments')->setTemplatePath('images/images.html.twig')->onlyOnDetail(),
                 DateField::new('createdAt')->hideOnForm(),
                 BooleanField::new('portfolio'),
-                AssociationField::new('categorie'),
+                AssociationField::new('categorie', 'categorie.nom'),
+                AssociationField::new('commentaire'),
             ];
     }
 
@@ -52,9 +53,9 @@ class RealisationCrudController extends AbstractCrudController
         return $actions
             ->add(Crud::PAGE_INDEX, Action::DETAIL);
     }
-    
+
     public function configureCrud(Crud $crud): Crud
     {
-        return $crud->setDefaultSort(['createdAt'=>'DESC']);
+        return $crud->setDefaultSort(['createdAt' => 'DESC']);
     }
 }

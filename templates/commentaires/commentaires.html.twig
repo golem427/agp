@@ -1,7 +1,8 @@
 <section>
-	{% for commentaire in realisation.commentaires %}
+	
 		<div class="container mb-2">
 			<div class=" row justify-content-center">
+            {% for commentaire in realisation.commentaires %}
 				<div class="col-12 col-md-10 col-lg-9 col-xl-8">
 					<div class="card card-row shadow-light-lg">
                         <div class="row gx-10">
@@ -17,7 +18,7 @@
                         </div>
 					</div>
                 </div>
+            {% endfor %}
 			</div>
 		</div>
-    {% endfor %}
 </section>

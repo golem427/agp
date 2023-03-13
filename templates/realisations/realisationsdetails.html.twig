@@ -4,12 +4,12 @@
 {% block body %}
 
 	<!-- IMAGE -->
-    <div>	
-      <a href="{{ path('realisations') }}">
-		    <section data-jarallax data-speed=".8" class="bg-cover jarallax" style="background-image: url("{{ vich_uploader_asset(realisation, 'imageFile') }}" );">
-        </section>
-      </a>
-    </div>
+	{# {% for slug,realisation in realisation %} #}
+		<div>
+			<a href="{{ path('realisations') }}">
+				<section data-jarallax data-speed=".8" class="bg-cover jarallax" style="background-image: url(" {{ vich_uploader_asset(realisation, 'imageFile') }} " );"></section>
+			</a>
+		</div>
 
 		<!-- HEADER -->
 		<section class="pt-8 pt-md-11">
@@ -17,7 +17,7 @@
 				<div class="row justify-content-center">
 					<div
 						class="col-12 col-md-10 col-lg-9 col-xl-8">
-				
+
 						<!-- Heading -->
 						<h1 class="display-4 text-center">
 							<a href="{{ path('realisations') }}">
@@ -100,31 +100,28 @@
 		<section class="pt-6 pt-md-8">
 			<div class="container">
 				<div class="row justify-content-center">
-					<div
-						class="col-12 col-md-10 col-lg-9 col-xl-8">
-						<figure
-							class="figure mb-7">
-							<img
-							class="figure-img img-fluid rounded lift lift-lg"
-							src="{{ vich_uploader_asset(realisation, 'imageFile') }}" 
-							alt="alex">
+					<div class="col-12 col-md-10 col-lg-9 col-xl-8">
+
+						<figure class="figure mb-7">
+							<img class="figure-img img-fluid rounded lift lift-lg" src="{{ vich_uploader_asset(realisation, 'imageFile') }}" alt="alex">
 						</figure>
 						<p>
 							{{ realisation.description }}
 						</p>
 						<!-- Caption -->
-							<figcaption class="figure-caption text-center">
-								2023 - Tous droits réservés
-							</figcaption>
+						<figcaption class="figure-caption text-center">
+							2023 - Tous droits réservés
+						</figcaption>
 					</div>
 				</div>
-				<!-- / .row -->
-			</div>
-			<!-- / .container -->
-		</section>
-		
-		{% include "commentaires/form.html.twig" %}
+			<!-- / .row -->
+		</div>
+	{# {% endfor %} #}
+		<!-- / .container -->
+	</section>
 
-		{% include "commentaires/commentaires.html.twig" %}
-		
-	{% endblock %}
+	{% include "commentaires/form.html.twig" %}
+
+	{% include "commentaires/commentaires.html.twig" %}
+
+{% endblock %}

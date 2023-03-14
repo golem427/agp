@@ -208,7 +208,6 @@ class Realisation
             $this->attachments->add($attachment);
             $attachment->setRealisation($this);
         }
-
         return $this;
     }
 
@@ -220,7 +219,6 @@ class Realisation
                 $attachment->setRealisation(null);
             }
         }
-
         return $this;
     }
 
@@ -260,11 +258,6 @@ class Realisation
         return $this;
     }
 
-    public function __toString()
-    {
-        return $this->getNom();
-    }
-
     public function setImageFile(File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
@@ -279,5 +272,10 @@ class Realisation
     public function getImageFile(): ?File
     {
         return $this->imageFile;
+    }
+
+    public function __toString()
+    {
+        return $this->getNom();
     }
 }

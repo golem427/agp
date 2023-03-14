@@ -7,7 +7,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -18,8 +17,7 @@ class CommentaireType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('auteur', TextType::class)
-            ->add('email', EmailType::class)
+            ->add('auteur', TextType::class, ['label' => 'Pseudo'])
             ->add('blogpost', HiddenType::class)
             ->add('realisation', HiddenType::class)
             ->add('contenu', TextareaType::class, [ 'label' => 'Votre message', 'constraints' => new NotBlank()])

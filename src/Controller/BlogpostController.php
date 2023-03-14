@@ -2,12 +2,13 @@
 
 namespace App\Controller;
 
+use DateTime;
 use App\Entity\Blogpost;
 use App\Entity\Commentaire;
 use App\Form\CommentaireType;
-use App\Service\CommentaireService;
 use App\Repository\BlogpostRepository;
 use App\Repository\CommentaireRepository;
+use App\Services\CommentaireService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +22,7 @@ class BlogpostController extends AbstractController
         BlogpostRepository $blogpostRepository,
         PaginatorInterface $paginator,
         Request $request
-    ): Response {
+    ): Response { 
         $data = $blogpostRepository->findBy([], ['id'=>'DESC']);
 
         $blogposts = $paginator->paginate($data, $request->query->getInt('page', 1), 6);
@@ -35,28 +36,28 @@ class BlogpostController extends AbstractController
     public function addCommentBlogpost(
         Blogpost $blogpost,
         Request $request,
-        Commentaire $commentaire,
-        CommentaireRepository $commentaireRepository,
         CommentaireService $commentaireService,
-    ): Response {
-        $commentaire = new Commentaire($blogpost);
-        $commentaires = $commentaireRepository->findCommentaires($blogpost);
+        CommentaireRepository $commentaireRepository,
+        Commentaire $commentaire,
+    ): Response {    
 
+        $commentaire = new Commentaire();
+        // $commentaires = $commentaireRepository->findCommentaires($blogpost);
         $form = $this->createForm(CommentaireType::class, $commentaire);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
+
             $commentaire = $form->getData();
             $commentaireService->persistCommentaire($commentaire, $blogpost, null);
-
             return $this->redirectToRoute('details_actu', ['slug' => $blogpost->getSlug()]);
         }
         return $this->render(
             'actualites/detailsactualites.html.twig',
             [
                 'blogpost' => $blogpost,
-                'form' => $form->createView(),
-                'commentaires' => $commentaires,
+                'form'     => $form->createView(),
+                // 'commentaires' => $commentaires,
             ]
         );
     }

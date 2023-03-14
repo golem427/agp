@@ -1,15 +1,13 @@
-<section>
 	<div class="container mb-2">
 		<div class=" row justify-content-center">
 			{% for commentaire in realisation.commentaires %}
-				{% if realisation.commentaire %}
 					<div class="col-12 col-md-10 col-lg-9 col-xl-8">
 						<div class="card card-row shadow-light-lg">
 							<div class="row gx-10">
 								<div class="card-body">
 									<blockquote class="mb-0 text-center">
 										<p>
-											{{ realisation.commentaire.contenu|raw }}
+											{{ commentaire.contenu|raw }}
 										</p>
 										<footer class="blockquote-footer">
 											<span class="h6 text-uppercase">Par
@@ -22,8 +20,7 @@
 							</div>
 						</div>
 					</div>
-				{% endif %}
 			{% endfor %}
 		</div>
 	</div>
-</section>
+

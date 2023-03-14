@@ -131,7 +131,6 @@ class Blogpost
             $this->commentaires->add($commentaire);
             $commentaire->setBlogpost($this);
         }
-
         return $this;
     }
 
@@ -143,20 +142,12 @@ class Blogpost
                 $commentaire->setBlogpost(null);
             }
         }
-
         return $this;
     }
 
     public function getFile(): ?string
     {
         return $this->file;
-    }
-
-    public function setFile(?string $file): self
-    {
-        $this->file = $file;
-
-        return $this;
     }
 
     public function setImageFile(File $file = null): void

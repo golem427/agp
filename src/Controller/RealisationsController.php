@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Commentaire;
 use App\Entity\Realisation;
 use App\Form\CommentaireType;
+use App\Repository\CommentaireRepository;
 use App\Repository\RealisationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -34,22 +35,21 @@ class RealisationsController extends AbstractController
     #[Route('/realisations/{slug}', name:'real_details', methods: ['GET', 'POST'])]
     public function detailRealisation(
         Realisation $realisation,
+        CommentaireRepository $commentaireRepository,
         Request $request,
         EntityManagerInterface $em
     ):Response
-    {               
+    {       
+        // $commentaires = $commentaireRepository->findCommentaires($realisation, null, $blogpost);
         $commentaire = new Commentaire();
-        
-
         $form = $this->createForm(CommentaireType::class, $commentaire);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) 
-        {
-            // dd($commentaire);
-            
-             $em->persist($commentaire);
-             $em->flush();
+        {    
+            $commentaire = $form->getData();
+            $em->persist($commentaire);
+            $em->flush();
 
              $this->addFlash(type: 'success', 
              message: 'Votre commentaire a bien été envoyé, il sera visible après modération.');
@@ -62,8 +62,9 @@ class RealisationsController extends AbstractController
         return $this->render('realisations/realisationsdetails.html.twig', [
 
              'realisation' => $realisation,
-             'form' => $form->createView()
-
+             'form' => $form->createView(),
+            //  'commentaires'=> $commentaires
+ 
         ]);
     }
 

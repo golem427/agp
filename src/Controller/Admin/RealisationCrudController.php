@@ -27,7 +27,6 @@ class RealisationCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-
         return
             [
                 TextField::new('nom'),
@@ -44,7 +43,6 @@ class RealisationCrudController extends AbstractCrudController
                 DateField::new('createdAt')->hideOnForm(),
                 BooleanField::new('portfolio'),
                 AssociationField::new('categorie', 'categorie.nom'),
-                AssociationField::new('commentaire'),
             ];
     }
 

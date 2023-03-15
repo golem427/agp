@@ -7,8 +7,6 @@ use App\Entity\Blogpost;
 use App\Entity\Realisation;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-
 
 class CommentaireService
 {
@@ -16,10 +14,9 @@ class CommentaireService
     private $manager;
     private $flash;
 
-    public function __construct(EntityManagerInterface $manager, FlashbagInterface $flash)
+    public function __construct(EntityManagerInterface $manager)
     {
          $this->manager = $manager;
-         $this->flash = $flash;
     }
 
     public function persistCommentaire(

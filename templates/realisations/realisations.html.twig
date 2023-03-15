@@ -86,8 +86,6 @@
        {% endfor %}
       </div>
   </div>
-
-  
           <div class="d-flex justify-content-center">
               {% do realisations.setPageRange(3)%}
               {{ knp_pagination_render(realisations, 'include/_paginator.html.twig') }}

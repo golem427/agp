@@ -18,42 +18,36 @@
 		<div class="row justify-content-center">
 			<div
 				class="col-12 col-md-10 col-lg-9 col-xl-8">
-				<!-- Heading -->
+				<!-- BOUTON TRIGGER MODALE -->
 				<h2 class="text-center">Commentaires</h2>
-					<div class="row">
-    					<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Laisser un commentaire</button>
-					</div>
-				<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+				<div class="row">
+					<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#commentaire">Laisser un commentaire</button>
+				</div>
+
+				<div class="modal fade" id="commentaire" tabindex="-1" aria-labelledby="commentaire" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
-						{{ form_start(form)}}
 							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">Nouveau commentaire</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
+								<h5 class="modal-title" id="exampleModalLabel">Votre commentaire</h5>
+								<button
+									type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">{# <span aria-hidden="true">&times;</span> #}
 								</button>
 							</div>
 
+							{# MODALE #}
 							<div class="modal-body">
-								<form>					
-									<div class="form-group">
-										<label for="recipient-name" class="col-form-label">{{ form_row(form.auteur)}}</label>
-										<input type="text" class="form-control" id="recipient-name">
-									</div>
-									<div class="form-group">
-										<label for="message-text" class="col-form-label">Votre message</label>
-										<textarea class="form-control" id="message-text">{{ form_row(form.contenu)}}</textarea>
-									</div>
-								</form>
+								{{ form(form)}}
 							</div>
+
 							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-								<button type="button" class="btn btn-primary">{{ form_row(form.isPublished)}}</button>
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
 							</div>
-							{{ form_end(form)}}
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
+</section>

@@ -41,35 +41,23 @@ class CommentaireRepository extends ServiceEntityRepository
         }
     }
 
-       
-        public function findCommentaires(
-            Commentaire $commentaire, 
-            Blogpost $blogpost,
-            Realisation $realisation
-            ): array
-        {
-            if ($commentaire instanceof Blogpost)
-                {
-                    $objectbp = 'blogpost';
-                    return $this->createQueryBuilder('c')
-                    ->where('c.' . $objectbp . '= :val')
-                    ->andWhere('c.isPublished = true')
-                    ->setParameter('val', $commentaire->getId())
-                    ->orderBy('c.id', 'DESC')
-                    ->getQuery()
-                    ->getResult();
-                }
 
-                if ($commentaire instanceof Realisation) 
-                {
-                    $objectr = 'realisation';
-                    return $this->createQueryBuilder('c')
-                    ->where('c.' . $objectr . '= :val')
-                    ->andWhere('c.isPublished = true')
-                    ->setParameter('val', $commentaire->getId())
-                    ->orderBy('c.id', 'DESC')
-                    ->getQuery()
-                    ->getResult();
-                }
+        public function findCommentaires($value)
+        {
+
+            if ($value instanceof Blogpost) {
+                $object = 'blogpost';
+            }
+
+            if ($value instanceof Realisation) {
+                 $object = 'realisation';
+            }           
+                return $this->createQueryBuilder('c')
+                ->where('c.' . $object . '= :val')
+                ->andWhere('c.isPublished = true')
+                ->setParameter('val', $value->getId())
+                ->orderBy('c.id', 'DESC')
+                ->getQuery()
+                ->getResult();
         }
 }

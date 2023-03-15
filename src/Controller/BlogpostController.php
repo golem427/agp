@@ -38,18 +38,18 @@ class BlogpostController extends AbstractController
         Request $request,
         CommentaireService $commentaireService,
         CommentaireRepository $commentaireRepository,
-        Commentaire $commentaire,
-    ): Response {    
-
+        ): Response 
+        {    
+        
+        $commentaires = $commentaireRepository->findCommentaires($blogpost);
         $commentaire = new Commentaire();
-        // $commentaires = $commentaireRepository->findCommentaires($blogpost);
         $form = $this->createForm(CommentaireType::class, $commentaire);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-
             $commentaire = $form->getData();
             $commentaireService->persistCommentaire($commentaire, $blogpost, null);
+
             return $this->redirectToRoute('details_actu', ['slug' => $blogpost->getSlug()]);
         }
         return $this->render(
@@ -57,7 +57,7 @@ class BlogpostController extends AbstractController
             [
                 'blogpost' => $blogpost,
                 'form'     => $form->createView(),
-                // 'commentaires' => $commentaires,
+                'commentaires' => $commentaires,
             ]
         );
     }

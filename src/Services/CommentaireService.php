@@ -10,28 +10,27 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class CommentaireService
 {
+    private $em;
+    // private $flash;
 
-    private $manager;
-    private $flash;
-
-    public function __construct(EntityManagerInterface $manager)
+    public function __construct(EntityManagerInterface $em)
     {
-         $this->manager = $manager;
+        $this->em = $em;
     }
 
     public function persistCommentaire(
         Commentaire $commentaire,
-        Realisation $realisation,
-        Blogpost $blogpost
-        ):void
-    {
+        Realisation $realisation = null,
+        Blogpost $blogpost = null
+    ): void {
         $commentaire->setIsPublished(false)
-                    ->setBlogpost($blogpost)
                     ->setRealisation($realisation)
+                    ->setBlogpost($blogpost)
                     ->setCreatedAt(new DateTimeImmutable('now'));
 
-        $$this->manager->persist($commentaire);
-        $this->manager->flush();
-        $this->flash->$flash->add('success', 'Votre message sera visible après modération');
+        $$this->em->persist($commentaire);
+        $this->em->flush();
+        // $this->flash->$flash->add('success', 'Votre message sera visible après modération');
     }
+  
 }

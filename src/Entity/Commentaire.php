@@ -21,9 +21,6 @@ class Commentaire
     #[ORM\Column(length: 255)]
     private ?string $auteur = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $email = null;
-
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank]
     private ?string $contenu;
@@ -65,19 +62,7 @@ class Commentaire
            return $this;
        }
 
-       public function getEmail(): ?string
-       {
-           return $this->email;
-       }
-
-       public function setEmail(string $email): self
-       {
-           $this->email = $email;
-
-           return $this;
-       }
-
-       public function getContenu(): ?string
+        public function getContenu(): ?string
        {
            return $this->contenu;
        }
@@ -125,7 +110,7 @@ class Commentaire
            return $this;
        }
 
-       public function isIsPublished(): ?bool
+       public function IsIsPublished(): ?bool
        {
            return $this->isPublished;
        }
@@ -139,6 +124,6 @@ class Commentaire
 
        public function __toString()
        {
-           return $this->getAuteur();
+           return $this->auteur;
        }
 }

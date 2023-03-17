@@ -41,10 +41,8 @@ class CommentaireRepository extends ServiceEntityRepository
         }
     }
 
-
         public function findCommentaires($value)
         {
-
             if ($value instanceof Blogpost) {
                 $object = 'blogpost';
             }

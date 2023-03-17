@@ -2,10 +2,8 @@
 
 namespace App\EventSubscriber;
 
-use DateTime;
 use DateTimeImmutable;
 use App\Entity\Blogpost;
-use App\Entity\Commentaire;
 use App\Entity\Realisation;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -35,8 +33,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
     {
         $entity = $event->getEntityInstance();
 
-        if (($entity instanceof Blogpost)) 
-            {
+        if (($entity instanceof Blogpost)) {
             return
                 [
                     $now = new DateTimeImmutable('now'),
@@ -44,28 +41,19 @@ class EasyAdminSubscriber implements EventSubscriberInterface
                     $user = $this->security->getUser(),
                     $entity->setUser($user)
                 ];
-            }
+        }
 
-            if (($entity instanceof Realisation))
-            {
-                return
-                    [
-                        $now = new DateTimeImmutable('now'),
-                        $entity->setCreatedAt($now),
-                        $user = $this->security->getUser(),
-                        $entity->setUser($user),
+        if (($entity instanceof Realisation)) {
+            return
+                [
+                    $now = new DateTimeImmutable('now'),
+                    $entity->setCreatedAt($now),
+                    $user = $this->security->getUser(),
+                    $entity->setUser($user),
 
-                    ];
-            }
-            if (($entity instanceof Commentaire))
-            {
-                return
-                    [
-                        $now = new DateTimeImmutable('now'),
-                        $entity->setCreatedAt($now),
-                    ];
-            }
-        
+                ];
+        }
+
         return;
     }
 }

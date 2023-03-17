@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use DateTime;
 use App\Entity\Blogpost;
 use App\Entity\Commentaire;
 use App\Form\CommentaireType;
@@ -22,7 +21,7 @@ class BlogpostController extends AbstractController
         BlogpostRepository $blogpostRepository,
         PaginatorInterface $paginator,
         Request $request
-    ): Response { 
+    ): Response {
         $data = $blogpostRepository->findBy([], ['id'=>'DESC']);
 
         $blogposts = $paginator->paginate($data, $request->query->getInt('page', 1), 6);
@@ -32,23 +31,24 @@ class BlogpostController extends AbstractController
         'blogposts' => $blogposts ]);
     }
 
+    
+
     #[Route('/actualites/{slug}', name: 'details_actu')]
     public function addCommentBlogpost(
         Blogpost $blogpost,
         Request $request,
         CommentaireService $commentaireService,
         CommentaireRepository $commentaireRepository,
-        ): Response 
-        {    
-        
+    ): Response {
         $commentaires = $commentaireRepository->findCommentaires($blogpost);
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $commentaire = $form->getData();
-            $commentaireService->persistCommentaire($commentaire, $blogpost, null);
+            $commentaireService->persistCommentaire($commentaire, null, $blogpost);
 
             return $this->redirectToRoute('details_actu', ['slug' => $blogpost->getSlug()]);
         }

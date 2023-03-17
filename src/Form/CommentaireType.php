@@ -18,10 +18,10 @@ class CommentaireType extends AbstractType
     {
         $builder
             ->add('auteur', TextType::class, ['label' => 'Pseudo'])
+            ->add('contenu', TextareaType::class, [ 'label' => 'Votre message', 'constraints' => new NotBlank()])
+            ->add('soumettre', SubmitType::class, ['label' => 'Poster'])
             ->add('blogpost', HiddenType::class)
             ->add('realisation', HiddenType::class)
-            ->add('contenu', TextareaType::class, [ 'label' => 'Votre message', 'constraints' => new NotBlank()])
-            ->add('isPublished', SubmitType::class, ['label' => 'Poster'])
         ;
     }
 

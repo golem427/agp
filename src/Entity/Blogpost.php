@@ -36,7 +36,7 @@ class Blogpost
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\OneToMany(mappedBy: 'blogpost', targetEntity: Commentaire::class, cascade: ["all", "persist", "remove"])]
+    #[ORM\OneToMany(mappedBy: 'blogpost', targetEntity: Commentaire::class)]
     private Collection $commentaires;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -168,6 +168,6 @@ class Blogpost
 
     public function __toString()
     {
-        return $this->getTitre();
+        return $this->titre;
     }
 }

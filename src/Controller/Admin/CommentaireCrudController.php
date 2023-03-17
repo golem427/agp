@@ -31,7 +31,7 @@ class CommentaireCrudController extends AbstractCrudController
              EmailField::new('email'),
              DateTimeField::new('createdAt'),
              TextEditorField::new('contenu'),
-             BooleanField::new('isPublished'),
+             BooleanField::new('isPublished')
         ];
     }
 

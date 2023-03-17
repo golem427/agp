@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use DateTime;
-use DateTimeImmutable;
 use App\Entity\Categorie;
 use App\Entity\Attachment;
 use App\Entity\Commentaire;
@@ -46,10 +45,10 @@ class Realisation
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'realisations', orphanRemoval:false)]
+    #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'realisations')]
     private Collection $categorie;
 
-    #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Commentaire::class, orphanRemoval:true, cascade: ["all", "persist", "remove"])]
+    #[ORM\OneToMany(mappedBy: 'realisation', targetEntity: Commentaire::class)]
     private Collection $commentaires;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -276,6 +275,6 @@ class Realisation
 
     public function __toString()
     {
-        return $this->getNom();
+        return $this->nom;
     }
 }

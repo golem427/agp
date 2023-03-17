@@ -6,7 +6,6 @@ use App\Entity\Commentaire;
 use App\Entity\Realisation;
 use App\Form\CommentaireType;
 use App\Services\CommentaireService;
-use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\CommentaireRepository;
 use App\Repository\RealisationRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -33,30 +32,30 @@ class RealisationsController extends AbstractController
         ]);
     }
 
-    #[Route('/realisations/{slug}', name:'real_details', methods: ['GET', 'POST'])]
+    #[Route('/realisations/{slug}', name:'real_details')]
     public function detailRealisation(
         Realisation $realisation,
         Request $request,
         CommentaireService $commentaireService,
         CommentaireRepository $commentaireRepository,
-        ): Response 
-        {    
-        
+    ): Response {
         $commentaires = $commentaireRepository->findCommentaires($realisation);
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $commentaire = $form->getData();
-            $commentaireService->persistCommentaire($commentaire, null, $realisation);
+            $commentaireService->persistCommentaire($commentaire, $realisation, null);
 
-             $this->addFlash(type: 'success', 
-             message: 'Votre commentaire a bien été envoyé, il sera visible après modération.');
+            $this->addFlash(
+                type: 'success',
+                message: 'Votre commentaire a bien été envoyé, il sera visible après modération.'
+            );
 
-             return $this->redirectToRoute('real_details', [
-                'slug' => $realisation->getSlug()
-                ]);
+            return $this->redirectToRoute('real_details', [
+               'slug' => $realisation->getSlug()
+               ]);
         }
 
         return $this->render('realisations/realisationsdetails.html.twig', [
@@ -64,7 +63,7 @@ class RealisationsController extends AbstractController
              'realisation' => $realisation,
              'form' => $form->createView(),
              'commentaires'=> $commentaires
- 
+
         ]);
     }
 

@@ -1,7 +1,7 @@
-//
-// modal.scss
-// Extended from Bootstrap
-//
+
+modal.scss
+Extended from Bootstrap
+
 
 .modal-open .navbar.fixed-top {
   padding-right: inherit;
@@ -14,5 +14,5 @@
   position: absolute;
   top: $spacer * 1.5;
   right: $spacer * 1.5;
-  z-index: $zindex-dropdown;
+//   z-index: $zindex-dropdown;
 }

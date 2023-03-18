@@ -5,7 +5,6 @@ namespace App\Controller\Admin;
 use App\Entity\Realisation;
 use App\Form\AttachmentType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
@@ -35,14 +34,13 @@ class RealisationCrudController extends AbstractCrudController
                 ImageField::new('thumbnail')
                     ->setBasePath('public/uploads')
                     ->setUploadDir('public/uploads/thumbnails')
-                    ->setUploadedFileNamePattern('[randomhash].[extension]')
-                    ->setRequired(false),
+                    ->setUploadedFileNamePattern('[randomhash].[extension]'),
                 CollectionField::new('attachments')->setEntryType(AttachmentType::class)->onlyOnForms()
                     ->setFormTypeOption('by_reference', false),
                 CollectionField::new('attachments')->setTemplatePath('images/images.html.twig')->onlyOnDetail(),
                 DateField::new('createdAt')->hideOnForm(),
                 BooleanField::new('portfolio'),
-                AssociationField::new('categorie', 'categorie.nom'),
+                AssociationField::new('categorie')
             ];
     }
 

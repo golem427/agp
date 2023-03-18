@@ -2,12 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Attachment;
 use App\Entity\Commentaire;
 use App\Entity\Realisation;
 use App\Form\CommentaireType;
+use App\Repository\AttachmentRepository;
 use App\Services\CommentaireService;
 use App\Repository\CommentaireRepository;
 use App\Repository\RealisationRepository;
+use ContainerFnVN6la\getAttachmentService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -71,6 +74,22 @@ class RealisationsController extends AbstractController
         public function realisationHome(Realisation $realisation): Response
         {
             return $this->render('/realisation.html.twig', [
+                'realisation' => $realisation
+            ]);
+        }
+
+
+        #[Route('/realisations/{id}', name:'realisation_slider')]
+        public function realisationSlider(
+            Realisation $realisation,
+            AttachmentRepository $attachmentRepository,
+            RealisationRepository $realisationRepository,
+            Request $request
+        ):Response {
+            $data = $realisationRepository->findOneby('id');
+            $this->$attachmentRepository->findAttachments();
+
+            return $this->render('/realisations/realisationSlider.html.twig', [
                 'realisation' => $realisation
             ]);
         }

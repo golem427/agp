@@ -40,7 +40,7 @@ class RealisationRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    
+
     // /**
     // * @return Realisation[] Returns an array of Realisation objects
     // */
@@ -53,7 +53,7 @@ class RealisationRepository extends ServiceEntityRepository
             // ->setMaxResults(1)
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
 //    /**
@@ -62,7 +62,7 @@ class RealisationRepository extends ServiceEntityRepository
    public function findAllPortfolio(Categorie $categorie): array /*on rassemble la collection*/
    {
        return $this->createQueryBuilder('p')
-           ->where(':categorie MEMBER OF p.categorie') 
+           ->where(':categorie MEMBER OF p.categorie')
            /*est-ce que la variable :catégorie-de-ma-realisation-du-AllPortfolio
            fait bien partie des réalisations de CETTE catégorie ? */
            ->andWhere('p.portfolio = TRUE') /* oui elle en fait partie /non, elle n'en fait pas */
@@ -71,24 +71,14 @@ class RealisationRepository extends ServiceEntityRepository
            ->getResult() /* le "finAllPortfolio" capture les réalisations suivant sa catégorie */
        ;
    }
-//    VOIR LA FONCTION IDENTIQUE MISE DANS BLOGPOSTREPOSITORY/INUTILE DONC DE LA METTRE ICI
-//     public function findCommentaire($value): array
-//    {
-//         if ($value instanceof Blogpost){
-//             $object = 'blogpost';
-//         }
-//         if ($value instanceof Realisation){
-//             $object = 'realisation';
-//         }
-
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.'. $object .' = :val')
-//            ->andWhere('c.isPublished = true')
-//            ->setParameter('val', $value->getId())
-//            ->orderBy('c.id', 'DESC')
-//         //    ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findbyId($id): array
+    {
+        return $this->createQueryBuilder('i')
+            ->andWhere('i'. '$id' . '=:val')
+            ->andWhere('i'. '$id' . '=:val')
+            ->setParameter('val', $id->getId())
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

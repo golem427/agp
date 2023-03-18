@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+	{% for attachments in realisation %}
+		<div class="carousel-inner">
+			<img src="{{ vich_uploader_asset(realisation, 'imageFile') }}" alt="...">
+			<div class="carousel-caption d-none d-md-block">
+				<h5>{{ realisation.nom }}</h5>
+			</div>
+		</div>
+    {% endfor %}
+
+	<a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="sr-only">Prédécent</span>
+	</a>
+	<a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="sr-only">Suivant</span>
+	</a>
+</div>{% endblock %}

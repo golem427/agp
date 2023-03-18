@@ -26,11 +26,10 @@ class CommentaireService
         $commentaire->setIsPublished(false)
                     ->setRealisation($realisation)
                     ->setBlogpost($blogpost)
-                    ->setCreatedAt(new DateTimeImmutable('now'));
+                    ->setCreatedAt(new DateTimeImmutable());
 
-        $$this->em->persist($commentaire);
+        $this->em->persist($commentaire);
         $this->em->flush();
         // $this->flash->$flash->add('success', 'Votre message sera visible après modération');
     }
-  
 }

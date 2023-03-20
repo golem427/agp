@@ -13,7 +13,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ContactType extends AbstractType
@@ -76,30 +75,45 @@ class ContactType extends AbstractType
                             'max' => 22,
                         ]),
                     ]
-                ])
+                ]
+            )
 
             ->add('subject', TextType::class, [
                    'label' => 'Sujet',
                 ])
-            ->add('message', TextareaType::class, [
-                'attr' => ['rows' => 5]
-            ])
 
-            ->add('createdAt', DateTimeType::class,
-            [   'label' => 'Date (jj/mm/AAAA)',
-                'widget' => 'single_text',
-                'html5' => false,
-                'format' => 'dd/MM/yyyy',
-                
+            ->add('message', TextareaType::class, [
+                'attr' => ['rows' => 5],
+                'constraints' =>
+                    [
+                        new NotBlank([
+                            'message' => "Ce champ ne peut pas être vide."
+                        ]),
+                        new Length([
+                            'min' => 30,
+                            'max' => 300
+                        ])
+                    ]
             ])
+            
+            ->add(
+                'createdAt',
+                DateTimeType::class,
+                [   'label' => 'Date (jj/mm/AAAA)',
+                    'widget' => 'single_text',
+                    'html5' => false,
+                    'format' => 'dd/MM/yyyy',
+
+                ]
+            )
 
             ->add('submit', SubmitType::class, [
-                'label' => 'Valider',
-                'validate' => false,
-                'attr' => [
-                    'class' => 'd-block col-3 my-3 mx-auto btn btn-success'
-                ]
-            ]);
+                    'label' => 'Valider',
+                    'validate' => false,
+                    'attr' => [
+                        'class' => 'd-block col-3 my-3 mx-auto btn btn-success'
+                    ]
+                ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

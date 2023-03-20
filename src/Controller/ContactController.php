@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
+use App\Services\ContactService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,6 +18,7 @@ class ContactController extends AbstractController
     #[Route('/contact', name: 'contact')]
     public function contact(
         Request $request, 
+        ContactService $contactService,
         EntityManagerInterface $manager,
         MailerInterface $mailer,
         ): Response
@@ -29,6 +31,7 @@ class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
 
             $contact = $form->getData();
+            $contactService->persistContact($contact);
            
             $manager->persist($contact);
             $manager->flush();

@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\ContactRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ContactRepository;
+use phpDocumentor\Reflection\Types\Boolean;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
 class Contact
@@ -32,7 +33,9 @@ class Contact
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
-  
+    #[ORM\Column(type: Types::BOOLEAN)]
+    private ?string $isSent = null;
+
 
     public function getId(): ?int
     {
@@ -63,7 +66,7 @@ class Contact
         return $this;
     }
 
-    
+
     public function getTelephone(): ?string
     {
         return $this->telephone;
@@ -113,5 +116,16 @@ class Contact
 
         return $this;
     }
-  
+
+    public function getIsSent(): ?bool
+    {
+        return $this->isSent;
+    }
+
+       public function setIsSent(bool $isSent): self
+       {
+           $this->isSent = $isSent;
+
+           return $this;
+       }
 }

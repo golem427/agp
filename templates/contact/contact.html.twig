@@ -12,9 +12,9 @@
 					class="col-12 col-md-5 align-self-stretch">
 					<!-- Image (mobile) -->
 					<img
-					src="img2/story/Ilustration_story_4x.png" class="d-sm-none-block img-cover fluid" style="max-width:65rem; margin-top:15rem; padding-left:15rem;" alt="...">
+					src="img2/story/Ilustration_story_4x.png" class="d-sm-none img-cover fluid" alt="...">
 					<!-- Image -->
-					<div class="d-none d-sm-block bg-cover imgcontact" style="background-image: url(img2/story/Ilustration_story_4x.png);"></div>
+					<div class="d-none d-md-block vw-50 h-100 float-end bg-cover" style="background-image: url(img2/story/Ilustration_story_4x.png);"></div>
 				</div>
 
 				<div
@@ -25,19 +25,18 @@
 					</h2>
 					<!-- Text -->
 					<p class="fs-lg text-center text-muted mb-0">
-						Votre devis en moins d'une journée.
+						Notre devis en moins d'une journée.
 					</p>
 					<!-- Divider -->
-					<hr
-					class="hr-lg my-6 my-md-8 mx-auto bg-gray-300">
+					<hr>
+					<div class="hr-lg my-6 my-md-8 mx-auto bg-gray-300">
 					<!-- Form -->
-					
-							{% for message in app.flashes('success') %}
+												{% for message in app.flashes('success') %}
 								<div class="alert alert-success mt-4">
 									{{ message }}
 								</div>
 							{% endfor %}
-
+					</div>
 						<div class="form-group mb-5">
 							{{ form(form) }}
 						</div>

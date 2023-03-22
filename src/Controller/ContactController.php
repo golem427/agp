@@ -17,44 +17,38 @@ class ContactController extends AbstractController
 {
     #[Route('/contact', name: 'contact')]
     public function contact(
-        Request $request, 
+        Request $request,
         ContactService $contactService,
         EntityManagerInterface $manager,
         MailerInterface $mailer,
-        ): Response
+    ): Response 
     {
         $contact = new Contact();
 
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+                if ($form->isSubmitted() && $form->isValid()) {
+                    $contact = $form->getData();
 
-            $contact = $form->getData();
-            $contactService->persistContact($contact);
-           
-            $manager->persist($contact);
-            $manager->flush();
-           
-            $email = ( new TemplatedEmail())
-            ->from($contact->getEmail())
-            ->to('aguadopeinture@yahoo.com')
-            ->subject($contact->getSubject())
-            ->htmlTemplate('contact/contact.html.twig');
+                    $contactService->persistContact($contact);
 
-            $mailer->send($email);
+                    $this->addFlash(
+                        'success',
+                        'Votre demande a bien été envoyée'
+                    );
+                    return $this->redirectToRoute('contact');
+                }
 
-        $this->addFlash(
-            'success',
-            'Votre demande a bien été envoyée'
-        );
-              
-        return $this->redirectToRoute('contact');
+            // $email = ( new TemplatedEmail())
+            // ->from($contact->getEmail())
+            // ->to('aguadopeinture@yahoo.com')
+            // ->subject($contact->getSubject())
+            // ->htmlTemplate('contact/contact.html.twig');
+            // $mailer->send($email);
+            
+            return $this->render('contact/contact.html.twig', [
+                'form' => $form->createView(),
+                ]);          
     }
-    return $this->render('contact/contact.html.twig',[
-        'form' => $form->createView(),
-        ]);     
-    }
-
-    }
-
+}

@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ContactRepository;
+use DateTimeImmutable;
 use phpDocumentor\Reflection\Types\Boolean;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
@@ -35,6 +36,13 @@ class Contact
 
     #[ORM\Column(type: Types::BOOLEAN)]
     private ?string $isSent = null;
+
+
+
+    public function __construct()
+    {
+        $this->createdAt = new DateTimeImmutable();
+    }
 
 
     public function getId(): ?int
@@ -127,5 +135,11 @@ class Contact
            $this->isSent = $isSent;
 
            return $this;
+       }
+
+       
+       public function __toString()
+       {
+           return $this->nom;
        }
 }

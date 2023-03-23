@@ -1,0 +1,7 @@
+# app/config/config.yml
+
+liip_imagine:
+    filter_sets:
+        my_special_style:
+            filters:
+                my_custom_filter: {mon_filtre_liip }

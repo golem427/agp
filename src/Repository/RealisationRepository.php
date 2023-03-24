@@ -44,13 +44,13 @@ class RealisationRepository extends ServiceEntityRepository
     // /**
     // * @return Realisation[] Returns an array of Realisation objects
     // */
-    public function lastthree(): array
+    public function last(): array
     {
         return $this->createQueryBuilder('r')
             //    ->andWhere('r.exampleField = :val')
             //    ->setParameter('val', $value)
             ->orderBy('r.id', 'DESC')
-            // ->setMaxResults(1)
+            ->setMaxResults(1)
             ->getQuery()
             ->getResult()
         ;

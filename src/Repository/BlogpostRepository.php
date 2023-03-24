@@ -42,13 +42,13 @@ class BlogpostRepository extends ServiceEntityRepository
 //    /**
 //     * @return Blogposts[] Returns an array of Blogpost objects
 //     */
-   public function lastthree(): array
+   public function last(): array
    {
        return $this->createQueryBuilder('b')
         //    ->andWhere('b.exampleField = :val')
         //    ->setParameter('val', $value)
            ->orderBy('b.id', 'DESC')
-        //    ->setMaxResults(3)
+           ->setMaxResults(3)
            ->getQuery()
            ->getResult()
        ;

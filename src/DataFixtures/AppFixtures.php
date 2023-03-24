@@ -8,6 +8,7 @@ use App\Entity\Contact;
 use App\Entity\Blogpost;
 use App\Entity\Categorie;
 use App\Entity\Realisation;
+use DateTimeImmutable;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\DBAL\Types\DateTimeImmutableType;
@@ -60,8 +61,8 @@ class AppFixtures extends Fixture
             $blogpost = new Blogpost();
 
             $blogpost->setTitre($faker->word())
-                ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
-                ->setContenu($faker->text(350))
+            ->setCreatedAt(new DateTimeImmutable())
+            ->setContenu($faker->text(350))
                 ->setSlug($faker->slug(3))
                 ->setUser($user)
                 ->setFile('karin.jpg');
@@ -97,8 +98,7 @@ class AppFixtures extends Fixture
                     ->setPortfolio($faker->randomElement([true, false]))
                     ->setSlug($faker->slug(3))
                     ->setThumbnail('alex.jpg')
-                    ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
-                    ->addCategorie($categorie)
+                    ->setCreatedAt(new DateTimeImmutable())
                     ->setUser($user);
 
                 $manager->persist($realisation);

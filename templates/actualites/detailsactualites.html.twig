@@ -16,8 +16,7 @@
 		<section class="pt-8 pt-md-11">
 			<div class="container">
 				<div class="row justify-content-center">
-					<div
-						class="col-12 col-md-10 col-lg-9 col-xl-8">
+					<div class="col-12 col-md-10 col-lg-9 col-xl-8">
 
 						<!-- Heading -->
 						<h1 class="display-4 text-center">
@@ -26,8 +25,6 @@
 							</a>
 						</h1>
 
-						<h2 class="display-5 text-center">{{ blogpost.slug}}</h2>
-
 						<!-- Text -->
 						<p class="lead mb-7 text-center text-muted">
 							{{ blogpost.contenu|u.truncate(200, '...', false) }}
@@ -35,32 +32,25 @@
 
 						<!-- Meta -->
 						<div class="row align-items-center py-5 border-top border-bottom">
-							<div
-								class="col-auto">
-
+							<div class="col-auto">
 								<!-- Avatar -->
 								<div class="avatar avatar-lg">
 									<img src="/img/avatars/avatar-4.jpg" alt="..." class="avatar-img rounded-circle">
 								</div>
-
 							</div>
-							<div
-								class="col ms-n5">
-
+							<div class="col ms-n5">
 								<!-- Name -->
 								<h6 class="text-uppercase mb-0">
 									J.Aguado
 								</h6>
-
 								<!-- Date -->
 								<time class="fs-sm text-muted" datetime="2019-05-20">
 									Publié le :
 									{{ blogpost.createdAt|date('d/m/y') }}
 								</time>
-
 							</div>
-							<div
-								class="col-auto">
+
+							<div class="col-auto">
 
 								<!-- Share -->
 								<span class="h6 text-uppercase text-muted d-none d-md-inline me-4">

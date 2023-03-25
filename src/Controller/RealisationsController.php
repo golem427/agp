@@ -10,7 +10,6 @@ use App\Repository\AttachmentRepository;
 use App\Services\CommentaireService;
 use App\Repository\CommentaireRepository;
 use App\Repository\RealisationRepository;
-use ContainerFnVN6la\getAttachmentService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -85,7 +84,7 @@ class RealisationsController extends AbstractController
             AttachmentRepository $attachmentRepository,
             RealisationRepository $realisationRepository,
             Request $request
-        ):Response {
+        ): Response {
             $data = $realisationRepository->findOneby('id');
             $this->$attachmentRepository->findAttachments();
 

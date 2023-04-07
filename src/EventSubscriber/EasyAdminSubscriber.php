@@ -50,7 +50,6 @@ class EasyAdminSubscriber implements EventSubscriberInterface
                     $entity->setCreatedAt($now),
                     $user = $this->security->getUser(),
                     $entity->setUser($user),
-
                 ];
         }
 

@@ -81,15 +81,16 @@ class RealisationsController extends AbstractController
         #[Route('/realisations/{id}', name:'realisation_slider')]
         public function realisationSlider(
             Realisation $realisation,
+            Attachment $attachment,
             AttachmentRepository $attachmentRepository,
             RealisationRepository $realisationRepository,
-            Request $request
         ): Response {
-            $data = $realisationRepository->findOneby('id');
-            $this->$attachmentRepository->findAttachments();
-
-            return $this->render('/realisations/realisationSlider.html.twig', [
-                'realisation' => $realisation
+            $realisation = $realisationRepository->findbyId('id');
+            $attachment = $attachmentRepository->findAllByRealisation('att');
+        
+            return $this->render('/realisations/realisationslider.html.twig', [
+                'realisation'=> $realisation,
+                'attachment' => $attachment            
             ]);
         }
 }

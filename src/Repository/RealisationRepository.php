@@ -68,15 +68,15 @@ class RealisationRepository extends ServiceEntityRepository
            ->andWhere('p.portfolio = TRUE') /* oui elle en fait partie /non, elle n'en fait pas */
            ->setParameter('categorie', $categorie)
            ->getQuery()
-           ->getResult() /* le "finAllPortfolio" capture les réalisations suivant sa catégorie */
+           ->getResult() /* le "findAllPortfolio" capture les réalisations suivant sa catégorie */
        ;
    }
     public function findbyId($id): array
     {
         return $this->createQueryBuilder('i')
+            ->Where('r.realisation = :val')
             ->andWhere('i'. '$id' . '=:val')
-            ->andWhere('i'. '$id' . '=:val')
-            ->setParameter('val', $id->getId())
+            ->setParameter('val', $id->getId()->getAttachments())
             ->getQuery()
             ->getResult()
         ;

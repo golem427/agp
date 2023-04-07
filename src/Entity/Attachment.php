@@ -5,7 +5,6 @@ namespace App\Entity;
 use DateTime;
 use DateTimeImmutable;
 use App\Entity\Realisation;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\AttachmentRepository;
 use Symfony\Component\HttpFoundation\File\File;
@@ -114,5 +113,10 @@ class Attachment
         $this->realisation = $realisation;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->image;
     }
 }

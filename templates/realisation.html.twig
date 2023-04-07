@@ -72,7 +72,7 @@
 
 								<!-- Slider -->
 								{% for key,realisation in realisations %}
-									<div data-slide-to="{{ key }}" {% if key == 0 %} class="card-active" {% endif %} class="position-static" data-flickity='{"wrapAround": true, "pageDots": false, "imagesLoaded": true, "adaptiveHeight": true}' id="blogSlider">
+									<div data-slide-to="{{ key }}" {% if key > 0 %} class="card-active" {% endif %} class="position-static" data-flickity='{"wrapAround": true, "pageDots": false, "imagesLoaded": true, "adaptiveHeight": true}' id="blogSlider">
 										<div
 											class="w-100">
 

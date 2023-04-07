@@ -54,13 +54,12 @@ class AttachmentRepository extends ServiceEntityRepository
 //    /**
 //     * @return Attachment[] Returns an array of Attachment objects
 //     */
-   public function findAttachments(): array
+   public function findAllByRealisation($att): array
    {
        return $this->createQueryBuilder('a')
-        //    ->andWhere('a.exampleField = :val')
-        //    ->setParameter('val', $value)
-        //    ->orderBy('a.id', 'ASC')
-        //    ->setMaxResults(10)
+           ->andWhere('a.realisation = :val')
+           ->setParameter('val', $att->getRealisation()->getId()->getAttachments())
+           ->orderBy('a.id', 'DESC')
            ->getQuery()
            ->getResult()
        ;

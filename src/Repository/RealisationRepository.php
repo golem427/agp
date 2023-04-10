@@ -46,15 +46,28 @@ class RealisationRepository extends ServiceEntityRepository
     // */
     public function last(): array
     {
-        return $this->createQueryBuilder('r')
-            //    ->andWhere('r.exampleField = :val')
+        return $this->createQueryBuilder('l')
+            //    ->andWhere('l.exampleField = :val')
             //    ->setParameter('val', $value)
-            ->orderBy('r.id', 'DESC')
+            ->orderBy('l.id', 'DESC')
             ->setMaxResults(1)
             ->getQuery()
             ->getResult()
         ;
     }
+
+    // @Method("findOneWithAttachments")
+    public function findOneWithAttachments(int $id): ?Realisation
+{
+    $queryBuilder = $this->createQueryBuilder('r');
+    
+    $queryBuilder->leftJoin('r.attachments', 'a')
+        ->addSelect('a')
+        ->andWhere('r.id = :id')
+        ->setParameter('id', $id);
+    
+    return $queryBuilder->getQuery()->getOneOrNullResult();
+}
 
 //    /**
 //     * @return Realisation[] Returns an array of Categorie objects
@@ -71,7 +84,7 @@ class RealisationRepository extends ServiceEntityRepository
            ->getResult() /* le "findAllPortfolio" capture les réalisations suivant sa catégorie */
        ;
    }
-    public function findbyId($id): array
+    public function findbyId($id)
     {
         return $this->createQueryBuilder('i')
             ->Where('r.realisation = :val')

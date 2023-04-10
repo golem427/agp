@@ -2,11 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Attachment;
 use App\Entity\Commentaire;
 use App\Entity\Realisation;
 use App\Form\CommentaireType;
-use App\Repository\AttachmentRepository;
 use App\Services\CommentaireService;
 use App\Repository\CommentaireRepository;
 use App\Repository\RealisationRepository;
@@ -77,20 +75,22 @@ class RealisationsController extends AbstractController
             ]);
         }
 
+        #[Route('/realisation/{id}/realisationslider', name: 'realisation_slider')]
+        public function realisationslider(int $id, RealisationRepository $repository): Response
+        {   
+            $realisations = $repository->findAll();
+            $realisation = $repository->findOneWithAttachments($id);
 
-        #[Route('/realisations/{id}', name:'realisation_slider')]
-        public function realisationSlider(
-            Realisation $realisation,
-            Attachment $attachment,
-            AttachmentRepository $attachmentRepository,
-            RealisationRepository $realisationRepository,
-        ): Response {
-            $realisation = $realisationRepository->findbyId('id');
-            $attachment = $attachmentRepository->findAllByRealisation('att');
-        
+            if (!$realisation) {
+                throw $this->createNotFoundException('Realisation not found');
+            }
+
+            $attachments = $realisation->getAttachments();
+
             return $this->render('/realisations/realisationslider.html.twig', [
-                'realisation'=> $realisation,
-                'attachment' => $attachment            
+                'realisations' => $realisations,
+                'realisation' => $realisation,
+                'attachments' => $attachments,
             ]);
         }
 }

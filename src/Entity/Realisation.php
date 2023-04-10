@@ -192,7 +192,6 @@ class Realisation
         }
         return $this;
     }
-
     /**
      * @return Collection<int, Attachment>
      */

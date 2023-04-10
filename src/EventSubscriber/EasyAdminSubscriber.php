@@ -22,14 +22,14 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         $this->slugger = $slugger;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents():array
     {
         return [
             BeforeEntityPersistedEvent::class => ['setDateAndUser'],
         ];
     }
 
-    public function setDateAndUser(BeforeEntityPersistedEvent $event)
+    public function setDateAndUser(BeforeEntityPersistedEvent $event):array
     {
         $entity = $event->getEntityInstance();
 
@@ -52,7 +52,6 @@ class EasyAdminSubscriber implements EventSubscriberInterface
                     $entity->setUser($user),
                 ];
         }
-
-        return;
+        return($this);
     }
 }

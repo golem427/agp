@@ -1,29 +1,27 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <ol class="carousel-indicators">
-            {% for realisation in realisations %}
-                <li data-bs-target="#carouselExampleIndicators" 
-				data-bs-slide-to="{{ loop.index0 }}" {% if loop.first %}class="active"{% endif %}></li>
-            {% endfor %}
-        </ol>
-        <div class="carousel-inner">
-            {% for realisation in realisations %}
-                <div class="carousel-item {% if loop.first %}active{% endif %}">
-                    {% for attachment in realisation.attachments %}
-                        <img src="{{ vich_uploader_asset(attachment, 'imageFile') }}" class="d-block w-100" alt="{{ attachment.getImage() }}">
-                    {% endfor %}
-                </div>
-            {% endfor %}
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </a>
-    </div>
+	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+		<div class="carousel-indicators">
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+		</div>
+		    <div class="carousel-inner">
+            
+                {% for attachment in realisation.attachments %}
+                    <div class="carousel-item {% if loop.first %}active{% endif %}">
+                       <img src="{{ vich_uploader_asset(attachment, 'imageFile') }}" class="d-block w-100" alt="{{ attachment.getImage() }}">
+                    </div>
+                {% endfor %}
+           	</div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+			    </button>
+			</div>
 {% endblock %}

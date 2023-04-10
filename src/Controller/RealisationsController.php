@@ -88,7 +88,6 @@ class RealisationsController extends AbstractController
             $attachments = $realisation->getAttachments();
 
             return $this->render('/realisations/realisationslider.html.twig', [
-                'realisations' => $realisations,
                 'realisation' => $realisation,
                 'attachments' => $attachments,
             ]);

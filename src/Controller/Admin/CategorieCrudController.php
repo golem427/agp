@@ -24,7 +24,6 @@ class CategorieCrudController extends AbstractCrudController
             TextField::new('nom'),
             SlugField::new('slug')->setTargetFieldName('nom')->onlyOnForms(),
             TextEditorField::new('description'),
-            DateField::new('createdAt')->hideOnForm(),
         ];
     }
 }

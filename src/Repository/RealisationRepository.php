@@ -79,7 +79,8 @@ class RealisationRepository extends ServiceEntityRepository
            /*est-ce que la variable :catégorie-de-ma-realisation-du-AllPortfolio
            fait bien partie des réalisations de CETTE catégorie ? */
            ->andWhere('p.portfolio = TRUE') /* oui elle en fait partie /non, elle n'en fait pas */
-           ->setParameter('categorie', $categorie)
+           ->andWhere('i'. '$slug' . '=:val')
+           ->setParameter('val', $categorie->getRealisations())
            ->getQuery()
            ->getResult() /* le "findAllPortfolio" capture les réalisations suivant sa catégorie */
        ;

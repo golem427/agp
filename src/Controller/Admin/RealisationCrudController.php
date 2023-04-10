@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Categorie;
 use App\Entity\Realisation;
 use App\Form\AttachmentType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;

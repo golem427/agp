@@ -56,7 +56,6 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         if (($entity instanceof Categorie)) {
             return
                 [
-                    $now = new DateTimeImmutable('now'),
                     $user = $this->security->getUser(),
                 ];
         }

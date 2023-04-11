@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use DateTime;
 use DateTimeImmutable;
+use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\BlogpostRepository;
@@ -32,6 +34,9 @@ class Blogpost
     #[ORM\Column]
     private ?DateTimeImmutable $createdAt;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?DateTimeInterface $updatedAt = null;
+
     #[ORM\ManyToOne(inversedBy: 'blogposts')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
@@ -44,7 +49,6 @@ class Blogpost
 
     #[Vich\UploadableField(mapping: 'blogpost_images', fileNameProperty: 'file')]
     private ?File $imageFile = null;
-
 
 
     public function __construct()
@@ -104,7 +108,17 @@ class Blogpost
 
         return $this;
     }
+    
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
+        return $this;
+    }
     public function getUser(): ?user
     {
         return $this->user;
@@ -149,6 +163,12 @@ class Blogpost
     {
         return $this->file;
     }
+    public function setFile(string $file): self
+    {
+        $this->file = $file;
+
+        return $this;
+    }
 
     public function setImageFile(File $file = null): void
     {
@@ -158,7 +178,7 @@ class Blogpost
         // otherwise the event listeners won't be called and the file is lost
         if ($file) {
             // if 'updatedAt' is not defined in your entity, use another property
-            $this->createdAt = new \DateTime('now');
+            $this->updatedAt = new DateTime('now');
         }
     }
     public function getImageFile(): ?File

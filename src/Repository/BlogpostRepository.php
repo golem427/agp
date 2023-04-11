@@ -42,7 +42,7 @@ class BlogpostRepository extends ServiceEntityRepository
 //    /**
 //     * @return Blogposts[] Returns an array of Blogpost objects
 //     */
-   public function last(): array
+   public function last3(): array
    {
        return $this->createQueryBuilder('b')
         //    ->andWhere('b.exampleField = :val')

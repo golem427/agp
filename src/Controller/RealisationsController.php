@@ -67,18 +67,21 @@ class RealisationsController extends AbstractController
         ]);
     }
 
-        #[Route('/', name:'realisation_home')]
-        public function realisationHome(Realisation $realisation): Response
+        #[Route('/', name:'realisation_home', methods: ['GET'])]
+        public function realisationHome(
+            RealisationRepository $realisationRepository,
+            ): Response
         {
+            $realisations = $realisationRepository->last9([], ['id'=>'DESC']);
+
             return $this->render('/realisation.html.twig', [
-                'realisation' => $realisation
+                'realisations' => $realisations
             ]);
         }
 
         #[Route('/realisation/{id}/realisationslider', name: 'realisation_slider')]
         public function realisationslider(int $id, RealisationRepository $repository): Response
-        {   
-            $realisations = $repository->findAll();
+        {
             $realisation = $repository->findOneWithAttachments($id);
 
             if (!$realisation) {

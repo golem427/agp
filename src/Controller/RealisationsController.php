@@ -72,7 +72,7 @@ class RealisationsController extends AbstractController
             RealisationRepository $realisationRepository,
             ): Response
         {
-            $realisations = $realisationRepository->last9([], ['id'=>'DESC']);
+            $realisations = $realisationRepository->last3([], ['id'=>'DESC']);
 
             return $this->render('/realisation.html.twig', [
                 'realisations' => $realisations

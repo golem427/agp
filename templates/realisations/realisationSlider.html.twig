@@ -8,7 +8,6 @@
 			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
 		</div>
 		    <div class="carousel-inner">
-            
                 {% for attachment in realisation.attachments %}
                     <div class="carousel-item {% if loop.first %}active{% endif %}">
                        <img src="{{ vich_uploader_asset(attachment, 'imageFile') }}" class="d-block w-100" alt="{{ attachment.getImage() }}">

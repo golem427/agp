@@ -44,13 +44,13 @@ class RealisationRepository extends ServiceEntityRepository
     // /**
     // * @return Realisation[] Returns an array of Realisation objects
     // */
-    public function last9(): array
+    public function last3(): array
     {
         return $this->createQueryBuilder('l')
             //    ->andWhere('l.exampleField = :val')
             //    ->setParameter('val', $value)
             ->orderBy('l.id', 'DESC')
-            ->setMaxResults(9)
+            ->setMaxResults(3)
             ->getQuery()
             ->getResult()
         ;
@@ -70,25 +70,28 @@ class RealisationRepository extends ServiceEntityRepository
 }
 
 //    /**
-//     * @return Realisation[] Returns an array of Categorie objects
-//     */
-   public function findAllPortfolio(Categorie $categorie): array /*on rassemble la collection*/
-   {
-       return $this->createQueryBuilder('p')
-           ->where(':categorie MEMBER OF p.categorie')
-           /*est-ce que la variable :catégorie-de-ma-realisation-du-AllPortfolio
-           fait bien partie des réalisations de CETTE catégorie ? */
-           ->andWhere('p.portfolio = TRUE') /* oui elle en fait partie /non, elle n'en fait pas */
-           ->andWhere('i'. '$slug' . '=:val')
-           ->setParameter('val', $categorie->getRealisations())
-           ->getQuery()
-           ->getResult() /* le "findAllPortfolio" capture les réalisations suivant sa catégorie */
-       ;
-   }
+//  * @return Realisation[] Returns an array of Realisation objects
+//  */
+
+public function findAllPortfolio(Categorie $categorie): array
+{
+    return $this->createQueryBuilder('r')
+        ->select('r')
+        ->where(':categorie MEMBER OF r.categorie')
+        ->andWhere('r.portfolio = TRUE')
+        ->andWhere('r.slug = :val')
+        ->setParameter('categorie', $categorie)
+        ->setParameter('val', $categorie->getSlug())
+        ->getQuery()
+        ->getResult();
+}
+
+
+
     public function findbyId($id)
     {
         return $this->createQueryBuilder('i')
-            ->Where('r.realisation = :val')
+            ->Where('i.realisation = :val')
             ->andWhere('i'. '$id' . '=:val')
             ->setParameter('val', $id->getId()->getAttachments())
             ->getQuery()

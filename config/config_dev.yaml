@@ -1,0 +1,4 @@
+# app/config/config_dev.yml
+
+web_profiler:
+    intercept_redirects: false

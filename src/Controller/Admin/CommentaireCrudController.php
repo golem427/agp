@@ -10,9 +10,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 
 class CommentaireCrudController extends AbstractCrudController
 {
@@ -30,7 +30,7 @@ class CommentaireCrudController extends AbstractCrudController
              TextField::new('auteur'),
              EmailField::new('email'),
              DateTimeField::new('createdAt'),
-             TextEditorField::new('contenu'),
+             TextareaField::new('contenu'),
              BooleanField::new('isPublished')
         ];
     }

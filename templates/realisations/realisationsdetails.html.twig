@@ -8,7 +8,7 @@
 	
 		<div>
 			<a href="{{ path('realisations')}}">
-				<div data-jarallax data-speed=".8" class="bg-cover jarallax" style="background-image: url(" {{ vich_uploader_asset(realisation, 'imageFile') }} " );">
+				<div data-jarallax data-speed=".8" class="bg-cover jarallax" style="background-image: url(" {{ vich_uploader_asset(realisation, 'imageFile') | imagine_filter('welcome') }} " );">
 				</div>
 			</a>
 		</div>
@@ -38,7 +38,7 @@
 								class="col-auto">
 								<!-- Avatar -->
 								<div class="avatar avatar-lg">
-									<img src="/img/avatars/avatar-4.jpg" alt="..." class="avatar-img rounded-circle">
+									<img src="/img2/Jose-detoure.png" alt="jo" class="avatar-img rounded-circle">
 								</div>
 							</div>
 							<div

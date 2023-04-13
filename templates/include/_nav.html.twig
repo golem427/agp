@@ -1,94 +1,69 @@
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg">
-	<div
-		class="container">
+	<div class="container">
 
-		<!-- Brand -->
-		<a class="navbar-brand" href="{{ path('home') }}">
-			<img src="/img2/logo3.jpg" class="navbar-brand-img" alt="...">
-		</a>
-
+		<!-- Brand --> 
+		<a class="navbar-brand" href="{{ path('home') }}"><img src="/img2/logo3.jpg" class="navbar-brand-img" alt="..."></a>
 
 		<!-- Toggler -->
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
+		<span class="navbar-toggler-icon"></span>
 		</button>
 
-		<!-- Collapse -->
-		<div
-			class="collapse navbar-collapse" id="navbarCollapse">
+    <!-- Collapse -->
+    	<div class="collapse navbar-collapse" id="navbarCollapse">
 
 			<!-- Toggler -->
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 				<i class="fe fe-x"></i>
 			</button>
+					<!-- Navigation -->
+					{# //////////////////// REALISATIONS ////////////////////////////      #}
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" id="navbarLandings" href="{{ path('realisations') }}">
+								Réalisations
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarAccount">
+								<li class="dropdown-item dropend">
+									<a href="#">Dernières réalisations</a>
+								</li>
+								{% for categorie in categorieNavbar() %}
 
-			<!-- Navigation -->
+									<li class="dropdown-item dropend">
+										<a href="{{ path('portfolio_slug', {'slug': categorie.slug}) }}">
+											{{ categorie.slug }}
+										</a>
+									</li>
+								{% endfor %}
+							</ul>
+						</li>
 
-			{# //////////////////// REALISATIONS ////////////////////////////      #}
-			<ul class="navbar-nav ms-auto">
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="navbarLandings"
-					href="{{ path('realisations') }}">
-						Réalisations
-					</a>
+							{# ////////////////////////// ACTUALITES ///////////////////// #}
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" id="navbarAccount" href="{{ path('actualites') }}" aria-haspopup="true" aria-expanded="false">
+								Actualités
+							</a>
+						</li>
 
-					<ul class="dropdown-menu" aria-labelledby="navbarAccount">
-						<li class="dropdown-item dropend">
-							<a href="#">Dernières réalisations</a>
+						{# ////////////////////////// PORTFOLIO ///////////////////// #}
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" id="navbarAccount" href="{{ path('portfolio') }}" aria-haspopup="true" aria-expanded="false">
+								Portfolio
+							</a>
+						</li>
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" id="navbarDocumentation" href="{{ path('apropos') }}" aria-haspopup="true" aria-expanded="false">
+								A propos
+							</a>
 						</li>
 					</ul>
 
-				{# ////////////////////////// ACTUALITES ///////////////////// #}
-
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="navbarAccount" 
-					href="{{ path('actualites') }}" aria-haspopup="true" aria-expanded="false">
-						Actualités
+					<!-- Button -->
+					<a class="navbar-btn btn btn-sm btn-danger lift ms-auto" href="{{ path('contact') }}" target="_blank">
+						Me contacter
 					</a>
-					<ul class="dropdown-menu" aria-labelledby="navbarAccount">
-						<li class="dropdown-item dropend">
-							<a href="#">Dernières actus</a>
-						</li>
-					</ul>
-        </li>
-
-					{# ////////////////////////// PORTFOLIO ///////////////////// #}
-				
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="navbarAccount" 
-					href="{{ path('portfolio') }}" aria-haspopup="true" aria-expanded="false">
-						Portfolio
-					</a>
-					<ul class="dropdown-menu" aria-labelledby="navbarAccount">
-
-						{% for categorie in categorieNavbar() %}
-
-							<li class="dropdown-item dropend">
-								<a href="{{ path('portfolio_slug', {'slug': categorie.slug}) }}">
-								{{ categorie.slug }}
-								</a>
-							</li>
-						{% endfor %}
-					</ul>
-				</li>
-
-
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="navbarDocumentation" 
-					href="{{ path('apropos') }}" aria-haspopup="true" aria-expanded="false">
-						A propos
-					</a>
-				</li>
-			</ul>
-
-
-			<!-- Button -->
-			<a class="navbar-btn btn btn-sm btn-danger lift ms-auto" href="{{ path('contact') }}" target="_blank">
-				Me contacter
-			</a>
-
 		</div>
-
-	</div>
+</div>
 </nav>

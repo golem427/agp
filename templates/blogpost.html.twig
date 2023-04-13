@@ -45,7 +45,7 @@
 
 								<!-- Image -->
 								<img
-								src="{{ vich_uploader_asset(blogpost, 'imageFile') }}" alt="karin" class="card-img-top">
+								src="{{ vich_uploader_asset(blogpost, 'imageFile') | imagine_filter('miniature') }}" alt="karin" class="card-img-top">
 
 								<!-- Shape -->
 								<div class="position-relative">
@@ -84,7 +84,7 @@
 
 								<!-- Avatar -->
 								<div class="avatar avatar-sm me-2">
-									<img src="img/avatars/avatar-5.jpg" alt="..." class="avatar-img rounded-circle">
+									<img src="/img2/Jose-detoure.png" alt="..." class="avatar-img rounded-circle">
 								</div>
 
 								{# <!-- Author -->

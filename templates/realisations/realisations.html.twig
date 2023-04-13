@@ -19,7 +19,7 @@
               <a class="card-img-top" 
                     href="{{ path('real_details', {'slug': realisation.slug}) }}">
                 <!-- Image -->
-                <img src="{{ vich_uploader_asset(realisation, 'imageFile') }}" alt="alex" 
+                <img src="{{ vich_uploader_asset(realisation, 'imageFile') | imagine_filter('miniature') }}" alt="alex" 
                 class="card-img-top">
                 <!-- Shape -->
                   <div class="position-relative">
@@ -47,7 +47,7 @@
                 <hr class="card-meta-divider">
                 <!-- Avatar -->
                 <div class="avatar avatar-sm me-2">
-                  <img src="/img/avatars/avatar-1.jpg" alt="avt" class="avatar-img rounded-circle">
+                  <img src="/img2/Jose-detoure.png" alt="avt" class="avatar-img rounded-circle">
                 </div>
                 <!-- Author -->
                 <h6 class="text-uppercase text-muted me-2 mb-0">

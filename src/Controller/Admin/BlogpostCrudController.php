@@ -11,11 +11,10 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 
 class BlogpostCrudController extends AbstractCrudController
-
 {
     public static function getEntityFqcn(): string
     {
@@ -24,14 +23,14 @@ class BlogpostCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-            return 
+        return
         [
-            TextField::new('titre'),
-            TextEditorField::new('contenu'),
-            DateField::new('createdAt')->hideOnForm(),
-            TextField::new('imageFile')->setFormType(VichImageType::class)->onlyWhenCreating(),
-            ImageField::new('file')->setBasePath('uploads/blogposts')->onlyOnIndex(),
-            SlugField::new('slug')->setTargetFieldName('titre')->hideOnIndex(),
+        TextField::new('titre'),
+        TextareaField::new('contenu'),
+        DateField::new('createdAt')->hideOnForm(),
+        TextField::new('imageFile')->setFormType(VichImageType::class)->onlyWhenCreating(),
+        ImageField::new('file')->setBasePath('uploads/blogposts')->onlyOnIndex(),
+        SlugField::new('slug')->setTargetFieldName('titre')->hideOnIndex(),
         ];
     }
     public function configureActions(Actions $actions): Actions
@@ -40,8 +39,8 @@ class BlogpostCrudController extends AbstractCrudController
             ->add(Crud::PAGE_INDEX, Action::DETAIL);
     }
 
-    public function configureCrud(Crud $crud):Crud
-    {       
+    public function configureCrud(Crud $crud): Crud
+    {
         return $crud->setDefaultSort(['createdAt'=>'DESC']);
     }
 }

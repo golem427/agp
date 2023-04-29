@@ -50,7 +50,7 @@ class RealisationsController extends AbstractController
 
             $this->addFlash(
                 type: 'success',
-                message: 'Votre commentaire a bien été envoyé, il sera visible après modération.'
+                message: 'Votre commentaire a bien été envoyé, il sera visible après pondération.'
             );
 
             return $this->redirectToRoute('real_details', [

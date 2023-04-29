@@ -21,6 +21,9 @@ class Commentaire
     #[ORM\Column(length: 255)]
     private ?string $auteur = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
+
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank]
     private ?string $contenu;
@@ -58,6 +61,18 @@ class Commentaire
        public function setAuteur(string $auteur): self
        {
            $this->auteur = $auteur;
+
+           return $this;
+       }
+       
+       public function getEmail(): ?string
+       {
+           return $this->email;
+       }
+
+       public function setEmail(string $email): self
+       {
+           $this->email = $email;
 
            return $this;
        }

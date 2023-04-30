@@ -37,9 +37,6 @@ class Commentaire
     #[ORM\Column]
     private ?bool $isPublished = false;
 
-    #[ORM\Column(length: 255)]
-    private ?string $email = null;
-
 
 
     public function __construct()
@@ -128,17 +125,5 @@ class Commentaire
        public function __toString()
        {
            return $this->auteur;
-       }
-
-       public function getEmail(): ?string
-       {
-           return $this->email;
-       }
-
-       public function setEmail(string $email): self
-       {
-           $this->email = $email;
-
-           return $this;
        }
 }

@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<div class="container">
+		<a class="navbar-brand" href="{{ path('home') }}"><img src="/img2/logo3.jpg" class="navbar-brand-img" alt="logo-AGP"></a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+        <div></div>
+
+		<div class="collapse navbar-collapse" id="navbarColor03">
+        	<!-- Toggler -->
+            <a href="{{ path('home') }}">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#container" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+				<i class="fa fa-x"></i>
+			</button></a>
+			<ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Réalisations</a>
+					    <div class="dropdown-menu">
+						{% for categorie in categorieNavbar() %}
+							<a class="dropdown-item dropend">
+								<a href="{{ path('portfolio_slug', {'slug': categorie.slug}) }}">
+									{{ categorie.slug }}
+								</a>
+							{% endfor %}
+						</div>
+					</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('actualites') }}">Actualités</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('portfolio') }}">Portfolio</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('apropos') }}">A propos</a>
+				</li>
+			</ul>
+			<form class="d-flex">
+				<!-- Button -->
+			<a class="navbar-btn btn btn-sm btn-danger lift ms-auto" href="{{ path('contact') }}" target="_blank">
+				Me contacter
+			</a>
+			</form>
+		</div>
+	</div>
+</nav>

@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Commentaire;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -20,7 +19,6 @@ class CommentaireType extends AbstractType
         $builder
             ->add('auteur', TextType::class, ['label' => 'Pseudo'])
             ->add('contenu', TextareaType::class, [ 'label' => 'Votre message', 'constraints' => new NotBlank()])
-            ->add('email', EmailType::class, [ 'label' => 'email'])
             ->add('soumettre', SubmitType::class, ['label' => 'Poster'])
             ->add('blogpost', HiddenType::class)
             ->add('realisation', HiddenType::class)

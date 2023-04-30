@@ -5,6 +5,8 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
+        <div></div>
+
 		<div class="collapse navbar-collapse" id="navbarColor03">
         	<!-- Toggler -->
             <a href="{{ path('home') }}">
@@ -14,7 +16,7 @@
 
 			<ul class="navbar-nav me-auto mx-auto">
                 <li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Réalisations</a>
+					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="{{ path('realisations') }}" role="button" aria-haspopup="true" aria-expanded="false">Réalisations</a>
 					    <div class="dropdown-menu">
 						    {% for categorie in categorieNavbar() %}
 							<a class="dropdown-item dropend"

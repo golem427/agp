@@ -1,14 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<section>
-    <div class="modal-fullscreen-xxl-down">
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
+<section class="pt-7 pt-md-10">
+    <div class="container">
+                <div
+					class="col-12 col-md-auto">
+					<!-- Button -->
+					<a href="{{ path('realisations') }}" class="btn btn-sm btn-warning btn-outline-warning-300 d-none d-md-inline">
+						Retour
+					</a>
+				</div>
+
+        <div class="modal-fullscreen-xxl-down">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
                 <div class="carousel-inner">
                     {% for attachment in realisation.attachments %}
                         <div class="carousel-item {% if loop.first %}active{% endif %}">
@@ -25,6 +34,7 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
+            </div>
         </div>
     </div>
 </section>

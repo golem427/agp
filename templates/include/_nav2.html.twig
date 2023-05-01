@@ -16,7 +16,7 @@
 
 			<ul class="navbar-nav me-auto mx-auto">
                 <li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="{{ path('realisations') }}" role="button" aria-haspopup="true" aria-expanded="false">Réalisations</a>
+					<a class="nav-link dropdown-toggle" href="{{ path('realisations') }}" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Réalisations</a>
 					    <div class="dropdown-menu">
 						    {% for categorie in categorieNavbar() %}
 							<a class="dropdown-item dropend"
@@ -42,6 +42,12 @@
 				Me contacter
 			</a>
 			</form>
+			<ul class="navbar-nav me-auto mx-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_login') }}">
+					<i class="fa-solid fa-right-to-bracket"></i></a>
+				</li>
+			</ul>
 		</div>
 	</div>
 </nav>

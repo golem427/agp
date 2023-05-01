@@ -4,6 +4,6 @@
 }
 
 .fa-right-to-bracket{
-    color: forestgreen;
-    font-size: medium;
+    color: forestgreen !important;
+    font-size: medium !important;
 }

@@ -16,8 +16,10 @@
 
 			<ul class="navbar-nav me-auto mx-auto">
                 <li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="{{ path('realisations') }}" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Réalisations</a>
+					<a class="nav-link dropdown-toggle" href="{{ path('realisations') }}" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Réalisations</a>
 					    <div class="dropdown-menu">
+							<a href="{{ path('realisations') }}">Voir tout</a>
+							<hr>
 						    {% for categorie in categorieNavbar() %}
 							<a class="dropdown-item dropend"
 								href="{{ path('portfolio_slug', {'slug': categorie.slug}) }}">
@@ -25,7 +27,7 @@
 								</a>
 							{% endfor %}
 						</div>
-					</li>
+				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('actualites') }}">Actualités</a>
 				</li>

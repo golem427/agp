@@ -4,6 +4,31 @@
 
 	{% block actualites %}
 
+	<!-- BREADCRUMB -->
+<section>
+    <nav class="bg-gray-200">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb breadcrumb-scroll">
+              <li class="breadcrumb-item">
+                <a href= "{{ path('home')}}" class="text-gray-700">
+                  Accueil
+                </a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+              <a href= "{{ path('actualites')}}" class="text-gray-700">
+                Actualités</a>
+              </li>
+            </ol>
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </nav>
+</section>
+
 		<!-- ARTICLES -->
 
 <section class="pt-7 pt-md-10 pb-7 pb-md-10">

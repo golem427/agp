@@ -1,6 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<!-- BREADCRUMB -->
+<section>
+    <nav class="bg-gray-200">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb breadcrumb-scroll">
+              <li class="breadcrumb-item">
+                <a href= "{{ path('home')}}" class="text-gray-700">
+                  Accueil
+                </a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+              <a href="{{ path('realisations') }}" class="text-gray-700">
+                Réalisations par catégorie</a>
+              </li>
+            </ol>
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </nav>
+</section>
 	
 	<section data-jarallax data-speed="0.8" class="pt-7 pt-md-10 pb-12 pb-md-15">
 			<div class="row justify-content-center">

@@ -1,6 +1,28 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<!-- BREADCRUMB -->
+    <nav class="bg-gray-200">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb breadcrumb-scroll">
+              <li class="breadcrumb-item">
+                <a href= "{{ path('home')}}" class="text-gray-700">
+                  Accueil
+                </a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+              <a href= "{{ path('contact')}}" class="text-gray-700">
+                Contact</a>
+              </li>
+            </ol>
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </nav>
 
 	<!-- CONTENT -->
 	<section class="pt-7 pt-md-10 pb-7 pb-md-10">
@@ -30,7 +52,7 @@
 					<hr>
 					<div class="hr-lg my-6 my-md-8 mx-auto bg-gray-300">
 					<!-- Form -->
-												{% for message in app.flashes('success') %}
+							{% for message in app.flashes('success') %}
 								<div class="alert alert-success mt-4">
 									{{ message }}
 								</div>

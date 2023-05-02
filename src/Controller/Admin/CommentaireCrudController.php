@@ -28,7 +28,6 @@ class CommentaireCrudController extends AbstractCrudController
              AssociationField::new('blogpost'),
              AssociationField::new('realisation'),
              TextField::new('auteur'),
-             EmailField::new('email'),
              DateTimeField::new('createdAt'),
              TextareaField::new('contenu'),
              BooleanField::new('isPublished')

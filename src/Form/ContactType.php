@@ -29,8 +29,6 @@ class ContactType extends AbstractType
                     new Length([
                         'min' => 2,
                         'max' => 100,
-                        'minMessage' => "Votre prénom doit comporter {{ limit }} caractères minimum.",
-                        'maxMessage' => "Votre prénom doit comporter {{ limit }} caractères maximum."
                     ]),
                 ],
             ])
@@ -47,8 +45,6 @@ class ContactType extends AbstractType
                     new Length([
                         'min' => 4,
                         'max' => 180,
-                        'minMessage' => "Votre email doit comporter {{ limit }} caractères minimum.",
-                        'maxMessage' => "Votre email doit comporter {{ limit }} caractères maximum."
                     ]),
                 ],
                 // 'help' => "* min caractères : 4,
@@ -99,7 +95,7 @@ class ContactType extends AbstractType
             ->add(
                 'createdAt',
                 DateTimeType::class,
-                [   'label' => 'Date (jj/mm/AAAA)',
+                [   'label' => 'Le:',
                     'widget' => 'single_text',
                     'html5' => false,
                     'format' => 'dd/MM/yyyy',

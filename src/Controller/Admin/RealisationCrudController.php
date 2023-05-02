@@ -40,7 +40,7 @@ class RealisationCrudController extends AbstractCrudController
                 CollectionField::new('attachments')->setTemplatePath('images/images.html.twig')->onlyOnDetail(),
                 DateField::new('createdAt')->hideOnForm(),
                 BooleanField::new('portfolio'),
-                AssociationField::new('categorie'),
+                AssociationField::new('categorie')
             ];
     }
 

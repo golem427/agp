@@ -18,6 +18,10 @@
               <a href= "{{ path('realisations')}}" class="text-gray-700">
                 Réalisations</a>
               </li>
+              <li class="breadcrumb-item active" aria-current="page">
+              <a href="{{ path('real_details', {'slug': realisation.slug}) }}" class="text-gray-700">
+                détails-réalisation</a>
+              </li>
             </ol>
           </div>
         </div> <!-- / .row -->

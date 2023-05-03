@@ -19,6 +19,10 @@
               <a href= "{{ path('actualites')}}" class="text-gray-700">
                 Actualités</a>
               </li>
+			   <li class="breadcrumb-item active" aria-current="page">
+              <a href="{{ path('details_actu', {'slug': blogpost.slug}) }}" class="text-gray-700">
+                Détail-actualité</a>
+              </li>
             </ol>
           </div>
         </div> <!-- / .row -->

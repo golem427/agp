@@ -4,6 +4,10 @@
 }
 
 .fa-right-to-bracket{
-    color: forestgreen !important;
+    color: rgb(91, 194, 91) !important;
     font-size: medium !important;
+}
+
+a.card{
+    color:#e7effe !important;
 }

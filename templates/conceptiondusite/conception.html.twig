@@ -20,6 +20,10 @@
 							<a href="{{ path('realisations')}}" class="text-gray-700">
 								Réalisations</a>
 						</li>
+						<li class="breadcrumb-item active" aria-current="page">
+							<a href="{{ path('conception')}}" class="text-gray-700">
+								Conception du site</a>
+						</li>
 					</ol>
 				</div>
 			</div>
@@ -29,7 +33,7 @@
 	</nav>
 
 	<!-- ARTICLES -->
-	<section class="pt-8 pt-md-11">
+<section class="pt-8 pt-md-11">
 		<div class="container">
 			<div class="row">
 				<div
@@ -42,7 +46,9 @@
 
 					<!--  -->
 					<p class="mb-5 text-muted">
-						Abwebdesign a développé ce site internet					</p>
+						Abwebdesign a développé ce site internet<br>
+						57 rue Lecourbe 75015 Paris | 0652492506
+					</p>
 
 				</div>
 			</div>
@@ -60,17 +66,17 @@
 
 								<!-- Badge -->
                                 <a
-									class="card-meta" href="https://www.abwebdesign.fr">
+									class="card-meta lift" href="https://www.abwebdesign.fr"  target="_blank">
 								<span class="badge rounded-pill bg-gray-600 badge-float badge-float-outside">
 									<span class="h6 text-uppercase">Aller</span>
 								</span>
                                 </a>
 							</div>
-							<a	class="col-12 col-md-6 order-md-2 bg-cover card-img-end" style="background-image: url(assets/img2/ablogo.jpg);" href="#">
+							<a	class="col-12 col-md-6 order-md-2 bg-cover card-img-end lift" style="background-image: url(/img2/ablogo.jpg);" href="https://www.abwebdesign.fr"  target="_blank">
 
 								<!-- Image (placeholder) -->
 								<img
-								src="assets/img2/ablogo.jpg" alt="ablas" class="img-fluid d-md-none invisible">
+								src="/img2/ablogo.jpg" alt="ablas" class="img-fluid d-md-none invisible lift">
 
 								<!-- Shape -->
 								<div class="shape shape-start shape-fluid-y text-white d-none d-md-block">
@@ -80,7 +86,7 @@
 							<div class="col-12 col-md-6 order-md-1">
 
 								<!-- Body -->
-								<a	class="card-body" href="#!">
+								<a	class="card-body" href="https://www.abwebdesign.fr" target="_blank">
 									<!-- Heading -->
 									<h3>
 										Abwebdesign.fr
@@ -91,14 +97,14 @@
         						</a>
 
 								<!-- Meta -->
-								<a	class="card-meta" href="https://www.abwebdesign.fr">
+								<a	class="card-meta" href="https://www.abwebdesign.fr" target="_blank">
 
 									<!-- Divider -->
 									<hr class="card-meta-divider">
 
 									<!-- Avatar -->
 									<div class="avatar avatar-sm me-2">
-										<img src="assets/img2/ablas.jpg" alt="ablas" class="avatar-img rounded-circle">
+										<img src="/img2/ablas.jpg" alt="ablas" class="avatar-img rounded-circle">
 									</div>
 
 									<!-- Author -->
@@ -112,9 +118,9 @@
                                 </a>
 							</div>
 						</div>
-						<!-- / .row -->
 					</div>
-                </div>		
+       			</div>
+			</div>	
 		</div>
-	</section>
+</section>
 {% endblock %}

@@ -31,4 +31,5 @@ services:
     # app.filter.my_custom_filter:
     #     class: App\Service\MonFiltreLiip
     #     tags:
-    #         - { name: "liip_imagine.filter.loader", loader: mon_filtre_liip }
+    #         name: [liip_imagine.filter.loader] 
+    #         loader: [mon_filtre_liip ]

@@ -5,6 +5,7 @@
 
 .bg-cover {
   background: no-repeat center center / cover;
+  background-color: #F8F9FB;
 }
 
 
@@ -14,6 +15,7 @@
 
   @include media-breakpoint-down(lg) {
     background-image: none !important;
+    background-color: #F8F9FB;
   }
 
   @include media-breakpoint-up(lg) {
@@ -37,7 +39,7 @@
 .bg-gradient-multicolor {
   background-image: conic-gradient(from 52deg at 50% 50%,
       #8024A0 0deg,
-      #31EEC1 33deg,
+      #F1F4F8 33deg,
       #6924A0 222deg,
       #D6723B 264deg,
       #D5498C 295deg,
@@ -48,5 +50,5 @@
 // Patterns
 
 .bg-pattern-2 {
-  background-image: linear-gradient(to bottom, transparent 0%, var(--#{$prefix}black) 100%), url('../../../../img/patterns/pattern-2.png');
+  background-image: #F1F4F8 !important
 }

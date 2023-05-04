@@ -39,23 +39,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank()]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 255)]
-    #[Assert\NotBlank()]
-    private ?string $prenom = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $telephone = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $aPropos = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $facebook = null;
-
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Realisation::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Realisation::class, cascade: ["all", "persist", "remove"])]
     private Collection $realisations;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Blogpost::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Blogpost::class,  cascade: ["all", "persist", "remove"])]
     private Collection $blogposts;
 
     public function __construct()
@@ -146,54 +133,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(string $prenom): self
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getTelephone(): ?string
-    {
-        return $this->telephone;
-    }
-
-    public function setTelephone(string $telephone): self
-    {
-        $this->telephone = $telephone;
-
-        return $this;
-    }
-
-    public function getAPropos(): ?string
-    {
-        return $this->aPropos;
-    }
-
-    public function setAPropos(?string $aPropos): self
-    {
-        $this->aPropos = $aPropos;
-
-        return $this;
-    }
-
-    public function getFacebook(): ?string
-    {
-        return $this->facebook;
-    }
-
-    public function setFacebook(?string $facebook): self
-    {
-        $this->facebook = $facebook;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Realisation>
      */
@@ -208,7 +147,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->realisations->add($realisation);
             $realisation->setUser($this);
         }
-
         return $this;
     }
 

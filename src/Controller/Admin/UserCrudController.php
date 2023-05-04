@@ -9,7 +9,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -18,15 +17,13 @@ class UserCrudController extends AbstractCrudController
         return User::class;
     }
 
-
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('prenom', 'Prénom'),
-            TextField::new('nom'),
-            TextField::new('telephone', 'Téléphone'),
+            IdField::new('id'),
             TextField::new('email'),
-            TextareaField::new('aPropos', 'A propos'),
+            TextField::new('nom'),
+            TextField::new('password'),
         ];
     }
     public function configureActions(Actions $actions): Actions
@@ -37,7 +34,7 @@ class UserCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-                    ->setPageTitle('index', 'paramètres')
-                    ->setPageTitle('edit', 'Editer les paramètres');
+                    ->setPageTitle('index', 'Administrateur')
+                    ->setPageTitle('edit', 'Editer les utilisateurs');
     }
 }

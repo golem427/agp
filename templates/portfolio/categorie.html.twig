@@ -16,7 +16,7 @@
                 </a>
               </li>
               <li class="breadcrumb-item active" aria-current="page">
-              <a href="{{ path('details_real') }}" class="text-gray-700">
+              <a href="{{ path('portfolio') }}" class="text-gray-700">
                 Réalisations par catégorie</a>
               </li>
             </ol>
@@ -50,9 +50,16 @@
 				{#  CONTENT  #}
 				<section class="py-8 py-md-11 mt-n10 mt-md-n14">
 					<div class="container">
+							
 						<div class="row" id="portfolio" data-isotope='{"layoutMode": "masonry"}'>
 							{% for realisation in categorie.realisations  %}
 								<div class="col-12 col-md-4">
+									<div class="col-12 col-md-auto">
+								<!-- Button -->
+								<a href="{{ path('real_details', {'slug': realisation.slug}) }}" class="btn btn-sm btn-warning btn-outline-warning-300 d-none d-md-inline">
+									Voir tout 
+								</a>
+								</div>
 									<a class="card shadow-light-lg mb-7" 
 									href="#!"
 									data-bigpicture='{"imgSrc": "{{ vich_uploader_asset(realisation, 'imageFile')| imagine_filter('full') }}"}'>

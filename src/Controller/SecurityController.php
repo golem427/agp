@@ -51,7 +51,7 @@ class SecurityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             
-            $user = $entityManager->getRepository(User::class)->findOneBy(['id' => $this->getUser()]);
+            $user = $entityManager->getRepository(User::class)->findOneBy(['email' => $this->getUser()]);
 
             $user->setUpdatedAt(new DateTime());
 
@@ -66,7 +66,7 @@ class SecurityController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'Votre mot de passe a été bien changé');
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('admin');
         }
 
         return $this->render('security/changepw.html.twig', [

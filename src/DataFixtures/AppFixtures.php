@@ -40,12 +40,8 @@ class AppFixtures extends Fixture
         // On crée un user
         $user = new User();
 
-        $user->setEmail('user@test.fr')
-            ->setNom($faker->lastName())
-            ->setPrenom($faker->firstName())
-            ->setTelephone($faker->phoneNumber())
-            ->setApropos($faker->text())
-            ->setFacebook('facebook')
+        $user->setEmail('jose@user.fr')
+            ->setNom($faker->firstName("José Aguado"))
             ->setRoles(['ROLE_ADMIN']);
 
         $password = $this->userPasswordHasherInterface->hashPassword($user, 'admin');
@@ -54,74 +50,75 @@ class AppFixtures extends Fixture
         $manager->persist($user);
         $manager->flush();
 
-        // On crée 10 blogposts
+            // On crée 10 blogposts
 
-        for ($i = 0; $i < 10; $i++) 
-        {
-            $blogpost = new Blogpost();
+        //     for ($i = 0; $i < 10; $i++) 
+        //     {
+        //         $blogpost = new Blogpost();
 
-            $blogpost->setTitre($faker->word())
-            ->setCreatedAt(new DateTimeImmutable())
-            ->setContenu($faker->text(350))
-                ->setSlug($faker->slug(3))
-                ->setUser($user)
-                ->setFile('karin.jpg');
+        //         $blogpost->setTitre($faker->word())
+        //         ->setCreatedAt(new DateTimeImmutable())
+        //         ->setContenu($faker->text(350))
+        //             ->setSlug($faker->slug(3))
+        //             ->setUser($user)
+        //             ->setFile('karin.jpg');
 
-            $manager->persist($blogpost);
-        }
+        //         $manager->persist($blogpost);
+        //     }
 
-     
-
-
-        // On crée 9 catégories
-
-        for ($j=0; $j<9; $j++) 
-        {
-            $categorie = new Categorie();
-
-            $categorie->setNom($faker->word())
-                ->setDescription($faker->words(10, true))
-                ->setSlug($faker->slug());
-
-            $manager->persist($categorie);
-            $manager->flush();
+        
 
 
-            // A chaque catégorie créée, on associe 3 réalisations
+        //     // On crée 9 catégories
 
-            for ($k=0; $k<3; $k++) 
-            {
-                $realisation = new Realisation();
+        //     for ($j=0; $j<9; $j++) 
+        //     {
+        //         $categorie = new Categorie();
 
-                $realisation->setNom($faker->words(3, true))
-                    ->setDescription($faker->text())
-                    ->setPortfolio($faker->randomElement([true, false]))
-                    ->setSlug($faker->slug(3))
-                    ->setThumbnail('alex.jpg')
-                    ->setCreatedAt(new DateTimeImmutable())
-                    ->setUser($user);
+        //         $categorie->setNom($faker->word())
+        //             ->setDescription($faker->words(10, true))
+        //             ->setSlug($faker->slug());
 
-                $manager->persist($realisation);
-                $manager->flush();
-            }
-            
-        }
+        //         $manager->persist($categorie);
+        //         $manager->flush();
 
 
-        // On crée 5 demandes de contacts
+        //         // A chaque catégorie créée, on associe 3 réalisations
 
-        for ($m=0; $m<5; $m++) 
-        {
-            $contact = new Contact();
+        //         for ($k=0; $k<3; $k++) 
+        //         {
+        //             $realisation = new Realisation();
 
-            $contact->setNom($faker->word())
-                ->setEmail($faker->email())
-                ->setSubject($faker->word())
-                ->setMessage($faker->words(10, true))
-                ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'));
+        //             $realisation->setNom($faker->words(3, true))
+        //                 ->setDescription($faker->text())
+        //                 ->setPortfolio($faker->randomElement([true, false]))
+        //                 ->setSlug($faker->slug(3))
+        //                 ->setThumbnail('alex.jpg')
+        //                 ->setCreatedAt(new DateTimeImmutable())
+        //                 ->setUser($user);
 
-            $manager->persist($contact);
-        }
-        $manager->flush();
+        //             $manager->persist($realisation);
+        //             $manager->flush();
+        //         }
+                
+        //     }
+
+
+        //     // On crée 5 demandes de contacts
+
+        //     for ($m=0; $m<5; $m++) 
+        //     {
+        //         $contact = new Contact();
+
+        //         $contact->setNom($faker->word())
+        //             ->setEmail($faker->email())
+        //             ->setSubject($faker->word())
+        //             ->setMessage($faker->words(10, true))
+        //             ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'));
+
+        //         $manager->persist($contact);
+        //     }
+        //     $manager->flush();
+        // }
     }
 }

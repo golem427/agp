@@ -28,7 +28,7 @@ class BlogpostCrudController extends AbstractCrudController
         TextField::new('titre'),
         TextareaField::new('contenu'),
         DateField::new('createdAt')->hideOnForm(),
-        TextField::new('imageFile')->setFormType(VichImageType::class)->onlyWhenCreating(),
+        TextField::new('imageFile')->setFormType(VichImageType::class),
         ImageField::new('file')->setBasePath('uploads/blogposts')->onlyOnIndex(),
         SlugField::new('slug')->setTargetFieldName('titre')->hideOnIndex(),
         ];

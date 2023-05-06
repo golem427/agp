@@ -9,16 +9,24 @@ use Symfony\Component\Mime\Address;
 use App\Repository\ContactRepository;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+// the "name" and "description" arguments of AsCommand replace the
+// static $defaultName and $defaultDescription properties
+#[AsCommand(
+    name: 'app:send-contact',
+    description: 'send a new message from client',
+    hidden: false,
+    aliases: ['app:send-contact']
+)]
 class SendContactCommand extends Command
 {
     private $contactRepository;
     private $mailer;
     private $ContactService;
     private $UserRepository;
-    protected static $defaultName = 'app:send-contact';
 
     public function __construct(
         ContactRepository $contactRepository,
@@ -32,8 +40,9 @@ class SendContactCommand extends Command
         $this->UserRepository = $userRepository;
         parent::__construct();
     }
-
-    protected function execute(InputInterface $input, OutputInterface $output)
+    
+  
+    protected function execute(InputInterface $input, OutputInterface $output):int
     {   
         $nom = $this->UserRepository->getNom();
         $email = $this->UserRepository->getEmail();

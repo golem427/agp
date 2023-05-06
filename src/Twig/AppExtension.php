@@ -15,19 +15,16 @@ class AppExtension extends AbstractExtension
         $this->categorieRepository = $categorieRepository;
     }
 
-    public function getFunctions()
-
+    public function getFunctions():array
     { 
         return[
             new TwigFunction('categorieNavbar', [$this, 'categorie']),
         ];
     }
-    public function categorie(): array
 
+    public function categorie():array
     { 
         return $this->categorieRepository->findAll();
     }
 }
-
-
 ?>

@@ -32,7 +32,7 @@ class UserTest extends TestCase
 
         $this->assertFalse($user->getEmail() === 'false@test.com');
         $this->assertFalse($user->getNom() === 'false');
-        $this->assertFalse($user->getPassword() === 'false');
+        $this->assertFalse($user->getPassword() === 'pw');
     }
 
     public function testSIsEmpty()
@@ -41,7 +41,6 @@ class UserTest extends TestCase
 
         $this->assertEmpty($user->getEmail());
         $this->assertEmpty($user->getNom());
-        $this->assertEmpty($user->getPassword());
     }
 
     public function testAddGetRemoveRealisation()

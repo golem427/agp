@@ -22,8 +22,7 @@ class Commentaire
     private ?string $auteur = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Assert\NotBlank]
-    private ?string $contenu;
+    private ?string $contenu = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private ?DateTimeImmutable $createdAt;

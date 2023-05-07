@@ -11,11 +11,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SitemapController extends AbstractController
 {
     #[Route('/sitemap', name: 'sitemap', defaults: ['_format' => 'xml'])]
-    public function sitemap(Request $request, UriSigner $uriSigner): Response
+    public function smap(Request $request, UriSigner $uriSigner): Response
     {   
-        $uriSigner->checkRequest($request);
-        return $this->render('sitemap/sitemap.xml.twig', [
+        if (!$uriSigner->checkRequest($request)) {
+                    return $this->render('sitemap/sitemap.xml.twig', [
             'controller_name' => 'SitemapController',
         ]);
+    }
     }
 }

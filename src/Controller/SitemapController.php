@@ -23,10 +23,6 @@ class SitemapController extends AbstractController
         Request $request,
         BlogpostRepository $blogpostRepository,
         RealisationRepository $realisationRepository,
-        UserRepository $userRepository,
-        CommentaireRepository $commentaireRepository,
-        CategorieRepository $categorieRepository,
-        ContactRepository $contactRepository
         )
     {
         $hostname = $request->getSchemeAndHttpHost();
@@ -56,6 +52,21 @@ class SitemapController extends AbstractController
                 ]),
                 'image' => $imagefiles,
                 'lastmod'=> $blogpost->getUpdatedAt()->format('Y-m-d')
+            ];
+        }
+////////////////////// On ajoute les URLS DYNAMIQUES ////////////////////////////////
+        foreach($realisationRepository->findAll() as $realisation){
+            $imagefiles = [
+                'loc' =>'uploads/realisations/'. $realisation->getImageFile(),
+                'title' => $realisation->getNom()
+            ];
+
+            $urls[] = [
+                'loc'=> $this->generateUrl('details_actu',[
+                    'slug'=> $realisation->getSlug()
+                ]),
+                'image' => $imagefiles,
+                'lastmod'=> $realisation->getUpdatedAt()->format('Y-m-d')
             ];
         }
 

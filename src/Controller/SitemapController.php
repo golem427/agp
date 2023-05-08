@@ -2,8 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Blogpost;
+use App\Entity\Commentaire;
 use App\Repository\BlogpostRepository;
+use App\Repository\CategorieRepository;
+use App\Repository\CommentaireRepository;
+use App\Repository\ContactRepository;
 use App\Repository\RealisationRepository;
+use App\Repository\UserRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -11,54 +18,58 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SitemapController extends AbstractController
 {
-    #[Route('/sitemap.xml', name: 'sitemap')]
-    public function indexBlogpost(BlogpostRepository $blogpostRepository)
+    #[Route('/sitemap', name: 'sitemap', defaults:['_format'=> 'xml'])]
+    public function index(
+        Request $request,
+        BlogpostRepository $blogpostRepository,
+        RealisationRepository $realisationRepository,
+        UserRepository $userRepository,
+        CommentaireRepository $commentaireRepository,
+        CategorieRepository $categorieRepository,
+        ContactRepository $contactRepository
+        )
     {
-        // find published blog posts from db
-        $blogposts = $blogpostRepository->findAll();
-        $urls = [];
-        foreach ($blogposts as $blogpost) {
+        $hostname = $request->getSchemeAndHttpHost();
+        $urls = []; /// initialisation du tableau vide des urls /////
+
+///////////////////// on joute les URL STATIQUES //////////////////////////////////
+        $urls[]= ['loc' => $this->generateUrl('home')];
+        $urls[]= ['loc' => $this->generateUrl('mentions_legales')];
+        $urls[]= ['loc' => $this->generateUrl('portfolio')];
+        $urls[]= ['loc' => $this->generateUrl('app_login')];
+        $urls[]= ['loc' => $this->generateUrl('conception')];
+        $urls[]= ['loc' => $this->generateUrl('apropos')];
+        $urls[]= ['loc' => $this->generateUrl('realisations')];
+        $urls[]= ['loc' => $this->generateUrl('actualites')];
+        $urls[]= ['loc' => $this->generateUrl('map')];
+   
+////////////////////// On ajoute les URLS DYNAMIQUES ////////////////////////////////
+        foreach($blogpostRepository->findAll() as $blogpost){
+            $imagefiles = [
+                'loc' =>'uploads/blogposts/'. $blogpost->getImageFile(),
+                'title' => $blogpost->getTitre()
+            ];
+
             $urls[] = [
-                'loc' => $this->generateUrl(
-                    'blogpost',
-                    ['slug' => $blogpost->getSlug()],
-                    UrlGeneratorInterface::ABSOLUTE_URL
-                ),
-                'lastmod' => $blogpost->getUpdatedAt()->format('Y-m-d'),
-                'changefreq' => 'weekly',
-                'priority' => '0.5',
+                'loc'=> $this->generateUrl('details_actu',[
+                    'slug'=> $blogpost->getSlug()
+                ]),
+                'image' => $imagefiles,
+                'lastmod'=> $blogpost->getUpdatedAt()->format('Y-m-d')
             ];
         }
-        $response = new Response(
-            $this->renderView('./sitemap/sitemap.html.twig', ['urls' => $urls]),
+
+////////// FABRICATION DE LA REPONSE /////////////////////////////////////
+            $response = new Response(
+            $this->renderView('sitemap/index.html.twig', [
+                        'urls'=>$urls,
+                        'hostname'=> $hostname
+            ]),
             200
         );
-        $response->headers->set('Content-Type', 'text/xml');
-        return $response;
-    }
-    
-    public function indexRealisation(RealisationRepository $realisationRepository)
-    {
-        // find published blog posts from db
-        $realisations = $realisationRepository->findAll();
-        $urls = [];
-        foreach ($realisations as $realisation) {
-            $urls[] = [
-                'loc' => $this->generateUrl(
-                    'blogpost',
-                    ['slug' => $realisation->getSlug()],
-                    UrlGeneratorInterface::ABSOLUTE_URL
-                ),
-                'lastmod' => $realisation->getUpdatedAt()->format('Y-m-d'),
-                'changefreq' => 'weekly',
-                'priority' => '0.5',
-            ];
-        }
-        $response = new Response(
-            $this->renderView('./sitemap/sitemap.html.twig', ['urls' => $urls]),
-            200
-        );
-        $response->headers->set('Content-Type', 'text/xml');
-        return $response;
+///////// AJOUT DES ENTETES HTTP//////////////////////////////////////////////
+            $response -> headers->set('Content-type', 'text/xml');
+
+            return $response;
     }
 }

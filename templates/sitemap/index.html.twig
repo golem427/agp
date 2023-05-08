@@ -1,19 +1,40 @@
-{% extends 'base.html.twig' %}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
+    {% for url in urls %}
+    <url>{# check if hostname is not already in url#}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+         {% if url.loc | replace( {hostname:''}) is same as (url.loc) %}
+            <loc>{{hostname}}{{url.loc}}</loc>
+        {% else %}
+            <loc>{{url.loc}}</loc>
+         {% endif %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        {% if url.lastmod is defined %}
+            <lastmod>{{url.lastmod}}</lastmod>
+        {% endif %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/AGP/agp/src/Controller/SitemapController.php'|file_link(0) }}">src/Controller/SitemapController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/AGP/agp/templates/sitemap/index.html.twig'|file_link(0) }}">templates/sitemap/index.html.twig</a></code></li>
-    </ul>
-</div>
-{% endblock %}
+        {% if url.image is defined and url.image is not empty %}
+            <image:image>
+                <image:loc>
+                    {% if url.image.loc | replace( {hostname:''}) is same as(url.image.loc) %}
+                        <loc>{{hostname}}{{url.loc}}</loc>
+                    {% else %}
+                        <loc>{{url.image.loc}}</loc>
+                    {% endif %}
+                <image:title>{{ url.image.title}}</image:title>
+            </image:image>
+        {% endif %}
+
+        {% if url.changefreq is defined %}
+            <changefreq>{{url.changefreq}}</changefreq>
+        {% endif %}
+
+        {% if url.priority is defined %}
+            <priority>{{url.priority}}</priority>
+        {% endif %}
+    </url>
+    {% endfor %}
+</urlset>

@@ -37,18 +37,18 @@ class AppFixtures extends Fixture
         // echo $faker->text();
         // 'Numquam ut mollitia at consequuntur inventore dolorem.'
 
-        // On crée un user
-        $user = new User();
+        // // On crée un user
+        // $user = new User();
 
-        $user->setEmail('jose@user.fr')
-            ->setNom($faker->firstName("José Aguado"))
-            ->setRoles(['ROLE_ADMIN']);
+        // $user->setEmail('contact@agp.fr')
+        //     ->setNom($faker->firstName("José"))
+        //     ->setRoles(['ROLE_ADMIN']);
 
-        $password = $this->userPasswordHasherInterface->hashPassword($user, 'admin');
-        $user->setPassword($password);
+        // $password = $this->userPasswordHasherInterface->hashPassword($user, 'admin');
+        // $user->setPassword($password);
 
-        $manager->persist($user);
-        $manager->flush();
+        // $manager->persist($user);
+        // $manager->flush();
 
             // On crée 10 blogposts
 

@@ -40,8 +40,8 @@ class AppFixtures extends Fixture
         // On crée un user
         $user = new User();
 
-        $user->setEmail('jose@user.fr')
-            ->setNom($faker->firstName("José Aguado"))
+        $user->setEmail('contact@aguadopeinture.fr')
+            ->setNom($faker->firstName('Jose'))
             ->setRoles(['ROLE_ADMIN']);
 
         $password = $this->userPasswordHasherInterface->hashPassword($user, 'admin');

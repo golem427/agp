@@ -31,11 +31,8 @@ class Contact
     #[ORM\Column(type: Types::TEXT)]
     private ?string $message = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $createdAt = null;
-
-    #[ORM\Column(type: Types::BOOLEAN)]
-    private ?string $isSent = null;
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
+    private ?\DateTimeImmutable $createdAt = null;
 
 
 
@@ -113,30 +110,17 @@ class Contact
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
-
-    public function getIsSent(): ?bool
-    {
-        return $this->isSent;
-    }
-
-       public function setIsSent(bool $isSent): self
-       {
-           $this->isSent = $isSent;
-
-           return $this;
-       }
-
        
        public function __toString()
        {

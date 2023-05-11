@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "higoka.php-cs-fixer",
-        "formulahendry.vscode-mysql"
+        "formulahendry.vscode-mysql",
+        "whatwedo.twig"
     ]
 }

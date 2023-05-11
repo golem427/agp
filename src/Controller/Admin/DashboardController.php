@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Blogpost;
 use App\Entity\Categorie;
 use App\Entity\Commentaire;
+use App\Entity\Contact;
 use App\Entity\Realisation;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -51,6 +52,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Réalisations', 'fas fa-brush', Realisation::class);
         yield MenuItem::linkToCrud('Commentaires', 'fas fa-comment', Commentaire::class);
         yield MenuItem::linkToCrud('Catégories', 'fas fa-pen', Categorie::class);
-        // yield MenuItem::linkToCrud('Utilisateur', 'fas fa-user', User::class);
+        yield MenuItem::linkToCrud('Utilisateur', 'fas fa-user', User::class);
+        yield MenuItem::linkToCrud('Contacts', 'fas fa-user', Contact::class);
     }
 }

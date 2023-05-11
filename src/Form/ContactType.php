@@ -12,7 +12,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ContactType extends AbstractType
@@ -21,20 +20,15 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class, [
-                'label' => 'nom',
+                'label' => 'Votre nom',
                 'constraints' => [
                     new NotBlank([
                         'message' => "Ce champ ne peut pas être vide."
                     ]),
-                    new Length([
-                        'min' => 2,
-                        'max' => 100,
-                    ]),
                 ],
             ])
-
             ->add('email', EmailType::class, [
-                'label' => 'E-mail',
+                'label' => 'Votre email',
                 'constraints' => [
                     new Email([
                         'message' => "Votre email n'est pas au bon format : mail@exemple.fr"
@@ -54,57 +48,23 @@ class ContactType extends AbstractType
                 //            * au moins 1 minuscule,
                 //            * au moins 1 chiffre"
             ])
-
-
-            ->add(
-                'telephone',
-                TextType::class,
-                [
-                    'label' => 'Téléphone',
-                    'constraints' =>
-                    [
-                        new NotBlank([
-                            'message' => "Ce champ ne peut pas être vide."
-                        ]),
-                        new Length([
-                            'min' => 10,
-                            'max' => 22,
-                        ]),
-                    ]
-                ]
-            )
-
+            
             ->add('subject', TextType::class, [
-                   'label' => 'Sujet',
+                   'label' => 'Votre demande',
                 ])
 
             ->add('message', TextareaType::class, [
+                'label' => 'Expliquez votre demande en quelques lignes',
                 'attr' => ['rows' => 5],
                 'constraints' =>
                     [
                         new NotBlank([
                             'message' => "Ce champ ne peut pas être vide."
                         ]),
-                        new Length([
-                            'min' => 30,
-                            'max' => 300
-                        ])
                     ]
             ])
-            
-            ->add(
-                'createdAt',
-                DateTimeType::class,
-                [   'label' => 'Le:',
-                    'widget' => 'single_text',
-                    'html5' => false,
-                    'format' => 'dd/MM/yyyy',
-
-                ]
-            )
-
-            ->add('submit', SubmitType::class, [
-                    'label' => 'Valider',
+                    ->add('submit', SubmitType::class, [
+                    'label' => 'Envoyer',
                     'validate' => false,
                     'attr' => [
                         'class' => 'd-block col-3 my-3 mx-auto btn btn-success'

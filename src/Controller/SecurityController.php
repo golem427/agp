@@ -40,38 +40,4 @@ class SecurityController extends AbstractController
 
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
-
-   
-     #[Route(path:'/changepw', name: 'change_pw', methods: ['GET','POST'])]
-    
-    public function changePassword(EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher, Request $request): Response
-    {
-        $form = $this->createForm(ChangepwFormType::class)->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            
-            $user = $entityManager->getRepository(User::class)->findOneBy(['email' => $this->getUser()]);
-
-            $user->setUpdatedAt(new DateTime());
-
-            $user->setPassword($passwordHasher
-            ->hashPassword($user, 
-            $form->get('plainPassword')->getData()
-
-                )
-            );
-
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            $this->addFlash('success', 'Votre mot de passe a été bien changé');
-            return $this->redirectToRoute('admin');
-        }
-
-        return $this->render('security/changepw.html.twig', [
-            'form' => $form->createView(),
-            
-        ]);
-    }
 }

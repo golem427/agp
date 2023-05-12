@@ -20,11 +20,11 @@ class ContactController extends AbstractController
     {   
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
+        $contact = new Contact();
       
                 if ($form->isSubmitted() && $form->isValid()) 
                 {   
-                    $contact = new Contact();
-                    $contact = $form->getData();
+                  $contact = $form->getData();
                     $manager->persist($contact);
                     $manager->flush();
 
@@ -35,21 +35,20 @@ class ContactController extends AbstractController
                             $email = (new TemplatedEmail())
                                 ->from($address)
                                 ->to('aguadopeinture@yahoo.com')
-                                ->priority(Email::PRIORITY_HIGH)
                                 ->subject($subject)
-                                ->text($message)
-                                ->htmlTemplate('contact/email.html.twig');
+                                ->text($message);
+                                // ->htmlTemplate('contact/email.html.twig')
 
                             $mailer->send($email);
 
                             $this->addFlash('success', 'Votre demande a bien été envoyée');
 
-                            return $this->redirectToRoute('home');
+                            return $this->redirectToRoute('contact');
                         } 
                     
                         return $this->render('contact/contact.html.twig', [
                             'controller_name' => 'ContactController',
-                            'form' => $form->createView()
+                            'form' => $form
                             ]);                                    
     }
 }

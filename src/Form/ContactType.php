@@ -6,7 +6,6 @@ use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Email;
-use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -19,9 +18,9 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('nom', TextType::class, [
-            'label' => 'Vos noms et prénoms',
-         ])
+        // ->add('nom', TextType::class, [
+        //     'label' => 'Vos noms et prénoms',
+        //  ])
             ->add('email', EmailType::class, [
                 'label' => 'Votre email',
                 'constraints' => [
@@ -30,10 +29,6 @@ class ContactType extends AbstractType
                     ]),
                     new NotBlank([
                         'message' => "Ce champ ne peut pas être vide."
-                    ]),
-                    new Length([
-                        'min' => 4,
-                        'max' => 30,
                     ]),
                 ],
                 // 'help' => "* min caractères : 4,

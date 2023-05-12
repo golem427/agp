@@ -17,13 +17,7 @@ class Contact
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nom = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $email = null;
-
-    #[ORM\Column(length: 16, nullable: true)]
-    private ?string $telephone = null;
 
     #[ORM\Column(length: 255)]
     private ?string $subject = null;
@@ -34,6 +28,11 @@ class Contact
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $nom = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $phone = null;
 
 
     public function __construct()
@@ -47,18 +46,6 @@ class Contact
         return $this->id;
     }
 
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
     public function getEmail(): ?string
     {
         return $this->email;
@@ -70,20 +57,6 @@ class Contact
 
         return $this;
     }
-
-
-    public function getTelephone(): ?string
-    {
-        return $this->telephone;
-    }
-
-    public function setTelephone(?string $telephone): self
-    {
-        $this->telephone = $telephone;
-
-        return $this;
-    }
-
 
     public function getSubject(): ?string
     {
@@ -124,6 +97,30 @@ class Contact
        
        public function __toString()
        {
+           return $this->email;
+       }
+
+       public function getNom(): ?string
+       {
            return $this->nom;
+       }
+
+       public function setNom(?string $nom): self
+       {
+           $this->nom = $nom;
+
+           return $this;
+       }
+
+       public function getPhone(): ?string
+       {
+           return $this->phone;
+       }
+
+       public function setPhone(?string $phone): self
+       {
+           $this->phone = $phone;
+
+           return $this;
        }
 }

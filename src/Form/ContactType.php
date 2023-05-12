@@ -19,14 +19,9 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class, [
-                'label' => 'Votre nom',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => "Ce champ ne peut pas être vide."
-                    ]),
-                ],
-            ])
+        ->add('nom', TextType::class, [
+            'label' => 'Vos noms et prénoms',
+         ])
             ->add('email', EmailType::class, [
                 'label' => 'Votre email',
                 'constraints' => [
@@ -38,7 +33,7 @@ class ContactType extends AbstractType
                     ]),
                     new Length([
                         'min' => 4,
-                        'max' => 180,
+                        'max' => 30,
                     ]),
                 ],
                 // 'help' => "* min caractères : 4,
@@ -65,7 +60,7 @@ class ContactType extends AbstractType
             ])
                     ->add('submit', SubmitType::class, [
                     'label' => 'Envoyer',
-                    'validate' => false,
+                    'validate' => true,
                     'attr' => [
                         'class' => 'd-block col-3 my-3 mx-auto btn btn-success'
                     ]

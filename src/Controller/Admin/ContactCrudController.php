@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use Symfony\Component\Form\SubmitButton;
 
 class ContactCrudController extends AbstractCrudController
 {
@@ -24,7 +25,6 @@ class ContactCrudController extends AbstractCrudController
         return [
             TextField::new('nom'),
             TextField::new('email'),
-            Textfield::new('telephone'),
             TextField::new('subject'),
             TextareaField::new('message'),
         ];

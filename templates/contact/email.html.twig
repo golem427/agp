@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1>Demande de {{ contact.nom }}</h1>
+<h2>Email : {{ contact.email }}</h2>
+<h3>Téléphone : {{ contact.phone }}</h3>
+<h3>Sujet : {{ contact.subject }}</h3>
+<p>Message :</p>
+    <div>
+        {{ contact.message|raw }}
+    </div>
+
+{% endblock %}

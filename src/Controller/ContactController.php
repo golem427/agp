@@ -32,7 +32,7 @@ class ContactController extends AbstractController
                     $subject = $contact->getSubject();
                     $message = $contact->getMessage();
 
-                            $email = (new TemplatedEmail())
+                            $email = (new Email())
                                 ->from($address)
                                 ->to('aguadopeinture@yahoo.com')
                                 ->subject($subject)

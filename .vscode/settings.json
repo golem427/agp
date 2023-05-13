@@ -1,3 +1,6 @@
 {
-    "ligaturesLimited.debug": true
+    "ligaturesLimited.debug": true,
+    "editor.fontFamily": "'Fira Code'",
+    "editor.fontLigatures": true
 }
+

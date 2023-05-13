@@ -54,6 +54,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Catégories', 'fas fa-pen', Categorie::class);
         yield MenuItem::linkToCrud('Utilisateur', 'fas fa-user', User::class);
         yield MenuItem::linkToCrud('Contacts', 'fas fa-user', Contact::class);
-        yield MenuItem::linkToRoute('Changer le mot de passe', 'fa-solid fa-key', 'changepw');
+        yield MenuItem::linkToRoute('Changer le mot de passe', 'fa-solid fa-key', 'admin');
     }
 }

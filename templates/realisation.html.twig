@@ -30,7 +30,7 @@
 				<section>
 					<div class="card mb-3">
 						<a href="{{ path('real_details', {'slug': realisation.slug}) }}">
-							<img src="{{ vich_uploader_asset(realisation, 'imageFile')| imagine_filter('welcome') }}" alt="alex" class="card-img-top">
+							<img src="{{ vich_uploader_asset(realisation, 'imageFile') }}" alt="alex" class="card-img-top">
 						</a>
 							<div class="card-body">
 								<h4 class="mb-0">{{ realisation.nom }}</h4>
@@ -39,7 +39,7 @@
 									<time datetime="2019-05-02">{{realisation.createdAt|date('d/m/y')}}</time>
 								</p>
 							</div>
-						</div>
+					</div>
 				</section>
 			{% endfor %}
 		</div>

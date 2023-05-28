@@ -1,12 +1,51 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+			<title>
+				{% block title %}Aguadopeinture{% endblock %}
+			</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+			{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">			
+<link rel= "stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+			
+			{% block stylesheets %}
+				{{ encore_entry_link_tags('app') }}
+			{% endblock %}
+	</head>
+	<body>
+			{% include "include/_nav2.html.twig" %}
 
+			{% block body %}
 
-{% block title %}Accueil{% endblock %}
+				{% include "include/_welcome.html.twig" %}
+   	 			{% include "include/_realisation3.html.twig" %}
+    			{% include "include/_blogpost.html.twig" %}
 
-{% block body %}
+			{% endblock %}
 
-    {% include "_welcome.html.twig" %}
-    {% include "_realisation3.html.twig" %}
-    {% include "_blogpost.html.twig" %}
+		{% include "include/_footer.html.twig" %}
 
+{% block javascripts %}
+<!-- JAVASCRIPT -->
+			{{ encore_entry_script_tags('app') }}
+			<!-- Bootstrap -->
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+			<!-- Jquery -->
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+			
+    <!-- Map JS -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+    
+    <!-- Vendor JS -->
+    <script src="./assets/js/vendor.bundle.js"></script>
+    
+    <!-- Theme JS -->
+    <script src="./assets/js/theme.bundle.js"></script>
+		
 {% endblock %}
+
+	</body>
+</html>

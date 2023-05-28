@@ -13,8 +13,7 @@ class HomeController extends AbstractController
     #[Route('/home', name: 'home')]
     public function home(RealisationRepository $RealisationRepository, BlogpostRepository $blogpostRepository): Response
     {
-        return $this->render(
-            'home.html.twig',
+        return $this->render('home/home.html.twig',
             ['realisations' => $RealisationRepository->last3(),
             'blogposts' => $blogpostRepository->last3()]
         );

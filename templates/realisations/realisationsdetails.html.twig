@@ -35,7 +35,7 @@
 	
 		<div>
 			<a href="{{ path('realisations')}}">
-				<div data-jarallax data-speed=".8" class="bg-cover jarallax" style="background-image: url(" {{ vich_uploader_asset(realisation, 'imageFile') | imagine_filter('welcome') }} " );">
+				<div data-jarallax data-speed=".8" class="bg-cover jarallax" style="background-image: url("{{ vich_uploader_asset(realisation, 'imageFile') }}" );">
 				</div>
 			</a>
 		</div>

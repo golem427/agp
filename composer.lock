@@ -7834,7 +7834,6 @@
                 "doctrine/phpcr-odm": "For integration with Doctrine PHPCR",
                 "knplabs/knp-gaufrette-bundle": "For integration with Gaufrette",
                 "league/flysystem-bundle": "For integration with Flysystem",
-                "liip/imagine-bundle": "To generate image thumbnails",
                 "oneup/flysystem-bundle": "For integration with Flysystem",
                 "symfony/asset": "To generate better links",
                 "symfony/form": "To handle uploads in forms",

@@ -31,8 +31,8 @@ class Blogpost
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
-    #[ORM\Column]
-    private ?DateTimeImmutable $createdAt;
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
+    private ?\DateTimeImmutable $createdAt;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DateTimeInterface $updatedAt = null;
@@ -96,12 +96,11 @@ class Blogpost
 
         return $this;
     }
-
+    
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
-
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;

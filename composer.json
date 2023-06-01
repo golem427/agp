@@ -54,8 +54,7 @@
     "config": {
         "allow-plugins": {
             "symfony/flex": true,
-            "symfony/runtime": true,
-            "mouf/nodejs-installer": true
+            "symfony/runtime": true
         },
         "sort-packages": true
     },

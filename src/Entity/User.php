@@ -2,16 +2,14 @@
 
 namespace App\Entity;
 
-use Assert\NotBlank;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\component\Validator\Constraints as Assert;
 
 #[UniqueEntity('email')]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -188,7 +186,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $blogpost->setUser(null);
             }
         }
-
         return $this;
+    }
+    public function __toString()
+    {
+        return $this->nom;
     }
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bb3aaecc12ccf15f9f82d7ab30fd7a9a",
+    "content-hash": "4bd00b0e6f70fa06b2ce603b1cba3783",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -513,16 +513,16 @@
         },
         {
             "name": "doctrine/doctrine-bundle",
-            "version": "2.9.1",
+            "version": "2.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineBundle.git",
-                "reference": "7539b3c8bd620f7df6c2c6d510204bd2ce0064e3"
+                "reference": "b2ec6c2668f6dc514e8bf51257d19c7c19398afe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/7539b3c8bd620f7df6c2c6d510204bd2ce0064e3",
-                "reference": "7539b3c8bd620f7df6c2c6d510204bd2ce0064e3",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/b2ec6c2668f6dc514e8bf51257d19c7c19398afe",
+                "reference": "b2ec6c2668f6dc514e8bf51257d19c7c19398afe",
                 "shasum": ""
             },
             "require": {
@@ -609,7 +609,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/DoctrineBundle/issues",
-                "source": "https://github.com/doctrine/DoctrineBundle/tree/2.9.1"
+                "source": "https://github.com/doctrine/DoctrineBundle/tree/2.10.0"
             },
             "funding": [
                 {
@@ -625,7 +625,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-14T05:39:34+00:00"
+            "time": "2023-06-05T14:43:41+00:00"
         },
         {
             "name": "doctrine/doctrine-migrations-bundle",
@@ -3633,34 +3633,31 @@
         },
         {
             "name": "symfony/flex",
-            "version": "v1.17.2",
+            "version": "v2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "0170279814f86648c62aede39b100a343ea29962"
+                "reference": "3c9c3424efdafe33e0e3cfb5e87e50b34711fedf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/0170279814f86648c62aede39b100a343ea29962",
-                "reference": "0170279814f86648c62aede39b100a343ea29962",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/3c9c3424efdafe33e0e3cfb5e87e50b34711fedf",
+                "reference": "3c9c3424efdafe33e0e3cfb5e87e50b34711fedf",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^1.0|^2.0",
-                "php": ">=7.1"
+                "composer-plugin-api": "^2.1",
+                "php": ">=8.0"
             },
             "require-dev": {
-                "composer/composer": "^1.0.2|^2.0",
-                "symfony/dotenv": "^4.4|^5.0",
-                "symfony/filesystem": "^4.4|^5.0",
-                "symfony/phpunit-bridge": "^4.4.12|^5.0",
-                "symfony/process": "^3.4|^4.4|^5.0"
+                "composer/composer": "^2.1",
+                "symfony/dotenv": "^5.4|^6.0",
+                "symfony/filesystem": "^5.4|^6.0",
+                "symfony/phpunit-bridge": "^5.4|^6.0",
+                "symfony/process": "^5.4|^6.0"
             },
             "type": "composer-plugin",
             "extra": {
-                "branch-alias": {
-                    "dev-main": "1.17-dev"
-                },
                 "class": "Symfony\\Flex\\Flex"
             },
             "autoload": {
@@ -3681,7 +3678,7 @@
             "description": "Composer plugin for Symfony",
             "support": {
                 "issues": "https://github.com/symfony/flex/issues",
-                "source": "https://github.com/symfony/flex/tree/v1.17.2"
+                "source": "https://github.com/symfony/flex/tree/v2.3.1"
             },
             "funding": [
                 {
@@ -3697,7 +3694,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-10-21T08:39:19+00:00"
+            "time": "2023-05-27T07:38:25+00:00"
         },
         {
             "name": "symfony/form",

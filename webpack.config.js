@@ -75,6 +75,7 @@ Encore
 
 module.exports = Encore.getWebpackConfig();
 
+
 const CopyPlugin = require('copy-webpack-plugin');
 const HandlebarsPlugin = require('handlebars-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
